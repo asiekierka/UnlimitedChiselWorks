@@ -58,6 +58,24 @@
       "based_upon": {
         "state": "minecraft:sandstone#type=sandstone"
       }
+    },
+    {
+      "from": {
+        "state": [
+          "biomesoplenty:dirt#coarse=false,variant=loamy",
+          "biomesoplenty:dirt#coarse=false,variant=sandy",
+          "biomesoplenty:dirt#coarse=false,variant=silty"
+        ]
+      },
+      "through": {
+        "block": "chisel:dirt",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:dirt#snowy=false,variant=dirt"
+      }
     }
   ]
 }

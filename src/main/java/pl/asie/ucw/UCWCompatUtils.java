@@ -29,13 +29,15 @@ public final class UCWCompatUtils {
 	}
 
 	public static void addChiselVariation(String group, ItemStack stack) {
-		NBTTagCompound tag = new NBTTagCompound();
-		NBTTagCompound itemTag = new NBTTagCompound();
-		stack.writeToNBT(itemTag);
+		if (!stack.isEmpty()) {
+			NBTTagCompound tag = new NBTTagCompound();
+			NBTTagCompound itemTag = new NBTTagCompound();
+			stack.writeToNBT(itemTag);
 
-		tag.setString("group", group);
-		tag.setTag("stack", itemTag);
+			tag.setString("group", group);
+			tag.setTag("stack", itemTag);
 
-		FMLInterModComms.sendMessage("chisel", "add_variation", tag);
+			FMLInterModComms.sendMessage("chisel", "add_variation", tag);
+		}
 	}
 }

@@ -337,6 +337,20 @@
       "based_upon": {
         "state": "minecraft:cobblestone"
       }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:dreadlandsdirt"
+      },
+      "through": {
+        "block": "chisel:dirt",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:dirt#snowy=false,variant=dirt"
+      }
     }
   ]
 }

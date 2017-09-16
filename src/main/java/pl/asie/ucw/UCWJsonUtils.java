@@ -19,7 +19,9 @@
 
 package pl.asie.ucw;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -39,6 +41,33 @@ public final class UCWJsonUtils {
 
 	private UCWJsonUtils() {
 
+	}
+
+	private static IBlockState parseState(String s) throws Exception {
+		String[] stateStr = s.split("#", 2);
+		ResourceLocation blockLoc = new ResourceLocation(stateStr[0]);
+		if (ForgeRegistries.BLOCKS.containsKey(blockLoc)) {
+			Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
+			IBlockState state = block.getDefaultState();
+			if (stateStr.length > 1) {
+				for (String stateParam : stateStr[1].split(",")) {
+					String[] stateKv = stateParam.split("=", 2);
+					if (stateKv.length > 1) {
+						IProperty property = block.getBlockState().getProperty(stateKv[0]);
+						if (property != null) {
+							com.google.common.base.Optional optValue = property.parseValue(stateKv[1]);
+							if (optValue.isPresent()) {
+								// TODO: !?!?
+								state = (IBlockState) WITH_PROPERTY.invoke(state, property, optValue.get());
+							}
+						}
+					}
+				}
+			}
+			return state;
+		} else {
+			return null;
+		}
 	}
 
 	public static List<IBlockState> parseStateList(JsonObject object, boolean orderMatters) throws Exception {
@@ -71,29 +100,33 @@ public final class UCWJsonUtils {
 				return Collections.emptyList();
 			}
 		} else if (object.has("state")) {
-			String[] stateStr = object.get("state").getAsString().split("#", 2);
-			ResourceLocation blockLoc = new ResourceLocation(stateStr[0]);
-			if (ForgeRegistries.BLOCKS.containsKey(blockLoc)) {
-				Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
-				IBlockState state = block.getDefaultState();
-				if (stateStr.length > 1) {
-					for (String stateParam : stateStr[1].split(",")) {
-						String[] stateKv = stateParam.split("=", 2);
-						if (stateKv.length > 1) {
-							IProperty property = block.getBlockState().getProperty(stateKv[0]);
-							if (property != null) {
-								com.google.common.base.Optional optValue = property.parseValue(stateKv[1]);
-								if (optValue.isPresent()) {
-									// TODO: !?!?
-									state = (IBlockState) WITH_PROPERTY.invoke(state, property, optValue.get());
-								}
-							}
+			JsonElement element = object.get("state");
+			if (element.isJsonArray()) {
+				List<IBlockState> stateList = Lists.newArrayList();
+				if (orderMatters) {
+					for (int i = 0; i < 16; i++)
+						stateList.add(i, null);
+				}
+
+				for (JsonElement el : element.getAsJsonArray()) {
+					IBlockState state = parseState(el.getAsString());
+					if (state != null) {
+						if (orderMatters) {
+							stateList.set(state.getBlock().getMetaFromState(state), state);
+						} else {
+							stateList.add(state);
 						}
 					}
 				}
-				return Collections.singletonList(state);
+
+				return stateList;
 			} else {
-				return Collections.emptyList();
+				IBlockState state = parseState(element.getAsString());
+				if (state != null) {
+					return Collections.singletonList(state);
+				} else {
+					return Collections.emptyList();
+				}
 			}
 		} else {
 			return Collections.emptyList();
