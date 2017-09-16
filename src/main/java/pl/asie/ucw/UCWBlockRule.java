@@ -38,23 +38,33 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class UCWBlockRule {
-	private static final Method WITH_PROPERTY = ReflectionHelper.findMethod(IBlockState.class, "withProperty", "func_177226_a", IProperty.class, Comparable.class);
-	protected final List<IBlockState> from;
+	protected final List<IBlockState> from, overlay;
 	protected final List<IBlockState> through;
 	protected final List<IBlockState> basedUpon;
-	protected @Nonnull final Block fromBlock, throughBlock, basedUponBlock;
+	protected @Nonnull final Block fromBlock, throughBlock, basedUponBlock, overlayBlock;
 	protected final TIntObjectMap<UCWObjectFactory> objectFactories = new TIntObjectHashMap<>();
 	protected final String prefix;
 	protected final String group;
+	protected final boolean blend;
 	protected final int fromCount;
 
 	public UCWBlockRule(JsonObject object) throws Exception {
-		from = parseStateList(object.get("from").getAsJsonObject(), true);
-		through = parseStateList(object.get("through").getAsJsonObject(), true);
-		basedUpon = parseStateList(object.get("based_upon").getAsJsonObject(), false);
+		from = UCWJsonUtils.parseStateList(object.get("from").getAsJsonObject(), true);
+		through = UCWJsonUtils.parseStateList(object.get("through").getAsJsonObject(), true);
+		basedUpon = UCWJsonUtils.parseStateList(object.get("based_upon").getAsJsonObject(), false);
 		fromBlock = getBlock(from);
 		throughBlock = getBlock(through);
 		basedUponBlock = getBlock(basedUpon);
+
+		if (object.has("overlay")) {
+			overlay = UCWJsonUtils.parseStateList(object.get("overlay").getAsJsonObject(), true);
+			overlayBlock = getBlock(overlay);
+		} else {
+			overlay = from;
+			overlayBlock = fromBlock;
+		}
+
+		blend = object.has("blend") && object.get("blend").getAsBoolean();
 
 		int fc = 0;
 		for (IBlockState state : from) {
@@ -120,64 +130,5 @@ public class UCWBlockRule {
 			}
 		}
 		return Blocks.AIR;
-	}
-
-	private static List<IBlockState> parseStateList(JsonObject object, boolean orderMatters) throws Exception {
-		if (object.has("block")) {
-			ResourceLocation blockLoc = new ResourceLocation(object.get("block").getAsString());
-			if (ForgeRegistries.BLOCKS.containsKey(blockLoc)) {
-				Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
-				if (orderMatters) {
-					Set<IBlockState> states = Sets.newHashSet(block.getBlockState().getValidStates());
-					List<IBlockState> stateList = new ArrayList<>(16);
-
-					for (int i = 0; i < 16; i++) {
-						stateList.add(null);
-						try {
-							IBlockState state = block.getStateFromMeta(i);
-							if (states.remove(state)) {
-								stateList.set(i, state);
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-							/* ... */
-						}
-					}
-
-					return stateList;
-				} else {
-					return block.getBlockState().getValidStates();
-				}
-			} else {
-				return Collections.emptyList();
-			}
-		} else if (object.has("state")) {
-			String[] stateStr = object.get("state").getAsString().split("#", 2);
-			ResourceLocation blockLoc = new ResourceLocation(stateStr[0]);
-			if (ForgeRegistries.BLOCKS.containsKey(blockLoc)) {
-				Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
-				IBlockState state = block.getDefaultState();
-				if (stateStr.length > 1) {
-					for (String stateParam : stateStr[1].split(",")) {
-						String[] stateKv = stateParam.split("=", 2);
-						if (stateKv.length > 1) {
-							IProperty property = block.getBlockState().getProperty(stateKv[0]);
-							if (property != null) {
-								com.google.common.base.Optional optValue = property.parseValue(stateKv[1]);
-								if (optValue.isPresent()) {
-									// TODO: !?!?
-									state = (IBlockState) WITH_PROPERTY.invoke(state, property, optValue.get());
-								}
-							}
-						}
-					}
-				}
-				return Collections.singletonList(state);
-			} else {
-				return Collections.emptyList();
-			}
-		} else {
-			return Collections.emptyList();
-		}
 	}
 }

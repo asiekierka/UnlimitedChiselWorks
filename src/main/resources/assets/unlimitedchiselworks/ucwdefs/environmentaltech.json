@@ -2,7 +2,10 @@
   "blocks": [
     {
       "from": {
-        "state": "abyssalcraft:dreadbrick#type=normal"
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -16,7 +19,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:dreadbrick#type=normal"
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -30,7 +36,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:dreadbrick#type=normal"
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -44,7 +53,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abybrick#type=normal"
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -58,7 +70,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abybrick#type=normal"
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -72,7 +87,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abybrick#type=normal"
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -86,7 +104,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:darkstone_brick#type=normal"
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -100,7 +121,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:darkstone_brick#type=normal"
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -114,7 +138,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:darkstone_brick#type=normal"
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -128,7 +155,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abydreadbrick#type=normal"
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -142,7 +172,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abydreadbrick#type=normal"
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -156,7 +189,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:abydreadbrick#type=normal"
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -170,10 +206,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:ethaxiumbrick#type=normal"
+        "state": "environmentaltech:erodium#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=ethaxium"
+        "state": "environmentaltech:erodium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -187,10 +223,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:ethaxiumbrick#type=normal"
+        "state": "environmentaltech:erodium#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=ethaxium"
+        "state": "environmentaltech:erodium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -204,10 +240,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:ethaxiumbrick#type=normal"
+        "state": "environmentaltech:erodium#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=ethaxium"
+        "state": "environmentaltech:erodium#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -221,10 +257,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:cstonebrick#type=normal"
+        "state": "environmentaltech:ltherite#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=coraliumstone"
+        "state": "environmentaltech:ltherite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -238,10 +274,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:cstonebrick#type=normal"
+        "state": "environmentaltech:ltherite#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=coraliumstone"
+        "state": "environmentaltech:ltherite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -255,10 +291,10 @@
     },
     {
       "from": {
-        "state": "abyssalcraft:cstonebrick#type=normal"
+        "state": "environmentaltech:ltherite#type=bricks"
       },
       "overlay": {
-        "state": "abyssalcraft:stone#type=coraliumstone"
+        "state": "environmentaltech:ltherite#type=normal"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -272,70 +308,53 @@
     },
     {
       "from": {
-        "block": "abyssalcraft:dltplank",
-        "iterate": [
-          "variant"
-        ]
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
       },
       "through": {
-        "block": "chisel:planks-oak",
+        "block": "chisel:stonebrick",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:planks#variant=oak"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "abyssalcraft:cobblestone",
-        "iterate": [
-          "type"
-        ]
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
       },
       "through": {
-        "block": "chisel:cobblestone",
+        "block": "chisel:stonebrick1",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:cobblestone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "abyssalcraft:cobblestone",
-        "iterate": [
-          "type"
-        ]
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
       },
       "through": {
-        "block": "chisel:cobblestone1",
+        "block": "chisel:stonebrick2",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:cobblestone"
-      }
-    },
-    {
-      "from": {
-        "block": "abyssalcraft:cobblestone",
-        "iterate": [
-          "type"
-        ]
-      },
-      "through": {
-        "block": "chisel:cobblestone2",
-        "iterate": [
-          "variation"
-        ]
-      },
-      "based_upon": {
-        "state": "minecraft:cobblestone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     }
   ]

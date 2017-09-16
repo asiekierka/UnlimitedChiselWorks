@@ -58,6 +58,7 @@ public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
+    public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
     protected static final Gson GSON = new Gson();
     private static Logger LOGGER;
 
@@ -96,6 +97,19 @@ public class UnlimitedChiselWorks {
                             }
                         }
                     }
+
+                    if (json.has("groups")) {
+                        for (JsonElement element : json.get("groups").getAsJsonArray()) {
+                            if (element.isJsonObject()) {
+                                try {
+                                    UCWGroupRule rule = new UCWGroupRule(element.getAsJsonObject());
+                                    GROUP_RULES.add(rule);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -127,7 +141,8 @@ public class UnlimitedChiselWorks {
             }
         }
 
-        LOGGER.info("Found " + BLOCK_RULES.size() + " rules.");
+        LOGGER.info("Found " + BLOCK_RULES.size() + " block rules.");
+        LOGGER.info("Found " + GROUP_RULES.size() + " group rules.");
     }
 
     @EventHandler
@@ -170,6 +185,14 @@ public class UnlimitedChiselWorks {
                 for (ItemStack stack : stacks) {
                     UCWCompatUtils.addChiselVariation(groupName, stack);
                 }
+            }
+        }
+
+        for (UCWGroupRule rule : GROUP_RULES) {
+            for (IBlockState state : rule.states) {
+                if (state == null) continue;
+
+                UCWCompatUtils.addChiselVariation(rule.groupName, new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
             }
         }
     }

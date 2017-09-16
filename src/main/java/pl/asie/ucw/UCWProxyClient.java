@@ -81,6 +81,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 
 		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
 			Map<IBlockState, ModelResourceLocation> fromVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.fromBlock);
+			Map<IBlockState, ModelResourceLocation> overlayVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.overlayBlock);
 			Map<IBlockState, ModelResourceLocation> throughVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.throughBlock);
 			Map<IBlockState, ModelResourceLocation> basedUponVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.basedUponBlock);
 
@@ -89,10 +90,13 @@ public class UCWProxyClient extends UCWProxyCommon {
 					IBlockState state = rule.from.get(i);
 					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + i;
 
+					IBlockState stateOverlay = rule.overlay.get(i);
 					IModel modelFrom = secretSauce.get(fromVariants.get(state));
+					IModel modelOverlay = secretSauce.get(overlayVariants.get(stateOverlay));
 					IBlockState stateBasedUpon = rule.basedUpon.size() == 1 ? rule.basedUpon.get(0) : rule.basedUpon.get(i);
 					IModel modelBasedUpon = secretSauce.get(basedUponVariants.get(stateBasedUpon));
 					ResourceLocation textureFrom = UCWMagic.getLocation(state, fromVariants.get(state), modelFrom);
+					ResourceLocation textureOverlay = UCWMagic.getLocation(stateOverlay, overlayVariants.get(stateOverlay), modelOverlay);
 					ResourceLocation textureBasedUpon = UCWMagic.getLocation(stateBasedUpon, basedUponVariants.get(stateBasedUpon), modelBasedUpon);
 
 					for (int j = 0; j < 16; j++) {
@@ -120,6 +124,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 								@Override
 								public boolean load(IResourceManager manager, ResourceLocation location, Function<ResourceLocation, TextureAtlasSprite> textureGetter) {
 									TextureAtlasSprite fromTex = textureGetter.apply(textureFrom);
+									TextureAtlasSprite overlayTex = textureGetter.apply(textureOverlay);
 									TextureAtlasSprite basedUponTex = textureGetter.apply(textureBasedUpon);
 									TextureAtlasSprite locationTex = textureGetter.apply(oldLocation);
 
@@ -129,7 +134,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 									clearFramesTextureData();
 									for (int i = 0; i < locationTex.getFrameCount(); i++) {
 										int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
-										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, basedUponTex);
+										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.blend);
 										framesTextureData.add(pixels);
 									}
 
@@ -138,7 +143,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 
 								@Override
 								public java.util.Collection<ResourceLocation> getDependencies() {
-									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation);
+									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
 								}
 							});
 						}

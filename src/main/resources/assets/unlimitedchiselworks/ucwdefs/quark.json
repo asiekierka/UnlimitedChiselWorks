@@ -7,6 +7,7 @@
           "variant"
         ]
       },
+      "blend": true,
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -99,6 +100,34 @@
       },
       "based_upon": {
         "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:biotite_block"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:biotite_block"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
       }
     }
   ]

@@ -151,7 +151,7 @@ public final class UCWMagic {
 		float[] contrast = new float[] { Float.MAX_VALUE, Float.MIN_VALUE };
 
 		for (int i : data) {
-			float[] d = toHSB(i);
+			float[] d = toHSL(i);
 			if (contrast[0] > d[2]) contrast[0] = d[2];
 			if (contrast[1] < d[2]) contrast[1] = d[2];
 		}
@@ -160,7 +160,7 @@ public final class UCWMagic {
 		return contrast;
 	}
 
-	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite basedUpon) {
+	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite overlay, TextureAtlasSprite basedUpon, boolean blend) {
 		int[] texture = sprite.getFrameTextureData(frame)[0];
 		int width = sprite.getIconWidth();
 		int height = sprite.getIconHeight();
@@ -171,7 +171,7 @@ public final class UCWMagic {
 		double avgHueFrom;
 		double avgSatFrom = 0;
 		for (int i : from.getFrameTextureData(0)[0]) {
-			float[] hd = toHSB(i);
+			float[] hd = toHSL(i);
 			avgHueFromS += Math.sin(hd[0] * 2 * Math.PI);
 			avgHueFromC += Math.cos(hd[0] * 2 * Math.PI);
 			avgSatFrom += hd[1];
@@ -184,11 +184,11 @@ public final class UCWMagic {
 			for (int ix = 0; ix < width; ix++) {
 				int i = iy*width+ix;
 				int it = texture[i];
-				int ibu = from.getFrameTextureData(0)[0][(iy % from.getIconHeight())*from.getIconWidth() + (ix % from.getIconWidth())];
+				int ibu = overlay.getFrameTextureData(0)[0][(iy % from.getIconHeight())*from.getIconWidth() + (ix % from.getIconWidth())];
 
-				float[] hsbTex = toHSB(it);
-				float[] hsbBu = toHSB(ibu);
-				if (hsbBu[2] < 0.1 && hsbBu[1] < 0.1 && avgSatFrom >= 0.3) {
+				float[] hsbTex = toHSL(it);
+				float[] hsbBu = toHSL(ibu);
+				if (blend || (hsbBu[2] < 0.1 && hsbBu[1] < 0.1 && avgSatFrom >= 0.3)) {
 					hsbBu[0] = (float) avgHueFrom;
 					hsbBu[1] = (float) avgSatFrom;
 				}
@@ -197,7 +197,7 @@ public final class UCWMagic {
 
 				if (v < 0) v = 0;
 				if (v > 1) v = 1;
-				texData[i] = fromHSB(new float[]{hsbBu[0], hsbBu[1], v});
+				texData[i] = fromHSL(new float[]{hsbBu[0], hsbBu[1], v});
 			}
 		}
 		return texData;

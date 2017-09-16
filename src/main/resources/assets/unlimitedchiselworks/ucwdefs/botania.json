@@ -2,6 +2,9 @@
   "blocks": [
     {
       "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
         "state": "botania:livingrock#variant=default"
       },
       "through": {
@@ -11,11 +14,14 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
         "state": "botania:livingrock#variant=default"
       },
       "through": {
@@ -25,11 +31,14 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
         "state": "botania:livingrock#variant=default"
       },
       "through": {
@@ -39,7 +48,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {

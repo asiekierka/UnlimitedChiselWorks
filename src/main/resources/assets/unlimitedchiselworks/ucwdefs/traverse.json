@@ -16,7 +16,10 @@
     },
     {
       "from": {
-        "block": "traverse:blue_rock"
+        "state": "traverse:blue_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:blue_rock"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -25,12 +28,15 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "traverse:blue_rock"
+        "state": "traverse:blue_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:blue_rock"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -39,12 +45,15 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "traverse:blue_rock"
+        "state": "traverse:blue_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:blue_rock"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -53,7 +62,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
@@ -100,7 +109,10 @@
     },
     {
       "from": {
-        "block": "traverse:red_rock"
+        "state": "traverse:red_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:red_rock"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -109,12 +121,15 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "traverse:red_rock"
+        "state": "traverse:red_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:red_rock"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -123,12 +138,15 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {
       "from": {
-        "block": "traverse:red_rock"
+        "state": "traverse:red_rock_bricks"
+      },
+      "overlay": {
+        "state": "traverse:red_rock"
       },
       "through": {
         "block": "chisel:stonebrick2",
@@ -137,7 +155,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=stone"
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     },
     {

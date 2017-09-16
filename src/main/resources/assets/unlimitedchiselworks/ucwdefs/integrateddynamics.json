@@ -18,6 +18,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_chorus_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_chorus_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick",
         "iterate": [
@@ -32,6 +36,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_chorus_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_chorus_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick1",
         "iterate": [
@@ -46,6 +54,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_chorus_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_chorus_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
@@ -60,6 +72,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_menril_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_menril_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick",
         "iterate": [
@@ -74,6 +90,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_menril_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_menril_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick1",
         "iterate": [
@@ -88,6 +108,10 @@
       "from": {
         "state": "integrateddynamics:crystalized_menril_brick"
       },
+      "overlay": {
+        "state": "integrateddynamics:crystalized_menril_block"
+      },
+      "blend": true,
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
