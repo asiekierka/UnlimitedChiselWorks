@@ -1,0 +1,105 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "block": "quark:stained_planks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:dustbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:dustbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:dustbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    }
+  ]
+}

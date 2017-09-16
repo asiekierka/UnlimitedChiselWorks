@@ -1,0 +1,38 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "block": "natura:nether_planks",
+        "iterate": [
+          "type"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "natura:overworld_planks",
+        "iterate": [
+          "type"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

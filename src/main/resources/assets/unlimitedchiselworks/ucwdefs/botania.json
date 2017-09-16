@@ -1,0 +1,242 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=stone"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=stone"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=stone"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingwood#variant=planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:dreamwood#variant=planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypemana#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypemana#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeblaze#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeblaze#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypelavender#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypelavender#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypered#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypered#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeelf#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeelf#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypesunny#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypesunny#variant=normal"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    }
+  ]
+}

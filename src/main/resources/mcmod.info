@@ -1,0 +1,16 @@
+[
+{
+  "modid": "unlimitedchiselworks",
+  "name": "Unlimited Chisel Works",
+  "description": "why",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["asie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
