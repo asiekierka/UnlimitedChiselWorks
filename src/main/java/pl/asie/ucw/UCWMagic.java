@@ -167,8 +167,8 @@ public final class UCWMagic {
 		return contrast;
 	}
 
-	public static int[] getRGB(BufferedImage image) {
-		return image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
+	private static int[] getRGB(BufferedImage sprite) {
+		return UCWProxyClient.getRGB(sprite);
 	}
 
 	public static int[] transform(BufferedImage sprite, BufferedImage from, BufferedImage overlay, BufferedImage basedUpon, UCWBlockRule.BlendMode mode) {
