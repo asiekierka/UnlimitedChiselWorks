@@ -36,7 +36,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public final class UCWMagic {
-	private static final BufferedImage missingNo;
+	public static final BufferedImage missingNo;
 
 	static {
 		missingNo = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -46,17 +46,6 @@ public final class UCWMagic {
 	}
 
 	private UCWMagic() {
-	}
-
-	public static BufferedImage getBufferedImage(ResourceLocation location) {
-		try {
-			ResourceLocation pngLocation = new ResourceLocation(location.getResourceDomain(), String.format("%s/%s%s", new Object[] {"textures", location.getResourcePath(), ".png"}));
-			IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(pngLocation);
-			return TextureUtil.readBufferedImage(resource.getInputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return missingNo;
-		}
 	}
 
 	public static ResourceLocation getLocation(IBlockState state, ModelResourceLocation location, IModel model) {

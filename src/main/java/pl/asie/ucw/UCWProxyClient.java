@@ -35,6 +35,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
@@ -57,10 +58,31 @@ import java.util.function.Function;
 
 public class UCWProxyClient extends UCWProxyCommon {
 	private JsonObject chiselCache;
+	private Map<ResourceLocation, BufferedImage> imageMap = new HashMap<>();
+
+	public BufferedImage getBufferedImage(ResourceLocation location) {
+		if (!imageMap.containsKey(location)) {
+			try {
+				ResourceLocation pngLocation = new ResourceLocation(location.getResourceDomain(), String.format("%s/%s%s", new Object[]{"textures", location.getResourcePath(), ".png"}));
+				IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(pngLocation);
+				imageMap.put(location, TextureUtil.readBufferedImage(resource.getInputStream()));
+			} catch (IOException e) {
+				e.printStackTrace();
+				imageMap.put(location, UCWMagic.missingNo);
+			}
+		}
+
+		return imageMap.get(location);
+	}
 
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
 		chiselCache = null;
+	}
+
+	@SubscribeEvent
+	public void onModelBake(ModelBakeEvent event) {
+		imageMap.clear();
 	}
 
 	private ModelResourceLocation createMRL(UCWObjectFactory factory, int j) {
@@ -85,6 +107,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SuppressWarnings("unchecked")
 	public void onTextureStitchPre(TextureStitchEvent.Pre event) {
 		// don't tell lex
+		imageMap.clear();
 		ModelLoader loader;
 		Map<ModelResourceLocation, IModel> secretSauce = null;
 		BlockModelShapes blockModelShapes = null;
@@ -151,10 +174,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 
 								@Override
 								public boolean load(IResourceManager manager, ResourceLocation location) {
-									BufferedImage fromTex = UCWMagic.getBufferedImage(textureFrom);
-									BufferedImage overlayTex = UCWMagic.getBufferedImage(textureOverlay);
-									BufferedImage basedUponTex = UCWMagic.getBufferedImage(textureBasedUpon);
-									BufferedImage locationTex = UCWMagic.getBufferedImage(oldLocation);
+									BufferedImage fromTex = getBufferedImage(textureFrom);
+									BufferedImage overlayTex = getBufferedImage(textureOverlay);
+									BufferedImage basedUponTex = getBufferedImage(textureBasedUpon);
+									BufferedImage locationTex = getBufferedImage(oldLocation);
 
 									setIconWidth(locationTex.getWidth());
 									setIconHeight(locationTex.getHeight());
