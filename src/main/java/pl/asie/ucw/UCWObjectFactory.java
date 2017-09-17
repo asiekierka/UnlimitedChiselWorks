@@ -20,11 +20,14 @@
 package pl.asie.ucw;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -34,6 +37,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -233,12 +237,12 @@ public class UCWObjectFactory {
 
 		@Override
 		public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
-			return applyProperties(rule.throughBlock, state).getLightOpacity(world, pos);
+			return base.getLightOpacity(new UCWBlockAccess(world), pos);
 		}
 
 		@Override
 		public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-			return applyProperties(rule.throughBlock, state).getLightValue(world, pos);
+			return base.getLightValue(new UCWBlockAccess(world), pos);
 		}
 
 		@Override
@@ -255,8 +259,48 @@ public class UCWObjectFactory {
 		}
 
 		@Override
+		public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+			return base.getMapColor(new UCWBlockAccess(worldIn), pos);
+		}
+
+		@Override
+		public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+			return base.getBlock().isReplaceable(new UCWBlockAccess(worldIn), pos);
+		}
+
+		@Override
 		public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
 			return rule.fromBlock.canHarvestBlock(new UCWBlockAccess(world), pos, player);
+		}
+
+		@Override
+		public float getExplosionResistance(Entity exploder) {
+			return base.getBlock().getExplosionResistance(exploder);
+		}
+
+		@Override
+		public SoundType getSoundType() {
+			return base.getBlock().getSoundType();
+		}
+
+		@Override
+		public float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity entity) {
+			return base.getBlock().getSlipperiness(base, new UCWBlockAccess(world), pos, entity);
+		}
+
+		@Override
+		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
+			return base.getBlock().isLeaves(base, new UCWBlockAccess(world), pos);
+		}
+
+		@Override
+		public boolean isWood(IBlockAccess world, BlockPos pos) {
+			return base.getBlock().isWood(new UCWBlockAccess(world), pos);
+		}
+
+		@Override
+		public boolean isFoliage(IBlockAccess world, BlockPos pos) {
+			return base.getBlock().isFoliage(new UCWBlockAccess(world), pos);
 		}
 
 		@Override
@@ -266,6 +310,19 @@ public class UCWObjectFactory {
 			} catch (Exception e) {
 				try {
 					return rule.throughBlock.getBlockHardness(applyProperties(rule.throughBlock, blockState), worldIn, pos);
+				} catch (Exception ee) {
+					return blockHardness;
+				}
+			}
+		}
+
+		@Override
+		public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos) {
+			try {
+				return rule.fromBlock.getPlayerRelativeBlockHardness(base, player, worldIn, pos);
+			} catch (Exception e) {
+				try {
+					return rule.throughBlock.getPlayerRelativeBlockHardness(applyProperties(rule.throughBlock, state), player, worldIn, pos);
 				} catch (Exception ee) {
 					return blockHardness;
 				}
