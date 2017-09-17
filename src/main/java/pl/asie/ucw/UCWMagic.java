@@ -21,18 +21,42 @@ package pl.asie.ucw;
 
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.resources.IResource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public final class UCWMagic {
-	private UCWMagic() {
+	private static final BufferedImage missingNo;
 
+	static {
+		missingNo = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		for (int i = 0; i < 256; i++) {
+			missingNo.setRGB(i & 15, i >> 4, ((i ^ (i >> 4)) & 8) != 0 ? 0xFF000000 : 0xFFFF00FF);
+		}
+	}
+
+	private UCWMagic() {
+	}
+
+	public static BufferedImage getBufferedImage(ResourceLocation location) {
+		try {
+			ResourceLocation pngLocation = new ResourceLocation(location.getResourceDomain(), String.format("%s/%s%s", new Object[] {"textures", location.getResourcePath(), ".png"}));
+			IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(pngLocation);
+			return TextureUtil.readBufferedImage(resource.getInputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return missingNo;
+		}
 	}
 
 	public static ResourceLocation getLocation(IBlockState state, ModelResourceLocation location, IModel model) {
@@ -154,31 +178,35 @@ public final class UCWMagic {
 		return contrast;
 	}
 
-	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite overlay, TextureAtlasSprite basedUpon, UCWBlockRule.BlendMode mode) {
-		int[] texture = sprite.getFrameTextureData(frame)[0];
-		int width = sprite.getIconWidth();
-		int height = sprite.getIconHeight();
-		float[] contrastFrom = calculateContrast(from.getFrameTextureData(0)[0]);
-		float[] contrastBasedUpon = calculateContrast(basedUpon.getFrameTextureData(0)[0]);
+	public static int[] getRGB(BufferedImage image) {
+		return image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
+	}
+
+	public static int[] transform(BufferedImage sprite, BufferedImage from, BufferedImage overlay, BufferedImage basedUpon, UCWBlockRule.BlendMode mode) {
+		int[] texture = getRGB(sprite);
+		int width = sprite.getWidth();
+		int height = sprite.getHeight();
+		float[] contrastFrom = calculateContrast(getRGB(from));
+		float[] contrastBasedUpon = calculateContrast(getRGB(basedUpon));
 		double avgHueFromS = 0;
 		double avgHueFromC = 0;
 		double avgHueFrom;
 		double avgSatFrom = 0;
-		for (int i : from.getFrameTextureData(0)[0]) {
+		for (int i : getRGB(from)) {
 			float[] hd = toHSL(i);
 			avgHueFromS += Math.sin(hd[0] * 2 * Math.PI);
 			avgHueFromC += Math.cos(hd[0] * 2 * Math.PI);
 			avgSatFrom += hd[1];
 		}
 		avgHueFrom = Math.atan2(avgHueFromS, avgHueFromC) / 2.0f / Math.PI;
-		avgSatFrom /= from.getIconWidth() * from.getIconHeight();
+		avgSatFrom /= from.getWidth() * from.getHeight();
 
 		double[] hueRange = new double[4];
 		double[] satRange = new double[2];
 		int[] srdiv = new int[2];
 
 		if (mode == UCWBlockRule.BlendMode.PLANK) {
-			for (int i : from.getFrameTextureData(0)[0]) {
+			for (int i : getRGB(from)) {
 				float[] hd = toHSL(i);
 				double normV = (double) (hd[2] - contrastFrom[0]) / contrastFrom[1];
 				hueRange[0] += Math.sin(hd[0] * 2 * Math.PI) * (1 - normV);
@@ -205,7 +233,7 @@ public final class UCWMagic {
 			for (int ix = 0; ix < width; ix++) {
 				int i = iy*width+ix;
 				int it = texture[i];
-				int ibu = overlay.getFrameTextureData(0)[0][(iy % from.getIconHeight())*from.getIconWidth() + (ix % from.getIconWidth())];
+				int ibu = getRGB(overlay)[(iy % overlay.getHeight())*overlay.getWidth() + (ix % overlay.getWidth())];
 
 				float[] hsbTex = toHSL(it);
 				float[] hsbBu = toHSL(ibu);

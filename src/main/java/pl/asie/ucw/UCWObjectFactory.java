@@ -25,7 +25,6 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +34,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -49,6 +47,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -57,7 +56,7 @@ public class UCWObjectFactory {
 	private static final Random proxyRand = new Random();
 
 	protected final Block block;
-	protected final Item item;
+	protected final ItemUCW item;
 	protected final IBlockState base;
 	private final UCWBlockRule rule;
 
@@ -134,10 +133,10 @@ public class UCWObjectFactory {
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 			getItemThrough().addInformation(
 					UCWUtils.copyChangeItem(stack, getItemThrough()),
-					worldIn, tooltip, flagIn
+					playerIn, tooltip, advanced
 			);
 		}
 
@@ -183,18 +182,20 @@ public class UCWObjectFactory {
 		}
 
 		@Override
-		public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-			Item origItem = getItemThrough();
-			NonNullList<ItemStack> proxyList = NonNullList.create();
-			origItem.getSubItems(tab, proxyList);
-			for (ItemStack stack : proxyList) {
-				if (stack.getItem() == origItem) {
+		@SideOnly(Side.CLIENT)
+		public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+			getSubItemsServer(tab, subItems);
+		}
+
+		public void getSubItemsServer(CreativeTabs tab, List<ItemStack> items) {
+			for (int i = 0; i < 16; i++) {
+				if (rule.through.get(i) != null) {
 					// FIXME: Dirt#9 doesn't really work well :-(
-					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
+					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && i == 9) {
 						continue;
 					}
 
-					items.add(UCWUtils.copyChangeItem(stack, this));
+					items.add(new ItemStack(this, 1, i));
 				}
 			}
 		}
@@ -209,7 +210,7 @@ public class UCWObjectFactory {
 
 		private IBlockState applyProperties(Block block, IBlockState state) {
 			IBlockState toState = block.getDefaultState();
-			for (IProperty property : state.getPropertyKeys()) {
+			for (IProperty property : state.getPropertyNames()) {
 				toState = toState.withProperty(property, state.getValue(property));
 			}
 			return toState;
@@ -259,8 +260,8 @@ public class UCWObjectFactory {
 		}
 
 		@Override
-		public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-			return base.getMapColor(new UCWBlockAccess(worldIn), pos);
+		public MapColor getMapColor(IBlockState state) {
+			return base.getMapColor();
 		}
 
 		@Override
@@ -281,11 +282,6 @@ public class UCWObjectFactory {
 		@Override
 		public SoundType getSoundType() {
 			return base.getBlock().getSoundType();
-		}
-
-		@Override
-		public float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity entity) {
-			return base.getBlock().getSlipperiness(base, new UCWBlockAccess(world), pos, entity);
 		}
 
 		@Override
@@ -375,8 +371,8 @@ public class UCWObjectFactory {
 		}
 
 		@Override
-		public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items) {
-			item.getSubItems(tab, items);
+		public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+			item.getSubItems(itemIn, tab, list);
 		}
 
 		@Override

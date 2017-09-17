@@ -30,8 +30,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Method;

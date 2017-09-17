@@ -32,7 +32,7 @@ public final class UCWUtils {
 	}
 
 	public static ItemStack copyChangeItem(ItemStack stack, Item item, int damage) {
-		ItemStack stackCopy = new ItemStack(item, stack.getCount(), damage);
+		ItemStack stackCopy = new ItemStack(item, stack.stackSize, damage);
 		if (stack.hasTagCompound()) {
 			stackCopy.setTagCompound(stack.getTagCompound().copy());
 		}

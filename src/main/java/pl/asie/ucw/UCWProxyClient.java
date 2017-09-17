@@ -21,6 +21,7 @@ package pl.asie.ucw;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -28,19 +29,25 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.IRetexturableModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -53,6 +60,23 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
 		chiselCache = null;
+	}
+
+	private ModelResourceLocation createMRL(UCWObjectFactory factory, int j) {
+		List<String> propertyNames = new ArrayList<>();
+		for (IProperty property : factory.block.getBlockState().getProperties()) {
+			propertyNames.add(property.getName());
+		}
+		IBlockState targetState = factory.block.getStateFromMeta(j);
+		Collections.sort(propertyNames);
+		String variant = "";
+		for (String s : propertyNames) {
+			if (variant.length() > 0) variant += ",";
+			IProperty property = factory.block.getBlockState().getProperty(s);
+			variant += s + "=" + property.getName(targetState.getValue(property));
+		}
+
+		return new ModelResourceLocation(factory.block.getRegistryName(), variant);
 	}
 
 	@SubscribeEvent
@@ -124,48 +148,27 @@ public class UCWProxyClient extends UCWProxyCommon {
 								}
 
 								@Override
-								public boolean load(IResourceManager manager, ResourceLocation location, Function<ResourceLocation, TextureAtlasSprite> textureGetter) {
-									TextureAtlasSprite fromTex = textureGetter.apply(textureFrom);
-									TextureAtlasSprite overlayTex = textureGetter.apply(textureOverlay);
-									TextureAtlasSprite basedUponTex = textureGetter.apply(textureBasedUpon);
-									TextureAtlasSprite locationTex = textureGetter.apply(oldLocation);
+								public boolean load(IResourceManager manager, ResourceLocation location) {
+									BufferedImage fromTex = UCWMagic.getBufferedImage(textureFrom);
+									BufferedImage overlayTex = UCWMagic.getBufferedImage(textureOverlay);
+									BufferedImage basedUponTex = UCWMagic.getBufferedImage(textureBasedUpon);
+									BufferedImage locationTex = UCWMagic.getBufferedImage(oldLocation);
 
-									setIconWidth(locationTex.getIconWidth());
-									setIconHeight(locationTex.getIconHeight());
+									setIconWidth(locationTex.getWidth());
+									setIconHeight(locationTex.getHeight());
 
 									clearFramesTextureData();
-									for (int i = 0; i < locationTex.getFrameCount(); i++) {
-										int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
-										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.mode);
-										framesTextureData.add(pixels);
-									}
+									int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
+									pixels[0] = UCWMagic.transform(locationTex, fromTex, overlayTex, basedUponTex, rule.mode);
+									framesTextureData.add(pixels);
 
 									return false;
-								}
-
-								@Override
-								public java.util.Collection<ResourceLocation> getDependencies() {
-									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
 								}
 							});
 						}
 
 						UCWObjectFactory factory = rule.objectFactories.get(i);
-						List<String> propertyNames = new ArrayList<>();
-						for (IProperty property : factory.block.getBlockState().getProperties()) {
-							propertyNames.add(property.getName());
-						}
-						IBlockState targetState = factory.block.getStateFromMeta(j);
-						Collections.sort(propertyNames);
-						String variant = "";
-						for (String s : propertyNames) {
-							if (variant.length() > 0) variant += ",";
-							IProperty property = factory.block.getBlockState().getProperty(s);
-							variant += s + "=" + property.getName(targetState.getValue(property));
-						}
-
-						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
-						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
+						ModelResourceLocation targetLoc = createMRL(factory, j);
 
 						if (throughLoc.getResourceDomain().equals("chisel")) {
 							// fun!
@@ -176,7 +179,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 									).getInputStream();
 									InputStreamReader reader = new InputStreamReader(stream);
 
-									chiselCache = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonObject.class);
+									chiselCache = UnlimitedChiselWorks.GSON.fromJson(reader, JsonElement.class).getAsJsonObject();
 
 									reader.close();
 									stream.close();
@@ -192,8 +195,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						} else {
-							secretSauce.put(targetLoc, modelThrough.retexture(textureRemapMap.build()));
+						} else if (modelThrough instanceof IRetexturableModel) {
+							secretSauce.put(targetLoc, ((IRetexturableModel) modelThrough).retexture(textureRemapMap.build()));
 						}
 					}
 				}
@@ -218,6 +221,27 @@ public class UCWProxyClient extends UCWProxyCommon {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			for (int i = 0; i < rule.from.size(); i++) {
+				if (rule.from.get(i) != null) {
+					for (int j = 0; j < 16; j++) {
+						IBlockState throughState = rule.through.get(j);
+						if (throughState == null) continue;
+
+						UCWObjectFactory factory = rule.objectFactories.get(i);
+						ModelResourceLocation targetLoc = createMRL(factory, j);
+						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void init() {
+		super.init();
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private final Deque<ProgressManager.ProgressBar> progressBarDeque = new ArrayDeque<>();

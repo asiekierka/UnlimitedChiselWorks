@@ -32,7 +32,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
@@ -48,6 +47,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -58,7 +58,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
-@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION)
+@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION, dependencies = "after:*")
 public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
@@ -87,7 +87,7 @@ public class UnlimitedChiselWorks {
         } else {
             BufferedReader reader = Files.newBufferedReader(p, Charsets.UTF_8);
             try {
-                JsonObject json = JsonUtils.fromJson(GSON, reader, JsonObject.class);
+                JsonObject json = UnlimitedChiselWorks.GSON.fromJson(reader, JsonElement.class).getAsJsonObject();
                 if (json != null) {
                     if (json.has("blocks")) {
                         for (JsonElement element : json.get("blocks").getAsJsonArray()) {
@@ -174,15 +174,10 @@ public class UnlimitedChiselWorks {
         CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(proxy);
-        proxy.preInit();
 
         C_ENABLED = CONFIG.getCategory("enabled");
         enableDebugFeatures = CONFIG.getBoolean("enableDebugFeatures", "general", false, "Whether or not to enable debug functionality.");
-    }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public void registerBlocks(RegistryEvent.Register<Block> event) {
         findRules();
 
         if (CONFIG.hasChanged()) {
@@ -190,15 +185,11 @@ public class UnlimitedChiselWorks {
         }
 
         for (UCWBlockRule rule : BLOCK_RULES) {
-            rule.registerBlocks(event.getRegistry());
+            rule.registerBlocks(ForgeRegistries.BLOCKS);
+            rule.registerItems(ForgeRegistries.ITEMS);
         }
-    }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public void registerItems(RegistryEvent.Register<Item> event) {
-        for (UCWBlockRule rule : BLOCK_RULES) {
-            rule.registerItems(event.getRegistry());
-        }
+        proxy.preInit();
     }
 
     @EventHandler
@@ -216,8 +207,8 @@ public class UnlimitedChiselWorks {
                 UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
 
                 UCWObjectFactory factory = rule.objectFactories.get(i);
-                NonNullList<ItemStack> stacks = NonNullList.create();
-                factory.item.getSubItems(CreativeTabs.SEARCH, stacks);
+                List<ItemStack> stacks = new ArrayList<>();
+                factory.item.getSubItemsServer(CreativeTabs.SEARCH, stacks);
                 for (ItemStack stack : stacks) {
                     UCWCompatUtils.addChiselVariation(groupName, stack);
                 }
@@ -232,6 +223,8 @@ public class UnlimitedChiselWorks {
             }
         }
 
+        proxy.init();
+
         if (CONFIG.hasChanged()) {
             CONFIG.save();
         }
@@ -241,13 +234,11 @@ public class UnlimitedChiselWorks {
     public void postInit(FMLInitializationEvent event) {
         for (UCWBlockRule rule : BLOCK_RULES) {
             ItemStack stack = new ItemStack(rule.fromBlock, 1, OreDictionary.WILDCARD_VALUE);
-            if (!stack.isEmpty()) {
-                int[] ids = OreDictionary.getOreIDs(stack);
-                if (ids.length > 0) {
-                    for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
-                        for (int i : ids) {
-                            OreDictionary.registerOre(OreDictionary.getOreName(i), factory.block);
-                        }
+            int[] ids = OreDictionary.getOreIDs(stack);
+            if (ids.length > 0) {
+                for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
+                    for (int i : ids) {
+                        OreDictionary.registerOre(OreDictionary.getOreName(i), factory.block);
                     }
                 }
             }

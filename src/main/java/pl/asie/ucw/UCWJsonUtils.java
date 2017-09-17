@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Set;
 
 public final class UCWJsonUtils {
-	private static final Method WITH_PROPERTY = ReflectionHelper.findMethod(IBlockState.class, "withProperty", "func_177226_a", IProperty.class, Comparable.class);
+	private static final Method WITH_PROPERTY = ReflectionHelper.findMethod(IBlockState.class, null, new String[]{"withProperty", "func_177226_a"}, IProperty.class, Comparable.class);
 
 	private UCWJsonUtils() {
 

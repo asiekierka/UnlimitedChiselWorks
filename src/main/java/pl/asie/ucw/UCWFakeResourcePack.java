@@ -122,7 +122,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 				Reader reader = new InputStreamReader(nonProxied);
 
 				try {
-					element = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonElement.class);
+					element = UnlimitedChiselWorks.GSON.fromJson(reader, JsonElement.class);
 				} catch (Exception e) {
 					element = null;
 					reader.close();
