@@ -208,7 +208,7 @@ public class UnlimitedChiselWorks {
 
                 UCWObjectFactory factory = rule.objectFactories.get(i);
                 List<ItemStack> stacks = new ArrayList<>();
-                factory.item.getSubItemsServer(CreativeTabs.SEARCH, stacks);
+                proxy.getSubItemsUCW(factory.item, stacks);
                 for (ItemStack stack : stacks) {
                     UCWCompatUtils.addChiselVariation(groupName, stack);
                 }

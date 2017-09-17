@@ -71,7 +71,7 @@ public class CommandUCWDebug extends CommandBase {
 				for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
 					BlockPos.MutableBlockPos posCopy = new BlockPos.MutableBlockPos(pos);
 					List<ItemStack> stackList = new ArrayList<>();
-					factory.item.getSubItemsServer(CreativeTabs.SEARCH, stackList);
+					UnlimitedChiselWorks.proxy.getSubItemsUCW(factory.item, stackList);
 
 					world.setBlockState(posCopy, factory.base);
 					posCopy.move(EnumFacing.EAST);

@@ -184,7 +184,19 @@ public class UCWObjectFactory {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
-			getSubItemsServer(tab, subItems);
+			Item origItem = getItemThrough();
+			List<ItemStack> proxyList = new ArrayList<>();
+			origItem.getSubItems(origItem, tab, proxyList);
+			for (ItemStack stack : proxyList) {
+				if (stack.getItem() == origItem) {
+					// FIXME: Dirt#9 doesn't really work well :-(
+					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
+						continue;
+					}
+
+					subItems.add(UCWUtils.copyChangeItem(stack, itemIn));
+				}
+			}
 		}
 
 		public void getSubItemsServer(CreativeTabs tab, List<ItemStack> items) {
