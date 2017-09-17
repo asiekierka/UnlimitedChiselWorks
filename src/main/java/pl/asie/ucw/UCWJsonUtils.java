@@ -23,6 +23,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import gnu.trove.iterator.TIntIterator;
+import gnu.trove.set.TIntSet;
+import gnu.trove.set.hash.TIntHashSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -77,17 +80,26 @@ public final class UCWJsonUtils {
 				Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
 				if (orderMatters) {
 					Set<IBlockState> states = Sets.newHashSet(block.getBlockState().getValidStates());
-					List<IBlockState> stateList = new ArrayList<>(16);
+					List<IBlockState> stateList = new ArrayList<>();
+					TIntSet validMetas = new TIntHashSet();
 
 					for (int i = 0; i < 16; i++) {
 						stateList.add(null);
+					}
+
+					for (IBlockState state : block.getBlockState().getValidStates()) {
+						validMetas.add(block.getMetaFromState(state));
+					}
+
+					TIntIterator iterator = validMetas.iterator();
+					while (iterator.hasNext()) {
+						int i = iterator.next();
 						try {
 							IBlockState state = block.getStateFromMeta(i);
 							if (states.remove(state)) {
 								stateList.set(i, state);
 							}
 						} catch (Exception e) {
-							e.printStackTrace();
 							/* ... */
 						}
 					}

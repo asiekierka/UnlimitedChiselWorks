@@ -23,4 +23,16 @@ public class UCWProxyCommon {
 	public void preInit() {
 
 	}
+
+	public void progressPush(String name, int count) {
+		UnlimitedChiselWorks.LOGGER.info(name);
+	}
+
+	public void progressStep(String text) {
+
+	}
+
+	public void progressPop() {
+
+	}
 }

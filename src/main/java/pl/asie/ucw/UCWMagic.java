@@ -107,17 +107,23 @@ public final class UCWMagic {
 	}
 
 	private static float[] toHSL(int rgb) {
-		float r = (float) ((rgb >> 16) & 0xFF) / 255.0f;
-		float g = (float) ((rgb >> 8) & 0xFF) / 255.0f;
-		float b = (float) (rgb & 0xFF) / 255.0f;
+		int ir = ((rgb >> 16) & 0xFF);
+		int ig = ((rgb >> 8) & 0xFF);
+		int ib = (rgb & 0xFF);
 
-		float cMin = Math.min(Math.min(r, g), b);
-		float cMax = Math.max(Math.max(r, g), b);
+		float r = (float) ir / 255.0f;
+		float g = (float) ig / 255.0f;
+		float b = (float) ib / 255.0f;
+
+		int ciMin = Math.min(Math.min(ir, ig), ib);
+		int ciMax = Math.max(Math.max(ir, ig), ib);
+		float cMin = (float) ciMin / 255.0f;
+		float cMax = (float) ciMax / 255.0f;
 		float cDelta = cMax - cMin;
 
 		float l = (cMax + cMin) / 2.0f;
 
-		if (cMin == cMax) {
+		if (ciMin == ciMax) {
 			return new float[] {0.0f, 0.0f, l};
 		} else {
 			float[] hsb = new float[] {

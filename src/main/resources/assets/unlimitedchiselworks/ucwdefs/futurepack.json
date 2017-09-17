@@ -106,6 +106,24 @@
       "based_upon": {
         "state": "minecraft:sandstone#type=sandstone"
       }
+    },
+    {
+      "from": {
+        "block": "fp:planks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
     }
   ]
 }

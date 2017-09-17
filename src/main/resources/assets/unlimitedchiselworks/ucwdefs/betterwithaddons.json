@@ -7,6 +7,7 @@
       "overlay": {
         "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
+      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick",
         "iterate": [
@@ -24,6 +25,7 @@
       "overlay": {
         "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
+      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick1",
         "iterate": [
@@ -41,6 +43,7 @@
       "overlay": {
         "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
+      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
@@ -53,7 +56,10 @@
     },
     {
       "from": {
-        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+        "state": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
       "through": {
         "block": "chisel:cobblestone",
@@ -67,7 +73,10 @@
     },
     {
       "from": {
-        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+        "state": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
       "through": {
         "block": "chisel:cobblestone1",
@@ -81,7 +90,10 @@
     },
     {
       "from": {
-        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+        "state": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
       },
       "through": {
         "block": "chisel:cobblestone2",
@@ -91,6 +103,36 @@
       },
       "based_upon": {
         "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "betterwithaddons:planks_sakura"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "betterwithaddons:planks_mulberry"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
       }
     }
   ]

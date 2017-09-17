@@ -37,6 +37,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -79,7 +80,12 @@ public class UCWProxyClient extends UCWProxyCommon {
 			throw new RuntimeException(e);
 		}
 
+		UnlimitedChiselWorks.proxy.progressPush("UCW: generating models", UnlimitedChiselWorks.BLOCK_RULES.size());
+		int cc = 0;
+
 		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			UnlimitedChiselWorks.proxy.progressStep(String.format("%d%%", (++cc) * 100 / UnlimitedChiselWorks.BLOCK_RULES.size()));
+
 			Map<IBlockState, ModelResourceLocation> fromVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.fromBlock);
 			Map<IBlockState, ModelResourceLocation> overlayVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.overlayBlock);
 			Map<IBlockState, ModelResourceLocation> throughVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.throughBlock);
@@ -197,6 +203,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 				}
 			}
 		}
+
+		UnlimitedChiselWorks.proxy.progressPop();
 	}
 
 	@Override
@@ -214,5 +222,22 @@ public class UCWProxyClient extends UCWProxyCommon {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private final Deque<ProgressManager.ProgressBar> progressBarDeque = new ArrayDeque<>();
+
+	@Override
+	public void progressPush(String name, int count) {
+		progressBarDeque.addFirst(ProgressManager.push(name, count));
+	}
+
+	@Override
+	public void progressStep(String text) {
+		progressBarDeque.peekFirst().step(text);
+	}
+
+	@Override
+	public void progressPop() {
+		ProgressManager.pop(progressBarDeque.removeFirst());
 	}
 }

@@ -65,15 +65,15 @@ public class UnlimitedChiselWorks {
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
     public static final TObjectIntMap<Block> RULE_COMBINATIONS = new TObjectIntHashMap<>();
     public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
+    public static Logger LOGGER;
     protected static final Gson GSON = new Gson();
-    private static Logger LOGGER;
     private static Configuration CONFIG;
     private static ConfigCategory C_ENABLED;
 
     private boolean enableDebugFeatures;
 
     @SidedProxy(clientSide = "pl.asie.ucw.UCWProxyClient", serverSide = "pl.asie.ucw.UCWProxyCommon")
-    private static UCWProxyCommon proxy;
+    public static UCWProxyCommon proxy;
 
     private void proposeRule(Path p) throws IOException {
         if (Files.isDirectory(p)) {
@@ -138,7 +138,11 @@ public class UnlimitedChiselWorks {
     private void findRules() {
         BLOCK_RULES.clear();
 
+        proxy.progressPush("UCW: scanning rules", Loader.instance().getActiveModList().size());
+
         for (ModContainer container : Loader.instance().getActiveModList()) {
+            proxy.progressStep(container.getName() == null ? container.getModId() : container.getName());
+
             File file = container.getSource();
             try {
                 if (file.exists()) {
@@ -159,6 +163,7 @@ public class UnlimitedChiselWorks {
             }
         }
 
+        proxy.progressPop();
         LOGGER.info("Found " + BLOCK_RULES.size() + " block rules.");
         LOGGER.info("Found " + GROUP_RULES.size() + " group rules.");
     }

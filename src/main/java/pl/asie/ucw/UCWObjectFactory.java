@@ -175,7 +175,7 @@ public class UCWObjectFactory {
 
 		@Override
 		public int getMetadata(int damage) {
-			if (rule.objectFactories.get(damage) != null) {
+			if (rule.through.get(damage) != null) {
 				return damage;
 			} else {
 				return 0;
