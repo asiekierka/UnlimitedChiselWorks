@@ -59,6 +59,14 @@ import java.util.function.Function;
 public class UCWProxyClient extends UCWProxyCommon {
 	private JsonObject chiselCache;
 	private Map<ResourceLocation, BufferedImage> imageMap = new HashMap<>();
+	private static Map<BufferedImage, int[]> rgbMap = new IdentityHashMap<>();
+
+	public static int[] getRGB(BufferedImage image) {
+		if (!rgbMap.containsKey(image)) {
+			rgbMap.put(image, image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth()));
+		}
+		return rgbMap.get(image);
+	}
 
 	public BufferedImage getBufferedImage(ResourceLocation location) {
 		if (!imageMap.containsKey(location)) {
@@ -83,6 +91,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SubscribeEvent
 	public void onModelBake(ModelBakeEvent event) {
 		imageMap.clear();
+		rgbMap.clear();
 	}
 
 	private ModelResourceLocation createMRL(UCWObjectFactory factory, int j) {
@@ -106,8 +115,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	@SuppressWarnings("unchecked")
 	public void onTextureStitchPre(TextureStitchEvent.Pre event) {
-		// don't tell lex
 		imageMap.clear();
+		rgbMap.clear();
+
+		// don't tell lex
 		ModelLoader loader;
 		Map<ModelResourceLocation, IModel> secretSauce = null;
 		BlockModelShapes blockModelShapes = null;
