@@ -2,53 +2,17 @@
   "blocks": [
     {
       "from": {
-        "state": "roots:runestone_brick"
+        "state": "roots:plankWildwood"
       },
-      "overlay": {
-        "state": "roots:runestone"
-      },
+      "mode": "plank",
       "through": {
-        "block": "chisel:stonebrick",
+        "block": "chisel:planks-oak",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
-      }
-    },
-    {
-      "from": {
-        "state": "roots:runestone_brick"
-      },
-      "overlay": {
-        "state": "roots:runestone"
-      },
-      "through": {
-        "block": "chisel:stonebrick1",
-        "iterate": [
-          "variation"
-        ]
-      },
-      "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
-      }
-    },
-    {
-      "from": {
-        "state": "roots:runestone_brick"
-      },
-      "overlay": {
-        "state": "roots:runestone"
-      },
-      "through": {
-        "block": "chisel:stonebrick2",
-        "iterate": [
-          "variation"
-        ]
-      },
-      "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
+        "state": "minecraft:planks#variant=oak"
       }
     }
   ]

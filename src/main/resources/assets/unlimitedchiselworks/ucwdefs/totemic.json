@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "state": "totemic:cedar_plank"
+        "state": "totemic:redCedarPlank"
       },
       "through": {
         "block": "chisel:planks-oak",

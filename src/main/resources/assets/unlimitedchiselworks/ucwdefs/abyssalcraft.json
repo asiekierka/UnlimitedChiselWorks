@@ -289,10 +289,7 @@
     },
     {
       "from": {
-        "block": "abyssalcraft:cobblestone",
-        "iterate": [
-          "type"
-        ]
+        "state": "abyssalcraft:abyssalcobblestone"
       },
       "through": {
         "block": "chisel:cobblestone",
@@ -306,10 +303,7 @@
     },
     {
       "from": {
-        "block": "abyssalcraft:cobblestone",
-        "iterate": [
-          "type"
-        ]
+        "state": "abyssalcraft:abyssalcobblestone"
       },
       "through": {
         "block": "chisel:cobblestone1",
@@ -323,10 +317,133 @@
     },
     {
       "from": {
-        "block": "abyssalcraft:cobblestone",
+        "state": "abyssalcraft:abyssalcobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
         "iterate": [
-          "type"
+          "variation"
         ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:dreadstonecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:dreadstonecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:dreadstonecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:abyssalnitecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:abyssalnitecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:abyssalnitecobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:coraliumcobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:coraliumcobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "abyssalcraft:coraliumcobblestone"
       },
       "through": {
         "block": "chisel:cobblestone2",

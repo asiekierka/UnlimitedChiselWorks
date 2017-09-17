@@ -81,7 +81,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypemana#variant=normal"
+        "state": "botania:quartzTypeMana#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -95,7 +95,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypemana#variant=normal"
+        "state": "botania:quartzTypeMana#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -109,7 +109,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypeblaze#variant=normal"
+        "state": "botania:quartzTypeBlaze#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -123,7 +123,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypeblaze#variant=normal"
+        "state": "botania:quartzTypeBlaze#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -137,7 +137,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypelavender#variant=normal"
+        "state": "botania:quartzTypeLavender#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -151,7 +151,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypelavender#variant=normal"
+        "state": "botania:quartzTypeLavender#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -165,7 +165,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypered#variant=normal"
+        "state": "botania:quartzTypeRed#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -179,7 +179,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypered#variant=normal"
+        "state": "botania:quartzTypeRed#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -193,7 +193,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypeelf#variant=normal"
+        "state": "botania:quartzTypeElf#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -207,7 +207,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypeelf#variant=normal"
+        "state": "botania:quartzTypeElf#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -221,7 +221,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypesunny#variant=normal"
+        "state": "botania:quartzTypeSunny#variant=normal"
       },
       "through": {
         "block": "chisel:quartz",
@@ -235,7 +235,7 @@
     },
     {
       "from": {
-        "state": "botania:quartztypesunny#variant=normal"
+        "state": "botania:quartzTypeSunny#variant=normal"
       },
       "through": {
         "block": "chisel:quartz1",
@@ -250,26 +250,26 @@
     {
       "from": {
         "state": [
-          "botania:biomestoneb#variant=forest",
-          "botania:biomestoneb#variant=plains",
-          "botania:biomestoneb#variant=mountain",
-          "botania:biomestoneb#variant=fungal",
-          "botania:biomestoneb#variant=swamp",
-          "botania:biomestoneb#variant=desert",
-          "botania:biomestoneb#variant=taiga",
-          "botania:biomestoneb#variant=mesa"
+          "botania:biomeStoneB#variant=forest",
+          "botania:biomeStoneB#variant=plains",
+          "botania:biomeStoneB#variant=mountain",
+          "botania:biomeStoneB#variant=fungal",
+          "botania:biomeStoneB#variant=swamp",
+          "botania:biomeStoneB#variant=desert",
+          "botania:biomeStoneB#variant=taiga",
+          "botania:biomeStoneB#variant=mesa"
         ]
       },
       "overlay": {
         "state": [
-          "botania:biomestonea#variant=forest",
-          "botania:biomestonea#variant=plains",
-          "botania:biomestonea#variant=mountain",
-          "botania:biomestonea#variant=fungal",
-          "botania:biomestonea#variant=swamp",
-          "botania:biomestonea#variant=desert",
-          "botania:biomestonea#variant=taiga",
-          "botania:biomestonea#variant=mesa"
+          "botania:biomeStoneA#variant=forest",
+          "botania:biomeStoneA#variant=plains",
+          "botania:biomeStoneA#variant=mountain",
+          "botania:biomeStoneA#variant=fungal",
+          "botania:biomeStoneA#variant=swamp",
+          "botania:biomeStoneA#variant=desert",
+          "botania:biomeStoneA#variant=taiga",
+          "botania:biomeStoneA#variant=mesa"
         ]
       },
       "through": {
@@ -285,26 +285,26 @@
     {
       "from": {
         "state": [
-          "botania:biomestoneb#variant=forest",
-          "botania:biomestoneb#variant=plains",
-          "botania:biomestoneb#variant=mountain",
-          "botania:biomestoneb#variant=fungal",
-          "botania:biomestoneb#variant=swamp",
-          "botania:biomestoneb#variant=desert",
-          "botania:biomestoneb#variant=taiga",
-          "botania:biomestoneb#variant=mesa"
+          "botania:biomeStoneB#variant=forest",
+          "botania:biomeStoneB#variant=plains",
+          "botania:biomeStoneB#variant=mountain",
+          "botania:biomeStoneB#variant=fungal",
+          "botania:biomeStoneB#variant=swamp",
+          "botania:biomeStoneB#variant=desert",
+          "botania:biomeStoneB#variant=taiga",
+          "botania:biomeStoneB#variant=mesa"
         ]
       },
       "overlay": {
         "state": [
-          "botania:biomestonea#variant=forest",
-          "botania:biomestonea#variant=plains",
-          "botania:biomestonea#variant=mountain",
-          "botania:biomestonea#variant=fungal",
-          "botania:biomestonea#variant=swamp",
-          "botania:biomestonea#variant=desert",
-          "botania:biomestonea#variant=taiga",
-          "botania:biomestonea#variant=mesa"
+          "botania:biomeStoneA#variant=forest",
+          "botania:biomeStoneA#variant=plains",
+          "botania:biomeStoneA#variant=mountain",
+          "botania:biomeStoneA#variant=fungal",
+          "botania:biomeStoneA#variant=swamp",
+          "botania:biomeStoneA#variant=desert",
+          "botania:biomeStoneA#variant=taiga",
+          "botania:biomeStoneA#variant=mesa"
         ]
       },
       "through": {
@@ -320,26 +320,26 @@
     {
       "from": {
         "state": [
-          "botania:biomestoneb#variant=forest",
-          "botania:biomestoneb#variant=plains",
-          "botania:biomestoneb#variant=mountain",
-          "botania:biomestoneb#variant=fungal",
-          "botania:biomestoneb#variant=swamp",
-          "botania:biomestoneb#variant=desert",
-          "botania:biomestoneb#variant=taiga",
-          "botania:biomestoneb#variant=mesa"
+          "botania:biomeStoneB#variant=forest",
+          "botania:biomeStoneB#variant=plains",
+          "botania:biomeStoneB#variant=mountain",
+          "botania:biomeStoneB#variant=fungal",
+          "botania:biomeStoneB#variant=swamp",
+          "botania:biomeStoneB#variant=desert",
+          "botania:biomeStoneB#variant=taiga",
+          "botania:biomeStoneB#variant=mesa"
         ]
       },
       "overlay": {
         "state": [
-          "botania:biomestonea#variant=forest",
-          "botania:biomestonea#variant=plains",
-          "botania:biomestonea#variant=mountain",
-          "botania:biomestonea#variant=fungal",
-          "botania:biomestonea#variant=swamp",
-          "botania:biomestonea#variant=desert",
-          "botania:biomestonea#variant=taiga",
-          "botania:biomestonea#variant=mesa"
+          "botania:biomeStoneA#variant=forest",
+          "botania:biomeStoneA#variant=plains",
+          "botania:biomeStoneA#variant=mountain",
+          "botania:biomeStoneA#variant=fungal",
+          "botania:biomeStoneA#variant=swamp",
+          "botania:biomeStoneA#variant=desert",
+          "botania:biomeStoneA#variant=taiga",
+          "botania:biomeStoneA#variant=mesa"
         ]
       },
       "through": {
@@ -355,14 +355,14 @@
     {
       "from": {
         "state": [
-          "botania:biomestonea#variant=forest_cobble",
-          "botania:biomestonea#variant=plains_cobble",
-          "botania:biomestonea#variant=mountain_cobble",
-          "botania:biomestonea#variant=fungal_cobble",
-          "botania:biomestonea#variant=swamp_cobble",
-          "botania:biomestonea#variant=desert_cobble",
-          "botania:biomestonea#variant=taiga_cobble",
-          "botania:biomestonea#variant=mesa_cobble"
+          "botania:biomeStoneA#variant=forest_cobble",
+          "botania:biomeStoneA#variant=plains_cobble",
+          "botania:biomeStoneA#variant=mountain_cobble",
+          "botania:biomeStoneA#variant=fungal_cobble",
+          "botania:biomeStoneA#variant=swamp_cobble",
+          "botania:biomeStoneA#variant=desert_cobble",
+          "botania:biomeStoneA#variant=taiga_cobble",
+          "botania:biomeStoneA#variant=mesa_cobble"
         ]
       },
       "through": {
@@ -378,14 +378,14 @@
     {
       "from": {
         "state": [
-          "botania:biomestonea#variant=forest_cobble",
-          "botania:biomestonea#variant=plains_cobble",
-          "botania:biomestonea#variant=mountain_cobble",
-          "botania:biomestonea#variant=fungal_cobble",
-          "botania:biomestonea#variant=swamp_cobble",
-          "botania:biomestonea#variant=desert_cobble",
-          "botania:biomestonea#variant=taiga_cobble",
-          "botania:biomestonea#variant=mesa_cobble"
+          "botania:biomeStoneA#variant=forest_cobble",
+          "botania:biomeStoneA#variant=plains_cobble",
+          "botania:biomeStoneA#variant=mountain_cobble",
+          "botania:biomeStoneA#variant=fungal_cobble",
+          "botania:biomeStoneA#variant=swamp_cobble",
+          "botania:biomeStoneA#variant=desert_cobble",
+          "botania:biomeStoneA#variant=taiga_cobble",
+          "botania:biomeStoneA#variant=mesa_cobble"
         ]
       },
       "through": {
@@ -401,14 +401,14 @@
     {
       "from": {
         "state": [
-          "botania:biomestonea#variant=forest_cobble",
-          "botania:biomestonea#variant=plains_cobble",
-          "botania:biomestonea#variant=mountain_cobble",
-          "botania:biomestonea#variant=fungal_cobble",
-          "botania:biomestonea#variant=swamp_cobble",
-          "botania:biomestonea#variant=desert_cobble",
-          "botania:biomestonea#variant=taiga_cobble",
-          "botania:biomestonea#variant=mesa_cobble"
+          "botania:biomeStoneA#variant=forest_cobble",
+          "botania:biomeStoneA#variant=plains_cobble",
+          "botania:biomeStoneA#variant=mountain_cobble",
+          "botania:biomeStoneA#variant=fungal_cobble",
+          "botania:biomeStoneA#variant=swamp_cobble",
+          "botania:biomeStoneA#variant=desert_cobble",
+          "botania:biomeStoneA#variant=taiga_cobble",
+          "botania:biomeStoneA#variant=mesa_cobble"
         ]
       },
       "through": {

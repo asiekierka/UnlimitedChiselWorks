@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "block": "integrateddynamics:menril_planks"
+        "block": "integrateddynamics:menrilPlanks"
       },
       "mode": "plank",
       "through": {
@@ -17,10 +17,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "integrateddynamics:crystalizedChorusBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "integrateddynamics:crystalizedChorusBlock"
       },
       "mode": "blend",
       "through": {
@@ -35,10 +35,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "integrateddynamics:crystalizedChorusBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "integrateddynamics:crystalizedChorusBlock"
       },
       "mode": "blend",
       "through": {
@@ -53,10 +53,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "integrateddynamics:crystalizedChorusBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "integrateddynamics:crystalizedChorusBlock"
       },
       "mode": "blend",
       "through": {
@@ -71,10 +71,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "integrateddynamics:crystalizedMenrilBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
+        "state": "integrateddynamics:crystalizedMenrilBlock"
       },
       "mode": "blend",
       "through": {
@@ -89,10 +89,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "integrateddynamics:crystalizedMenrilBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
+        "state": "integrateddynamics:crystalizedMenrilBlock"
       },
       "mode": "blend",
       "through": {
@@ -107,10 +107,10 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "integrateddynamics:crystalizedMenrilBrick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
+        "state": "integrateddynamics:crystalizedMenrilBlock"
       },
       "mode": "blend",
       "through": {
