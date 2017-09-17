@@ -303,4 +303,9 @@ public class UCWProxyClient extends UCWProxyCommon {
 	public void getSubItemsUCW(UCWObjectFactory.ItemUCW item, List<ItemStack> list) {
 		item.getSubItems(item, CreativeTabs.SEARCH, list);
 	}
+
+	@Override
+	public void initBlock(IBlockState state, UCWObjectFactory.BlockUCW block) {
+		block.setCreativeTab(state.getBlock().getCreativeTabToDisplayOn());
+	}
 }
