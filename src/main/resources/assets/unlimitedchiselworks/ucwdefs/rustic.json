@@ -72,7 +72,7 @@
       "from": {
         "state": "rustic:painted_wood_white"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -87,7 +87,7 @@
       "from": {
         "state": "rustic:painted_wood_orange"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -102,7 +102,7 @@
       "from": {
         "state": "rustic:painted_wood_magenta"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -117,7 +117,7 @@
       "from": {
         "state": "rustic:painted_wood_light_blue"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -132,7 +132,7 @@
       "from": {
         "state": "rustic:painted_wood_yellow"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -147,7 +147,7 @@
       "from": {
         "state": "rustic:painted_wood_lime"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -162,7 +162,7 @@
       "from": {
         "state": "rustic:painted_wood_pink"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -177,7 +177,7 @@
       "from": {
         "state": "rustic:painted_wood_gray"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -192,7 +192,7 @@
       "from": {
         "state": "rustic:painted_wood_silver"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -207,7 +207,7 @@
       "from": {
         "state": "rustic:painted_wood_cyan"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -222,7 +222,7 @@
       "from": {
         "state": "rustic:painted_wood_purple"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -237,7 +237,7 @@
       "from": {
         "state": "rustic:painted_wood_blue"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -252,7 +252,7 @@
       "from": {
         "state": "rustic:painted_wood_brown"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -267,7 +267,7 @@
       "from": {
         "state": "rustic:painted_wood_green"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -282,7 +282,7 @@
       "from": {
         "state": "rustic:painted_wood_red"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -297,7 +297,7 @@
       "from": {
         "state": "rustic:painted_wood_black"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [

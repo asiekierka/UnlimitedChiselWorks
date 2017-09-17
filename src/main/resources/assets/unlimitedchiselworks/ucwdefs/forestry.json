@@ -7,7 +7,7 @@
           "variant"
         ]
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -25,7 +25,7 @@
           "variant"
         ]
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -43,7 +43,7 @@
           "variant"
         ]
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -61,7 +61,7 @@
           "variant"
         ]
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [

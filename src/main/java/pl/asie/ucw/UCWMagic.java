@@ -58,7 +58,7 @@ public final class UCWMagic {
 			}
 		}
 
-		System.out.println(state);
+		// System.out.println(state);
 		return model.getTextures().iterator().next();
 	}
 
@@ -160,7 +160,7 @@ public final class UCWMagic {
 		return contrast;
 	}
 
-	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite overlay, TextureAtlasSprite basedUpon, boolean blend) {
+	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite overlay, TextureAtlasSprite basedUpon, UCWBlockRule.BlendMode mode) {
 		int[] texture = sprite.getFrameTextureData(frame)[0];
 		int width = sprite.getIconWidth();
 		int height = sprite.getIconHeight();
@@ -179,6 +179,33 @@ public final class UCWMagic {
 		avgHueFrom = Math.atan2(avgHueFromS, avgHueFromC) / 2.0f / Math.PI;
 		avgSatFrom /= from.getIconWidth() * from.getIconHeight();
 
+		double[] hueRange = new double[4];
+		double[] satRange = new double[2];
+		int[] srdiv = new int[2];
+
+		if (mode == UCWBlockRule.BlendMode.PLANK) {
+			for (int i : from.getFrameTextureData(0)[0]) {
+				float[] hd = toHSL(i);
+				double normV = (double) (hd[2] - contrastFrom[0]) / contrastFrom[1];
+				hueRange[0] += Math.sin(hd[0] * 2 * Math.PI) * (1 - normV);
+				hueRange[1] += Math.sin(hd[0] * 2 * Math.PI) * normV;
+				hueRange[2] += Math.cos(hd[0] * 2 * Math.PI) * (1 - normV);
+				hueRange[3] += Math.cos(hd[0] * 2 * Math.PI) * normV;
+				if (normV < 0.5) {
+					satRange[0] += hd[1];
+					srdiv[0]++;
+				} else {
+					satRange[1] += hd[1];
+					srdiv[1]++;
+				}
+			}
+
+			hueRange[0] = Math.atan2(hueRange[0], hueRange[2]) / 2.0f / Math.PI;
+			hueRange[1] = Math.atan2(hueRange[1], hueRange[3]) / 2.0f / Math.PI;
+			satRange[0] /= srdiv[0];
+			satRange[1] /= srdiv[1];
+		}
+
 		int[] texData = new int[texture.length];
 		for (int iy = 0; iy < height; iy++) {
 			for (int ix = 0; ix < width; ix++) {
@@ -188,12 +215,22 @@ public final class UCWMagic {
 
 				float[] hsbTex = toHSL(it);
 				float[] hsbBu = toHSL(ibu);
-				if (blend || (hsbBu[2] < 0.1 && hsbBu[1] < 0.1 && avgSatFrom >= 0.3)) {
-					hsbBu[0] = (float) avgHueFrom;
-					hsbBu[1] = (float) avgSatFrom;
-				}
 				double normV = (double) (hsbTex[2] - contrastBasedUpon[0]) / contrastBasedUpon[1];
 				float v = (float) ((normV * contrastFrom[1]) + contrastFrom[0]);
+
+				if (mode == UCWBlockRule.BlendMode.BLEND || (hsbBu[2] < 0.1 && hsbBu[1] < 0.1 && avgSatFrom >= 0.3)) {
+					hsbBu[0] = (float) avgHueFrom;
+					hsbBu[1] = (float) avgSatFrom;
+				} else if (mode == UCWBlockRule.BlendMode.PLANK) {
+					double nv2 = normV;
+					if (nv2 < 0) nv2 = 0;
+					if (nv2 > 1) nv2 = 1;
+					hsbBu[0] = (float) (Math.atan2(
+							(Math.sin(hueRange[1] * 2 * Math.PI) * nv2) + (Math.sin(hueRange[0] * 2 * Math.PI) * (1 - nv2)),
+							(Math.cos(hueRange[1] * 2 * Math.PI) * nv2) + (Math.cos(hueRange[0] * 2 * Math.PI) * (1 - nv2))
+					) / 2.0f / Math.PI);
+					hsbBu[1] = (float) ((satRange[1] * nv2) + (satRange[0] * (1 - nv2)));
+				}
 
 				if (v < 0) v = 0;
 				if (v > 1) v = 1;

@@ -4,7 +4,7 @@
       "from": {
         "state": "techreborn:rubber_planks"
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [

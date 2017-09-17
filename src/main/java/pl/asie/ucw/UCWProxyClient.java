@@ -134,7 +134,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 									clearFramesTextureData();
 									for (int i = 0; i < locationTex.getFrameCount(); i++) {
 										int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
-										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.blend);
+										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.mode);
 										framesTextureData.add(pixels);
 									}
 

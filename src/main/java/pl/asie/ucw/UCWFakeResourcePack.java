@@ -72,7 +72,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 			String s = element.getAsString();
 			if (s != null && s.startsWith(str[1] + ":")) {
 				String ns = "ucw_generated:ucw_ucw_" + str[0] + "/" + s.replaceFirst(":", "/");
-				System.out.println(s + " -> " + ns);
+				// System.out.println(s + " -> " + ns);
 				return new JsonPrimitive(ns);
 			} else {
 				return element;

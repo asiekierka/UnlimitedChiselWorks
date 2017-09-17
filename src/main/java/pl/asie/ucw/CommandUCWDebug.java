@@ -31,6 +31,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.*;
+
 public class CommandUCWDebug extends CommandBase {
 	@Override
 	public String getName() {
@@ -43,11 +46,29 @@ public class CommandUCWDebug extends CommandBase {
 	}
 
 	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+		if (args.length == 1) {
+			Set<String> domains = new HashSet<>();
+			for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+				domains.add(rule.fromBlock.getRegistryName().getResourceDomain());
+			}
+
+			return getListOfStringsMatchingLastWord(args, domains.toArray(new String[domains.size()]));
+		} else {
+			return Collections.emptyList();
+		}
+	}
+
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (sender instanceof EntityPlayerMP) {
 			World world = sender.getEntityWorld();
 			BlockPos pos = sender.getPosition();
 			for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+				if (args.length >= 1 && !rule.fromBlock.getRegistryName().toString().toLowerCase().startsWith(args[0].toLowerCase())) {
+					continue;
+				}
+
 				for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
 					BlockPos.MutableBlockPos posCopy = new BlockPos.MutableBlockPos(pos);
 					NonNullList<ItemStack> stackList = NonNullList.create();

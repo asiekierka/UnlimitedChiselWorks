@@ -38,6 +38,12 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 public class UCWBlockRule {
+	public enum BlendMode {
+		NONE,
+		BLEND,
+		PLANK
+	}
+
 	protected final List<IBlockState> from, overlay;
 	protected final List<IBlockState> through;
 	protected final List<IBlockState> basedUpon;
@@ -45,7 +51,7 @@ public class UCWBlockRule {
 	protected final TIntObjectMap<UCWObjectFactory> objectFactories = new TIntObjectHashMap<>();
 	protected final String prefix;
 	protected final String group;
-	protected final boolean blend;
+	protected final BlendMode mode;
 	protected final int fromCount;
 
 	public UCWBlockRule(JsonObject object) throws Exception {
@@ -64,7 +70,7 @@ public class UCWBlockRule {
 			overlayBlock = fromBlock;
 		}
 
-		blend = object.has("blend") && object.get("blend").getAsBoolean();
+		mode = object.has("mode") ? BlendMode.valueOf(object.get("mode").getAsString().toUpperCase()) : BlendMode.NONE;
 
 		int fc = 0;
 		for (IBlockState state : from) {
@@ -80,7 +86,7 @@ public class UCWBlockRule {
 		for (int i = 0; i < from.size(); i++) {
 			if (from.get(i) != null) {
 				IBlockState state = from.get(i);
-				String s = prefix + i;
+				String s = prefix + state.getBlock().getMetaFromState(state);
 
 				objectFactories.put(i, new UCWObjectFactory(this, state, new ResourceLocation(UnlimitedChiselWorks.MODID, s)));
 			}

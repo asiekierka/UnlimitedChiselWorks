@@ -1,0 +1,97 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "state": "betterwithaddons:whitebrick#variant=default"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "betterwithaddons:whitebrick#variant=default"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "betterwithaddons:whitebrick#variant=default"
+      },
+      "overlay": {
+        "state": "betterwithmods:aesthetic#blocktype=whitestone"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "betterwithmods:aesthetic#blocktype=whitecobble"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    }
+  ]
+}

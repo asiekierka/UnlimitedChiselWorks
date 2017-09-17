@@ -2,27 +2,25 @@
   "blocks": [
     {
       "from": {
-        "block": "integrateddynamics:menril_planks"
+        "state": "fp:dirt#metadata=0"
       },
-      "mode": "plank",
       "through": {
-        "block": "chisel:planks-oak",
+        "block": "chisel:dirt",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:planks#variant=oak"
+        "state": "minecraft:dirt#snowy=false,variant=dirt"
       }
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "fp:stone#variant=brick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "fp:stone#variant=stone"
       },
-      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick",
         "iterate": [
@@ -35,12 +33,11 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "fp:stone#variant=brick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "fp:stone#variant=stone"
       },
-      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick1",
         "iterate": [
@@ -53,12 +50,11 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_chorus_brick"
+        "state": "fp:stone#variant=brick"
       },
       "overlay": {
-        "state": "integrateddynamics:crystalized_chorus_block"
+        "state": "fp:stone#variant=stone"
       },
-      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
@@ -71,56 +67,44 @@
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "fp:stone#variant=sandstone"
       },
-      "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
-      },
-      "mode": "blend",
       "through": {
-        "block": "chisel:stonebrick",
+        "block": "chisel:sandstoneyellow",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
+        "state": "minecraft:sandstone#type=sandstone"
       }
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "fp:stone#variant=sandstone"
       },
-      "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
-      },
-      "mode": "blend",
       "through": {
-        "block": "chisel:stonebrick1",
+        "block": "chisel:sandstoneyellow1",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
+        "state": "minecraft:sandstone#type=sandstone"
       }
     },
     {
       "from": {
-        "state": "integrateddynamics:crystalized_menril_brick"
+        "state": "fp:stone#variant=sandstone"
       },
-      "overlay": {
-        "state": "integrateddynamics:crystalized_menril_block"
-      },
-      "mode": "blend",
       "through": {
-        "block": "chisel:stonebrick2",
+        "block": "chisel:sandstoneyellow2",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:stonebrick#variant=stonebrick"
+        "state": "minecraft:sandstone#type=sandstone"
       }
     }
   ]

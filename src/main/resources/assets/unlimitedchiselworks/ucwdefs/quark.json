@@ -7,7 +7,7 @@
           "variant"
         ]
       },
-      "blend": true,
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [

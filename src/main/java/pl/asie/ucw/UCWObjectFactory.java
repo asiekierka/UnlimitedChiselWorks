@@ -180,11 +180,16 @@ public class UCWObjectFactory {
 
 		@Override
 		public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-			Item fromItem = getItemThrough();
+			Item origItem = getItemThrough();
 			NonNullList<ItemStack> proxyList = NonNullList.create();
-			fromItem.getSubItems(tab, proxyList);
+			origItem.getSubItems(tab, proxyList);
 			for (ItemStack stack : proxyList) {
-				if (stack.getItem() == fromItem) {
+				if (stack.getItem() == origItem) {
+					// FIXME: Dirt#9 doesn't really work well :-(
+					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
+						continue;
+					}
+
 					items.add(UCWMagic.copyChangeItem(stack, this));
 				}
 			}

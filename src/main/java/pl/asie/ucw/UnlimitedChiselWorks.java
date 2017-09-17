@@ -24,6 +24,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import gnu.trove.map.TObjectIntMap;
+import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,6 +34,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -58,9 +63,14 @@ public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
+    public static final TObjectIntMap<Block> RULE_COMBINATIONS = new TObjectIntHashMap<>();
     public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
     protected static final Gson GSON = new Gson();
     private static Logger LOGGER;
+    private static Configuration CONFIG;
+    private static ConfigCategory C_ENABLED;
+
+    private boolean enableDebugFeatures;
 
     @SidedProxy(clientSide = "pl.asie.ucw.UCWProxyClient", serverSide = "pl.asie.ucw.UCWProxyCommon")
     private static UCWProxyCommon proxy;
@@ -85,10 +95,18 @@ public class UnlimitedChiselWorks {
                                 try {
                                     UCWBlockRule rule = new UCWBlockRule(element.getAsJsonObject());
                                     if (rule.isValid()) {
-                                        if (BLOCK_RULES.contains(rule)) {
-                                            LOGGER.warn("Duplicate rule found! " + rule);
-                                        } else {
-                                            BLOCK_RULES.add(rule);
+                                        String fbName = rule.fromBlock.getRegistryName().toString();
+                                        if (!C_ENABLED.containsKey(fbName)) {
+                                            Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                            C_ENABLED.put(fbName, prop);
+                                        }
+
+                                        if (C_ENABLED.get(fbName).getBoolean()) {
+                                            if (BLOCK_RULES.contains(rule)) {
+                                                LOGGER.warn("Duplicate rule found! " + rule);
+                                            } else {
+                                                BLOCK_RULES.add(rule);
+                                            }
                                         }
                                     }
                                 } catch (Exception e) {
@@ -148,14 +166,23 @@ public class UnlimitedChiselWorks {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER = LogManager.getLogger(MODID);
+        CONFIG = new Configuration(event.getSuggestedConfigurationFile());
+
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(proxy);
         proxy.preInit();
+
+        C_ENABLED = CONFIG.getCategory("enabled");
+        enableDebugFeatures = CONFIG.getBoolean("enableDebugFeatures", "general", false, "Whether or not to enable debug functionality.");
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void registerBlocks(RegistryEvent.Register<Block> event) {
         findRules();
+
+        if (CONFIG.hasChanged()) {
+            CONFIG.save();
+        }
 
         for (UCWBlockRule rule : BLOCK_RULES) {
             rule.registerBlocks(event.getRegistry());
@@ -172,11 +199,15 @@ public class UnlimitedChiselWorks {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         for (UCWBlockRule rule : BLOCK_RULES) {
+            RULE_COMBINATIONS.adjustOrPutValue(rule.fromBlock, rule.fromCount, rule.fromCount);
+        }
+
+        for (UCWBlockRule rule : BLOCK_RULES) {
             for (int i = 0; i < rule.from.size(); i++) {
                 IBlockState fromState = rule.from.get(i);
                 if (fromState == null) continue;
 
-                String groupName = rule.fromCount == 1 ? rule.group : rule.group + "_" + i;
+                String groupName = RULE_COMBINATIONS.get(rule.fromBlock) == 1 ? rule.group : rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
                 UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
 
                 UCWObjectFactory factory = rule.objectFactories.get(i);
@@ -194,6 +225,10 @@ public class UnlimitedChiselWorks {
 
                 UCWCompatUtils.addChiselVariation(rule.groupName, new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
             }
+        }
+
+        if (CONFIG.hasChanged()) {
+            CONFIG.save();
         }
     }
 
@@ -214,6 +249,8 @@ public class UnlimitedChiselWorks {
 
     @EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandUCWDebug());
+        if (enableDebugFeatures) {
+            event.registerServerCommand(new CommandUCWDebug());
+        }
     }
 }
