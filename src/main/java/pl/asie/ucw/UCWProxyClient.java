@@ -43,6 +43,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ProgressManager;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -79,7 +80,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 		return new ModelResourceLocation(factory.block.getRegistryName(), variant);
 	}
 
-	@SubscribeEvent
+	/* Has to run before Chisel's stitcher */
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	@SuppressWarnings("unchecked")
 	public void onTextureStitchPre(TextureStitchEvent.Pre event) {
 		// don't tell lex
