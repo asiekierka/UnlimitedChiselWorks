@@ -136,7 +136,7 @@ public class UCWObjectFactory {
 		@SideOnly(Side.CLIENT)
 		public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 			getItemThrough().addInformation(
-					UCWMagic.copyChangeItem(stack, getItemThrough()),
+					UCWUtils.copyChangeItem(stack, getItemThrough()),
 					worldIn, tooltip, flagIn
 			);
 		}
@@ -194,7 +194,7 @@ public class UCWObjectFactory {
 						continue;
 					}
 
-					items.add(UCWMagic.copyChangeItem(stack, this));
+					items.add(UCWUtils.copyChangeItem(stack, this));
 				}
 			}
 		}

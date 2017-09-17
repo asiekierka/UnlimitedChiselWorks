@@ -106,13 +106,9 @@ public class UCWProxyClient extends UCWProxyCommon {
 					ResourceLocation textureBasedUpon = UCWMagic.getLocation(stateBasedUpon, basedUponVariants.get(stateBasedUpon), modelBasedUpon);
 
 					for (int j = 0; j < 16; j++) {
-						//for (ModelResourceLocation throughLoc : throughVariants.values()) {
-						IBlockState throughState = null;
-						try {
-							throughState = rule.throughBlock.getStateFromMeta(j);
-						} catch (Exception e) {
-							continue;
-						}
+						IBlockState throughState = rule.through.get(j);
+						if (throughState == null) continue;
+
 						ModelResourceLocation throughLoc = throughVariants.get(throughState);
 						IModel modelThrough = secretSauce.get(throughLoc);
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();

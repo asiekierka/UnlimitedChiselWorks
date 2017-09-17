@@ -114,8 +114,8 @@ public class UCWBlockRule {
 	}
 
 	public boolean isValid() {
-		return from.size() > 0 && through.size() > 0 && (basedUpon.size() == 1 || basedUpon.size() == through.size())
-				&& fromBlock != Blocks.AIR && throughBlock != Blocks.AIR && basedUponBlock != Blocks.AIR;
+		return !from.isEmpty() && !overlay.isEmpty() && !through.isEmpty() && (basedUpon.size() == 1 || basedUpon.size() == through.size())
+				&& fromBlock != Blocks.AIR && overlayBlock != Blocks.AIR && throughBlock != Blocks.AIR && basedUponBlock != Blocks.AIR;
 	}
 
 	public void registerBlocks(IForgeRegistry<Block> blocks) {

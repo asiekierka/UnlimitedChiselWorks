@@ -62,18 +62,6 @@ public final class UCWMagic {
 		return model.getTextures().iterator().next();
 	}
 
-	public static ItemStack copyChangeItem(ItemStack stack, Item item) {
-		return copyChangeItem(stack, item, stack.getItemDamage());
-	}
-
-	public static ItemStack copyChangeItem(ItemStack stack, Item item, int damage) {
-		ItemStack stackCopy = new ItemStack(item, stack.getCount(), damage);
-		if (stack.hasTagCompound()) {
-			stackCopy.setTagCompound(stack.getTagCompound().copy());
-		}
-		return stackCopy;
-	}
-
 	private static float hsl_hue2rgb(float v1, float v2, float hue) {
 		if (hue < 0.0f) hue += 1.0f;
 		else if (hue > 1.0f) hue -= 1.0f;
