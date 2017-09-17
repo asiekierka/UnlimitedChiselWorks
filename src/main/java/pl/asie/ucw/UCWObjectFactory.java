@@ -217,8 +217,8 @@ public class UCWObjectFactory {
 	public class BlockUCW extends Block {
 		public BlockUCW() {
 			super(base.getMaterial());
-			setCreativeTab(base.getBlock().getCreativeTabToDisplayOn());
 			setUnlocalizedName(base.getBlock().getUnlocalizedName());
+			UnlimitedChiselWorks.proxy.initBlock(base, this);
 		}
 
 		private IBlockState applyProperties(Block block, IBlockState state) {

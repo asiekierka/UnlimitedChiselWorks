@@ -19,6 +19,8 @@
 
 package pl.asie.ucw;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -48,5 +50,9 @@ public class UCWProxyCommon {
 
 	public void getSubItemsUCW(UCWObjectFactory.ItemUCW item, NonNullList<ItemStack> list) {
 		item.getSubItemsServer(CreativeTabs.SEARCH, list);
+	}
+
+	public void initBlock(IBlockState state, UCWObjectFactory.BlockUCW block) {
+
 	}
 }
