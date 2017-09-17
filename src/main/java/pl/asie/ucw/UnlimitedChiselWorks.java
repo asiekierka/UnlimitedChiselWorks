@@ -236,11 +236,13 @@ public class UnlimitedChiselWorks {
     public void postInit(FMLInitializationEvent event) {
         for (UCWBlockRule rule : BLOCK_RULES) {
             ItemStack stack = new ItemStack(rule.fromBlock, 1, OreDictionary.WILDCARD_VALUE);
-            int[] ids = OreDictionary.getOreIDs(stack);
-            if (ids.length > 0) {
-                for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
-                    for (int i : ids) {
-                        OreDictionary.registerOre(OreDictionary.getOreName(i), factory.block);
+            if (!stack.isEmpty()) {
+                int[] ids = OreDictionary.getOreIDs(stack);
+                if (ids.length > 0) {
+                    for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
+                        for (int i : ids) {
+                            OreDictionary.registerOre(OreDictionary.getOreName(i), factory.block);
+                        }
                     }
                 }
             }
