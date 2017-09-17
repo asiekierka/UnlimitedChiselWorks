@@ -29,7 +29,7 @@ public final class UCWCompatUtils {
 	}
 
 	public static void addChiselVariation(String group, ItemStack stack) {
-		if (stack != null) {
+		if (!stack.isEmpty()) {
 			NBTTagCompound tag = new NBTTagCompound();
 			NBTTagCompound itemTag = new NBTTagCompound();
 			stack.writeToNBT(itemTag);

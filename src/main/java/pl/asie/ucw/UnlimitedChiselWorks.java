@@ -32,6 +32,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
@@ -207,7 +208,7 @@ public class UnlimitedChiselWorks {
                 UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
 
                 UCWObjectFactory factory = rule.objectFactories.get(i);
-                List<ItemStack> stacks = new ArrayList<>();
+                NonNullList<ItemStack> stacks = NonNullList.create();
                 factory.item.getSubItemsServer(CreativeTabs.SEARCH, stacks);
                 for (ItemStack stack : stacks) {
                     UCWCompatUtils.addChiselVariation(groupName, stack);

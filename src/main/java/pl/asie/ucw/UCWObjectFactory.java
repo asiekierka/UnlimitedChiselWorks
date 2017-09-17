@@ -34,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -183,11 +184,11 @@ public class UCWObjectFactory {
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+		public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 			getSubItemsServer(tab, subItems);
 		}
 
-		public void getSubItemsServer(CreativeTabs tab, List<ItemStack> items) {
+		public void getSubItemsServer(CreativeTabs tab, NonNullList<ItemStack> items) {
 			for (int i = 0; i < 16; i++) {
 				if (rule.through.get(i) != null) {
 					// FIXME: Dirt#9 doesn't really work well :-(
@@ -210,7 +211,7 @@ public class UCWObjectFactory {
 
 		private IBlockState applyProperties(Block block, IBlockState state) {
 			IBlockState toState = block.getDefaultState();
-			for (IProperty property : state.getPropertyNames()) {
+			for (IProperty property : state.getPropertyKeys()) {
 				toState = toState.withProperty(property, state.getValue(property));
 			}
 			return toState;
@@ -371,7 +372,7 @@ public class UCWObjectFactory {
 		}
 
 		@Override
-		public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+		public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
 			item.getSubItems(itemIn, tab, list);
 		}
 

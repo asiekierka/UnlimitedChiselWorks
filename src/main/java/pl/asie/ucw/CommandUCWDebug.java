@@ -27,6 +27,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -35,17 +36,17 @@ import java.util.*;
 
 public class CommandUCWDebug extends CommandBase {
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "ucw_debug";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender sender) {
+	public String getUsage(ICommandSender sender) {
 		return "no, don't";
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		if (args.length == 1) {
 			Set<String> domains = new HashSet<>();
 			for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
@@ -70,7 +71,7 @@ public class CommandUCWDebug extends CommandBase {
 
 				for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
 					BlockPos.MutableBlockPos posCopy = new BlockPos.MutableBlockPos(pos);
-					List<ItemStack> stackList = new ArrayList<>();
+					NonNullList<ItemStack> stackList = NonNullList.create();
 					factory.item.getSubItemsServer(CreativeTabs.SEARCH, stackList);
 
 					world.setBlockState(posCopy, factory.base);
