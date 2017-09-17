@@ -33,7 +33,10 @@ import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -295,5 +298,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@Override
 	public void progressPop() {
 		ProgressManager.pop(progressBarDeque.removeFirst());
+	}
+
+	@Override
+	public void getSubItemsUCW(UCWObjectFactory.ItemUCW item, NonNullList<ItemStack> list) {
+		item.getSubItems(item, CreativeTabs.SEARCH, list);
 	}
 }

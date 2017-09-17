@@ -19,6 +19,12 @@
 
 package pl.asie.ucw;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+
+import java.util.List;
+
 public class UCWProxyCommon {
 	public void preInit() {
 
@@ -38,5 +44,9 @@ public class UCWProxyCommon {
 
 	public void progressPop() {
 
+	}
+
+	public void getSubItemsUCW(UCWObjectFactory.ItemUCW item, NonNullList<ItemStack> list) {
+		item.getSubItemsServer(CreativeTabs.SEARCH, list);
 	}
 }

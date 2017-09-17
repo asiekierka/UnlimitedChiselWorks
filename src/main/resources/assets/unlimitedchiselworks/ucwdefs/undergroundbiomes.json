@@ -1,0 +1,210 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:igneous_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_brick"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_cobble"
+      },
+      "overlay": {
+        "block": "undergroundbiomes:metamorphic_stone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    }
+  ]
+}
