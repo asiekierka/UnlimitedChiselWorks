@@ -66,6 +66,7 @@ public class UnlimitedChiselWorks {
     public static final TObjectIntMap<Block> RULE_COMBINATIONS = new TObjectIntHashMap<>();
     public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
     public static Logger LOGGER;
+    public static Random RAND = new Random();
     protected static final Gson GSON = new Gson();
     private static Configuration CONFIG;
     private static ConfigCategory C_ENABLED;
