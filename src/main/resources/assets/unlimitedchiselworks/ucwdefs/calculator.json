@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "state": "calculator:PearPlanks"
+        "state": "calculator:pearplanks"
       },
       "mode": "plank",
       "through": {
@@ -17,7 +17,7 @@
     },
     {
       "from": {
-        "state": "calculator:DiamondPlanks"
+        "state": "calculator:diamondplanks"
       },
       "mode": "plank",
       "through": {
@@ -32,7 +32,7 @@
     },
     {
       "from": {
-        "state": "calculator:AmethystPlanks"
+        "state": "calculator:amethystplanks"
       },
       "mode": "plank",
       "through": {
@@ -47,7 +47,7 @@
     },
     {
       "from": {
-        "state": "calculator:TanzanitePlanks"
+        "state": "calculator:tanzaniteplanks"
       },
       "mode": "plank",
       "through": {

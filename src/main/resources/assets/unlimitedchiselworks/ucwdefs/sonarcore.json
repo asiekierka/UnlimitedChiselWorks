@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "state": "sonarcore:ReinforcedStoneBrick"
+        "state": "sonarcore:reinforcedstonebrick"
       },
       "through": {
         "block": "chisel:stonebrick",
@@ -16,7 +16,7 @@
     },
     {
       "from": {
-        "state": "sonarcore:ReinforcedStoneBrick"
+        "state": "sonarcore:reinforcedstonebrick"
       },
       "through": {
         "block": "chisel:stonebrick1",
@@ -30,7 +30,7 @@
     },
     {
       "from": {
-        "state": "sonarcore:ReinforcedStoneBrick"
+        "state": "sonarcore:reinforcedstonebrick"
       },
       "through": {
         "block": "chisel:stonebrick2",
