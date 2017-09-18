@@ -19,8 +19,14 @@
 
 package pl.asie.ucw;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 
+import java.util.Collection;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class UCWObjectBroker {
@@ -48,5 +54,17 @@ public class UCWObjectBroker {
 
 	public IBlockState getBase() {
 		return base;
+	}
+
+	public BlockStateContainer createBlockState(Block block) {
+		Collection<IProperty<?>> propertyCollection = rule.throughBlock.getBlockState().getProperties();
+		IProperty[] properties = propertyCollection.toArray(new IProperty[propertyCollection.size()]);
+		if (rule.throughBlock.getBlockState() instanceof ExtendedBlockState) {
+			Collection<IUnlistedProperty<?>> unlistedPropertyCollection = ((ExtendedBlockState) rule.throughBlock.getBlockState()).getUnlistedProperties();
+			IUnlistedProperty[] unlistedProperties = unlistedPropertyCollection.toArray(new IUnlistedProperty[unlistedPropertyCollection.size()]);
+			return new ExtendedBlockState(block, properties, unlistedProperties);
+		} else {
+			return new BlockStateContainer(block, properties);
+		}
 	}
 }
