@@ -58,32 +58,24 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 		setUnlocalizedName(base.getBlock().getUnlocalizedName());
 	}
 
-	private IBlockState applyProperties(Block block, IBlockState state) {
-		IBlockState toState = block.getDefaultState();
-		for (IProperty property : state.getPropertyKeys()) {
-			toState = toState.withProperty(property, state.getValue(property));
-		}
-		return toState;
-	}
-
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
-		return applyProperties(rule.throughBlock, state).isOpaqueCube();
+		return UCWUtils.applyProperties(rule.throughBlock, state).isOpaqueCube();
 	}
 
 	@Override
 	public boolean isFullCube(IBlockState state) {
-		return applyProperties(rule.throughBlock, state).isFullCube();
+		return UCWUtils.applyProperties(rule.throughBlock, state).isFullCube();
 	}
 
 	@Override
 	public boolean isFullBlock(IBlockState state) {
-		return applyProperties(rule.throughBlock, state).isFullBlock();
+		return UCWUtils.applyProperties(rule.throughBlock, state).isFullBlock();
 	}
 
 	@Override
 	public boolean isNormalCube(IBlockState state) {
-		return applyProperties(rule.throughBlock, state).isNormalCube();
+		return UCWUtils.applyProperties(rule.throughBlock, state).isNormalCube();
 	}
 
 	@Override
@@ -99,7 +91,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		IBlockState newState = applyProperties(rule.throughBlock, state);
+		IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, state);
 		return newState.getBlock().canRenderInLayer(newState, layer);
 	}
 
@@ -160,7 +152,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 			return rule.fromBlock.getBlockHardness(base, worldIn, pos);
 		} catch (Exception e) {
 			try {
-				return rule.throughBlock.getBlockHardness(applyProperties(rule.throughBlock, blockState), worldIn, pos);
+				return rule.throughBlock.getBlockHardness(UCWUtils.applyProperties(rule.throughBlock, blockState), worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
 			}
@@ -173,7 +165,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 			return rule.fromBlock.getPlayerRelativeBlockHardness(base, player, worldIn, pos);
 		} catch (Exception e) {
 			try {
-				return rule.throughBlock.getPlayerRelativeBlockHardness(applyProperties(rule.throughBlock, state), player, worldIn, pos);
+				return rule.throughBlock.getPlayerRelativeBlockHardness(UCWUtils.applyProperties(rule.throughBlock, state), player, worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
 			}
@@ -217,12 +209,12 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return applyProperties(this, rule.throughBlock.getStateFromMeta(meta));
+		return UCWUtils.applyProperties(this, rule.throughBlock.getStateFromMeta(meta));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return rule.throughBlock.getMetaFromState(applyProperties(rule.throughBlock, state));
+		return rule.throughBlock.getMetaFromState(UCWUtils.applyProperties(rule.throughBlock, state));
 	}
 
 	@Override
@@ -235,15 +227,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 		rule = UCWObjectBroker.get().getRule();
 		base = UCWObjectBroker.get().getBase();
 
-		Collection<IProperty<?>> propertyCollection = rule.throughBlock.getBlockState().getProperties();
-		IProperty[] properties = propertyCollection.toArray(new IProperty[propertyCollection.size()]);
-		if (rule.throughBlock.getBlockState() instanceof ExtendedBlockState) {
-			Collection<IUnlistedProperty<?>> unlistedPropertyCollection = ((ExtendedBlockState) rule.throughBlock.getBlockState()).getUnlistedProperties();
-			IUnlistedProperty[] unlistedProperties = unlistedPropertyCollection.toArray(new IUnlistedProperty[unlistedPropertyCollection.size()]);
-			return new ExtendedBlockState(this, properties, unlistedProperties);
-		} else {
-			return new BlockStateContainer(this, properties);
-		}
+		return UCWObjectBroker.get().createBlockState(this);
 	}
 
 	@Override

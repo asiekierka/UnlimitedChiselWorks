@@ -19,12 +19,23 @@
 
 package pl.asie.ucw;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public final class UCWUtils {
 	private UCWUtils() {
 
+	}
+
+	public static IBlockState applyProperties(Block block, IBlockState state) {
+		IBlockState toState = block.getDefaultState();
+		for (IProperty property : state.getPropertyKeys()) {
+			toState = toState.withProperty(property, state.getValue(property));
+		}
+		return toState;
 	}
 
 	public static ItemStack copyChangeItem(ItemStack stack, Item item) {
