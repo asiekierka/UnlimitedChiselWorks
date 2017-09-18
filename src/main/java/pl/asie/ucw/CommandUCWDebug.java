@@ -71,7 +71,7 @@ public class CommandUCWDebug extends CommandBase {
 
 				for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
 					NonNullList<ItemStack> stackList = NonNullList.create();
-					UnlimitedChiselWorks.proxy.getSubItemsUCW(factory.item, stackList);
+					UnlimitedChiselWorks.proxy.getSubItemsUCW((IUCWItem) factory.item, stackList);
 
 					world.setBlockState(pos, factory.base);
 
