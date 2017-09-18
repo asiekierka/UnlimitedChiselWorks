@@ -58,7 +58,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
-@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION, dependencies = "after:*")
+@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION, dependencies = "after:*", updateJSON = "http://asie.pl/files/minecraft/update/" + UnlimitedChiselWorks.MODID + ".json")
 public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
