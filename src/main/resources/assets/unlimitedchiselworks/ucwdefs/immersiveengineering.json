@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "state": "immersiveengineering:treatedWood"
+        "state": "immersiveengineering:treated_wood"
       },
       "mode": "blend",
       "through": {
