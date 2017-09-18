@@ -19,39 +19,8 @@
 
 package pl.asie.ucw;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 
-import java.util.List;
-
-public class UCWProxyCommon {
-	public void preInit() {
-
-	}
-
-	public void init() {
-
-	}
-
-	public void progressPush(String name, int count) {
-		UnlimitedChiselWorks.LOGGER.info(name);
-	}
-
-	public void progressStep(String text) {
-
-	}
-
-	public void progressPop() {
-
-	}
-
-	public void getSubItemsUCW(IUCWItem item, List<ItemStack> list) {
-		item.getSubItemsServer(CreativeTabs.SEARCH, list);
-	}
-
-	public void initBlock(IBlockState state, Block block) {
-
-	}
+public interface IUCWBlock {
+	IBlockState getBaseState();
 }

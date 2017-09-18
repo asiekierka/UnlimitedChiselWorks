@@ -35,6 +35,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -52,6 +53,7 @@ public class UCWBlockRule {
 	protected final TIntObjectMap<UCWObjectFactory> objectFactories = new TIntObjectHashMap<>();
 	protected final String prefix;
 	protected final String group;
+	protected @Nullable final String customBlockClass, customItemClass;
 	protected final BlendMode mode;
 	protected final int fromCount;
 
@@ -72,6 +74,9 @@ public class UCWBlockRule {
 		}
 
 		mode = object.has("mode") ? BlendMode.valueOf(object.get("mode").getAsString().toUpperCase()) : BlendMode.NONE;
+
+		customBlockClass = object.has("custom_block_class") ? object.get("custom_block_class").getAsString() : null;
+		customItemClass = object.has("custom_item_class") ? object.get("custom_item_class").getAsString() : null;
 
 		int fc = 0;
 		for (IBlockState state : from) {

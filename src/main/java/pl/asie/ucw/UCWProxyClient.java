@@ -23,6 +23,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -34,6 +35,7 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -300,12 +302,12 @@ public class UCWProxyClient extends UCWProxyCommon {
 	}
 
 	@Override
-	public void getSubItemsUCW(UCWObjectFactory.ItemUCW item, List<ItemStack> list) {
-		item.getSubItems(item, CreativeTabs.SEARCH, list);
+	public void getSubItemsUCW(IUCWItem item, List<ItemStack> list) {
+		((Item) item).getSubItems((Item) item, CreativeTabs.SEARCH, list);
 	}
 
 	@Override
-	public void initBlock(IBlockState state, UCWObjectFactory.BlockUCW block) {
+	public void initBlock(IBlockState state, Block block) {
 		block.setCreativeTab(state.getBlock().getCreativeTabToDisplayOn());
 	}
 }

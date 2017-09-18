@@ -19,39 +19,34 @@
 
 package pl.asie.ucw;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class UCWProxyCommon {
-	public void preInit() {
+public class UCWObjectBroker {
+	private static ThreadLocal<UCWObjectBroker> provider = ThreadLocal.withInitial(UCWObjectBroker::new);
+	private UCWBlockRule rule;
+	private IBlockState base;
 
+	public static UCWObjectBroker get() {
+		return provider.get();
 	}
 
-	public void init() {
-
+	public void begin(UCWBlockRule rule, IBlockState state) {
+		this.rule = rule;
+		this.base = state;
 	}
 
-	public void progressPush(String name, int count) {
-		UnlimitedChiselWorks.LOGGER.info(name);
+	public void end() {
+		this.rule = null;
+		this.base = null;
 	}
 
-	public void progressStep(String text) {
-
+	public UCWBlockRule getRule() {
+		return rule;
 	}
 
-	public void progressPop() {
-
-	}
-
-	public void getSubItemsUCW(IUCWItem item, List<ItemStack> list) {
-		item.getSubItemsServer(CreativeTabs.SEARCH, list);
-	}
-
-	public void initBlock(IBlockState state, Block block) {
-
+	public IBlockState getBase() {
+		return base;
 	}
 }
