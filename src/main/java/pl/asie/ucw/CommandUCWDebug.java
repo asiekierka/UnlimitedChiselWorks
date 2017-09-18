@@ -75,13 +75,12 @@ public class CommandUCWDebug extends CommandBase {
 
 					world.setBlockState(pos, factory.base);
 
-					BlockPos.MutableBlockPos posCopy = new BlockPos.MutableBlockPos(pos);
-					posCopy.move(EnumFacing.EAST);
+					BlockPos posCopy = pos.offset(EnumFacing.EAST);
 
 					for (ItemStack stack : stackList) {
 						try {
 							world.setBlockState(posCopy, factory.block.getStateFromMeta(stack.getMetadata()));
-							posCopy.move(EnumFacing.EAST);
+							posCopy = posCopy.offset(EnumFacing.EAST);
 						} catch (Exception e) {
 
 						}
