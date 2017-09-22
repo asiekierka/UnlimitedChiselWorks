@@ -31,7 +31,8 @@ public final class UCWUtils {
 	}
 
 	public static IBlockState applyProperties(Block block, IBlockState state) {
-		IBlockState toState = block.getDefaultState();
+		IBlockState toState = block
+				.getDefaultState();
 		for (IProperty property : state.getPropertyNames()) {
 			toState = toState.withProperty(property, state.getValue(property));
 		}

@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "block": "botanicaladdons:alt_planks",
+        "block": "botanicaladdons:altPlanks",
         "iterate": [
           "type"
         ]

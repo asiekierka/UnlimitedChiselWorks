@@ -2,7 +2,7 @@
   "blocks": [
     {
       "from": {
-        "block": "lightningcraft:wood_plank"
+        "block": "lightningcraft:woodPlank"
       },
       "mode": "plank",
       "through": {
@@ -17,10 +17,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=1"
+        "state": "lightningcraft:stoneBlock#variant=1"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=0"
+        "state": "lightningcraft:stoneBlock#variant=0"
       },
       "mode": "blend",
       "through": {
@@ -35,10 +35,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=1"
+        "state": "lightningcraft:stoneBlock#variant=1"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=0"
+        "state": "lightningcraft:stoneBlock#variant=0"
       },
       "mode": "blend",
       "through": {
@@ -53,10 +53,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=1"
+        "state": "lightningcraft:stoneBlock#variant=1"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=0"
+        "state": "lightningcraft:stoneBlock#variant=0"
       },
       "mode": "blend",
       "through": {
@@ -71,10 +71,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=4"
+        "state": "lightningcraft:stoneBlock#variant=4"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=3"
+        "state": "lightningcraft:stoneBlock#variant=3"
       },
       "mode": "blend",
       "through": {
@@ -89,10 +89,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=4"
+        "state": "lightningcraft:stoneBlock#variant=4"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=3"
+        "state": "lightningcraft:stoneBlock#variant=3"
       },
       "mode": "blend",
       "through": {
@@ -107,10 +107,10 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=4"
+        "state": "lightningcraft:stoneBlock#variant=4"
       },
       "overlay": {
-        "state": "lightningcraft:stone_block#variant=3"
+        "state": "lightningcraft:stoneBlock#variant=3"
       },
       "mode": "blend",
       "through": {
@@ -125,7 +125,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=7"
+        "state": "lightningcraft:stoneBlock#variant=7"
       },
       "mode": "blend",
       "through": {
@@ -140,7 +140,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=7"
+        "state": "lightningcraft:stoneBlock#variant=7"
       },
       "mode": "blend",
       "through": {
@@ -155,7 +155,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=7"
+        "state": "lightningcraft:stoneBlock#variant=7"
       },
       "mode": "blend",
       "through": {
@@ -170,7 +170,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=6"
+        "state": "lightningcraft:stoneBlock#variant=6"
       },
       "through": {
         "block": "chisel:cobblestone",
@@ -184,7 +184,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=6"
+        "state": "lightningcraft:stoneBlock#variant=6"
       },
       "through": {
         "block": "chisel:cobblestone1",
@@ -198,7 +198,7 @@
     },
     {
       "from": {
-        "state": "lightningcraft:stone_block#variant=6"
+        "state": "lightningcraft:stoneBlock#variant=6"
       },
       "through": {
         "block": "chisel:cobblestone2",
