@@ -1,0 +1,214 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "block": "lightningcraft:wood_plank"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=1"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=0"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=1"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=0"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=1"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=0"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=4"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=3"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=4"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=3"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=4"
+      },
+      "overlay": {
+        "state": "lightningcraft:stone_block#variant=3"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=7"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=7"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=7"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=6"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=6"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "lightningcraft:stone_block#variant=6"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    }
+  ]
+}
