@@ -158,7 +158,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 			for (int i = 0; i < rule.from.size(); i++) {
 				if (rule.from.get(i) != null) {
 					IBlockState state = rule.from.get(i);
-					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + i;
+					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + state.getBlock().getMetaFromState(state);
 
 					IBlockState stateOverlay = rule.overlay.get(i);
 					IModel modelFrom = secretSauce.get(fromVariants.get(state));
