@@ -37,6 +37,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -217,6 +218,23 @@ public class UCWProxyClient extends UCWProxyCommon {
 			Minecraft.getMinecraft().refreshResources();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void init() {
+		super.init();
+		MinecraftForge.EVENT_BUS.register(this);
+
+		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			for (int i = 0; i < rule.from.size(); i++) {
+				IBlockState fromState = rule.from.get(i);
+				if (fromState == null) continue;
+
+				UCWObjectFactory factory = rule.objectFactories.get(i);
+				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(UCWColorProxy.INSTANCE, factory.block);
+				Minecraft.getMinecraft().getItemColors().registerItemColorHandler(UCWColorProxy.INSTANCE, factory.item);
+			}
 		}
 	}
 

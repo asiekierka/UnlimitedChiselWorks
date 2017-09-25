@@ -233,6 +233,8 @@ public class UnlimitedChiselWorks {
             }
         }
 
+        proxy.init();
+
         if (CONFIG.hasChanged()) {
             CONFIG.save();
         }

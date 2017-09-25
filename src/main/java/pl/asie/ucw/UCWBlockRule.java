@@ -87,6 +87,7 @@ public class UCWBlockRule {
 
 		String s1 = throughBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_");
 		String s2 = fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_");
+
 		prefix = s1 + "_" + s2 + "_";
 		for (int i = 0; i < from.size(); i++) {
 			if (from.get(i) != null) {
