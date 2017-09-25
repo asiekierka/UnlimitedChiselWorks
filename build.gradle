@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.1.4"
+version = "0.1.5"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 
@@ -38,6 +38,9 @@ minecraft {
     runDir = "run"
     
     mappings = "snapshot_20170915"
+
+    replace "\${version}", project.version
+    replace "\${mcversion}", version
 }
 
 repositories {
@@ -76,7 +79,7 @@ processResources {
         include 'mcmod.info'
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
+
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
