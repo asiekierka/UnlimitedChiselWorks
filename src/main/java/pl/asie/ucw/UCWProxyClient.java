@@ -283,6 +283,17 @@ public class UCWProxyClient extends UCWProxyCommon {
 	public void init() {
 		super.init();
 		MinecraftForge.EVENT_BUS.register(this);
+
+		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			for (int i = 0; i < rule.from.size(); i++) {
+				IBlockState fromState = rule.from.get(i);
+				if (fromState == null) continue;
+
+				UCWObjectFactory factory = rule.objectFactories.get(i);
+				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(UCWColorProxy.INSTANCE, factory.block);
+				Minecraft.getMinecraft().getItemColors().registerItemColorHandler(UCWColorProxy.INSTANCE, factory.item);
+			}
+		}
 	}
 
 	private final Deque<ProgressManager.ProgressBar> progressBarDeque = new ArrayDeque<>();
