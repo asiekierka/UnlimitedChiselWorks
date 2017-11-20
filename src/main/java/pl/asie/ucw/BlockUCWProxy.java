@@ -149,10 +149,11 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	@Override
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
 		try {
-			return rule.fromBlock.getBlockHardness(base, worldIn, pos);
+			return base.getBlockHardness(worldIn, pos);
 		} catch (Exception e) {
 			try {
-				return rule.throughBlock.getBlockHardness(UCWUtils.applyProperties(rule.throughBlock, blockState), worldIn, pos);
+				IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, blockState);
+				return newState.getBlockHardness(worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
 			}
@@ -162,10 +163,11 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	@Override
 	public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos) {
 		try {
-			return rule.fromBlock.getPlayerRelativeBlockHardness(base, player, worldIn, pos);
+			return base.getPlayerRelativeBlockHardness(player, worldIn, pos);
 		} catch (Exception e) {
 			try {
-				return rule.throughBlock.getPlayerRelativeBlockHardness(UCWUtils.applyProperties(rule.throughBlock, state), player, worldIn, pos);
+				IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, state);
+				return newState.getPlayerRelativeBlockHardness(player, worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
 			}

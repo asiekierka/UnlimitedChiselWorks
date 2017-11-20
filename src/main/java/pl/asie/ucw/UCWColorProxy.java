@@ -45,14 +45,14 @@ public class UCWColorProxy implements IBlockColor, IItemColor {
 	}
 
 	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+	public int colorMultiplier(ItemStack stack, int tintIndex) {
 		Item item = stack.getItem();
 		Block block = Block.getBlockFromItem(item);
 		if (block instanceof IUCWBlock) {
 			IBlockState state1 = ((IUCWBlock) block).getBaseState();
 			try {
 				ItemStack stack1 = state1.getBlock().getItem(Minecraft.getMinecraft().player.getEntityWorld(), Minecraft.getMinecraft().player.getPosition(), state1);
-				return Minecraft.getMinecraft().getItemColors().getColorFromItemstack(stack1, tintIndex);
+				return Minecraft.getMinecraft().getItemColors().colorMultiplier(stack1, tintIndex);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return -1;
