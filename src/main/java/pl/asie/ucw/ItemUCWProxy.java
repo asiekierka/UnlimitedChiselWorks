@@ -98,16 +98,29 @@ public class ItemUCWProxy extends ItemBlock {
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		Item origItem = getItemThrough();
-		NonNullList<ItemStack> proxyList = NonNullList.create();
-		origItem.getSubItems(tab, proxyList);
-		for (ItemStack stack : proxyList) {
-			if (stack.getItem() == origItem) {
-				// FIXME: Dirt#9 doesn't really work well :-(
-				if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
-					continue;
-				}
+		if (UnlimitedChiselWorks.useChiselGetSubItemsWorkaround && "chisel".equals(origItem.getRegistryName().getResourceDomain())) {
+			for (int i = 0; i < 16; i++) {
+				if (rule.through.get(i) != null) {
+					// FIXME: Dirt#9 doesn't really work well :-(
+					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && i == 9) {
+						continue;
+					}
 
-				items.add(UCWUtils.copyChangeItem(stack, this));
+					items.add(new ItemStack(this, 1, i));
+				}
+			}
+		} else {
+			NonNullList<ItemStack> proxyList = NonNullList.create();
+			origItem.getSubItems(tab, proxyList);
+			for (ItemStack stack : proxyList) {
+				if (stack.getItem() == origItem) {
+					// FIXME: Dirt#9 doesn't really work well :-(
+					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
+						continue;
+					}
+
+					items.add(UCWUtils.copyChangeItem(stack, this));
+				}
 			}
 		}
 	}

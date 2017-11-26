@@ -38,16 +38,16 @@ import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
+import net.minecraftforge.fml.common.versioning.VersionParser;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -63,8 +63,8 @@ public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
-    public static final TObjectIntMap<Block> RULE_COMBINATIONS = new TObjectIntHashMap<>();
     public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
+    public static boolean useChiselGetSubItemsWorkaround = false;
     public static Logger LOGGER;
     public static Random RAND = new Random();
     protected static final Gson GSON = new Gson();
@@ -174,6 +174,18 @@ public class UnlimitedChiselWorks {
         LOGGER = LogManager.getLogger(MODID);
         CONFIG = new Configuration(event.getSuggestedConfigurationFile());
 
+        if (FMLCommonHandler.instance().getSide() == Side.SERVER && Loader.isModLoaded("chisel")) {
+            DefaultArtifactVersion requiredVersion = new DefaultArtifactVersion("chisel",
+                    VersionParser.parseRange("[,MC1.12-0.0.14.18]"));
+
+            if (requiredVersion.containsVersion(new DefaultArtifactVersion("chisel",
+                    Loader.instance().getIndexedModList().get("chisel").getVersion()
+            ))) {
+                LOGGER.info("Buggy version of 1.12.x Chisel detected on dedicated server, enabling workaround.");
+                useChiselGetSubItemsWorkaround = true;
+            }
+        }
+
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(proxy);
         proxy.preInit();
@@ -205,15 +217,11 @@ public class UnlimitedChiselWorks {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         for (UCWBlockRule rule : BLOCK_RULES) {
-            RULE_COMBINATIONS.adjustOrPutValue(rule.fromBlock, rule.fromCount, rule.fromCount);
-        }
-
-        for (UCWBlockRule rule : BLOCK_RULES) {
             for (int i = 0; i < rule.from.size(); i++) {
                 IBlockState fromState = rule.from.get(i);
                 if (fromState == null) continue;
 
-                String groupName = RULE_COMBINATIONS.get(rule.fromBlock) == 1 ? rule.group : rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
+                String groupName = rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
                 UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
 
                 UCWObjectFactory factory = rule.objectFactories.get(i);
