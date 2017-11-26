@@ -20,7 +20,7 @@
     },
     {
       "from": {
-        "block": "quark:dustbound_block"
+        "block": "quark:midori_block"
       },
       "through": {
         "block": "chisel:purpur",
@@ -34,7 +34,7 @@
     },
     {
       "from": {
-        "block": "quark:dustbound_block"
+        "block": "quark:midori_block"
       },
       "through": {
         "block": "chisel:purpur1",
@@ -48,7 +48,49 @@
     },
     {
       "from": {
-        "block": "quark:dustbound_block"
+        "block": "quark:midori_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
       },
       "through": {
         "block": "chisel:purpur2",
