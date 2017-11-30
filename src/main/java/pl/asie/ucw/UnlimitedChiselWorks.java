@@ -63,6 +63,7 @@ public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
+    public static final Set<String> GROUP_RULE_NAMES = new HashSet<>();
     public static final Set<UCWGroupRule> GROUP_RULES = new LinkedHashSet<>();
     public static boolean useChiselGetSubItemsWorkaround = false;
     public static Logger LOGGER;
@@ -70,6 +71,8 @@ public class UnlimitedChiselWorks {
     protected static final Gson GSON = new Gson();
     private static Configuration CONFIG;
     private static ConfigCategory C_ENABLED;
+    private static ConfigCategory C_ENABLED_GROUPS;
+    private static File configDir;
 
     private boolean enableDebugFeatures;
 
@@ -122,7 +125,22 @@ public class UnlimitedChiselWorks {
                             if (element.isJsonObject()) {
                                 try {
                                     UCWGroupRule rule = new UCWGroupRule(element.getAsJsonObject());
-                                    GROUP_RULES.add(rule);
+                                    String fbName = rule.groupName;
+
+                                    if (GROUP_RULE_NAMES.contains(fbName)) {
+                                        LOGGER.warn("Duplicate group name: " + fbName + "!");
+                                    } else {
+                                        GROUP_RULE_NAMES.add(fbName);
+                                    }
+
+                                    if (!C_ENABLED_GROUPS.containsKey(fbName)) {
+                                        Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                        C_ENABLED_GROUPS.put(fbName, prop);
+                                    }
+
+                                    if (C_ENABLED_GROUPS.get(fbName).getBoolean()) {
+                                        GROUP_RULES.add(rule);
+                                    }
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -139,7 +157,19 @@ public class UnlimitedChiselWorks {
     private void findRules() {
         BLOCK_RULES.clear();
 
-        proxy.progressPush("UCW: scanning rules", Loader.instance().getActiveModList().size());
+        proxy.progressPush("UCW: scanning rules", Loader.instance().getActiveModList().size() + 1);
+
+        proxy.progressStep("config/ucwdefs");
+        File dir = new File(configDir, "ucwdefs");
+        if (dir.exists() && dir.isDirectory()) {
+            try {
+                proposeRule(dir.toPath());
+            } catch (NoSuchFileException e) {
+                // no problem with this one
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         for (ModContainer container : Loader.instance().getActiveModList()) {
             proxy.progressStep(container.getName() == null ? container.getModId() : container.getName());
@@ -173,6 +203,7 @@ public class UnlimitedChiselWorks {
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER = LogManager.getLogger(MODID);
         CONFIG = new Configuration(event.getSuggestedConfigurationFile());
+        configDir = event.getModConfigurationDirectory();
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER && Loader.isModLoaded("chisel")) {
             DefaultArtifactVersion requiredVersion = new DefaultArtifactVersion("chisel",
@@ -191,6 +222,7 @@ public class UnlimitedChiselWorks {
         proxy.preInit();
 
         C_ENABLED = CONFIG.getCategory("enabled");
+        C_ENABLED_GROUPS = CONFIG.getCategory("enabled_groups");
         enableDebugFeatures = CONFIG.getBoolean("enableDebugFeatures", "general", false, "Whether or not to enable debug functionality.");
     }
 
