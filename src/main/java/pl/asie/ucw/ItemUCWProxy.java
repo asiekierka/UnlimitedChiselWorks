@@ -62,7 +62,11 @@ public class ItemUCWProxy extends ItemBlock {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		try {
-			return getItemFrom().getUnlocalizedName(new ItemStack(base.getBlock().getItemDropped(base, UnlimitedChiselWorks.RAND, 0), 1, base.getBlock().damageDropped(base)));
+			ItemStack proxyStack = new ItemStack(base.getBlock().getItemDropped(base, UnlimitedChiselWorks.RAND, 0), 1, base.getBlock().damageDropped(base));
+			if (stack.hasTagCompound()) {
+				proxyStack.setTagCompound(stack.getTagCompound());
+			}
+			return getItemFrom().getUnlocalizedName(proxyStack);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return getUnlocalizedName();
@@ -71,10 +75,14 @@ public class ItemUCWProxy extends ItemBlock {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		try {
-			return getItemFrom().getItemStackDisplayName(new ItemStack(base.getBlock().getItemDropped(base, UnlimitedChiselWorks.RAND, 0), 1, base.getBlock().damageDropped(base)));
+			ItemStack proxyStack = new ItemStack(base.getBlock().getItemDropped(base, UnlimitedChiselWorks.RAND, 0), 1, base.getBlock().damageDropped(base));
+			if (stack.hasTagCompound()) {
+				proxyStack.setTagCompound(stack.getTagCompound());
+			}
+			return getItemFrom().getItemStackDisplayName(stack);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return getUnlocalizedName();
+			return this.getUnlocalizedName(stack);
 		}
 	}
 

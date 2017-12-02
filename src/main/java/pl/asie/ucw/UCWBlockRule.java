@@ -52,7 +52,7 @@ public class UCWBlockRule {
 	protected final TIntObjectMap<UCWObjectFactory> objectFactories = new TIntObjectHashMap<>();
 	protected final String prefix;
 	protected final String group;
-	protected @Nullable final String customBlockClass, customItemClass;
+	protected @Nullable final String customBlockClass, customItemClass, customColorClass;
 	protected final BlendMode mode;
 	protected final int fromCount;
 
@@ -76,6 +76,7 @@ public class UCWBlockRule {
 
 		customBlockClass = object.has("custom_block_class") ? object.get("custom_block_class").getAsString() : null;
 		customItemClass = object.has("custom_item_class") ? object.get("custom_item_class").getAsString() : null;
+		customColorClass = object.has("custom_color_class") ? object.get("custom_color_class").getAsString() : null;
 
 		int fc = 0;
 		for (IBlockState state : from) {

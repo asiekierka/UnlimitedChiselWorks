@@ -27,6 +27,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
@@ -232,8 +234,22 @@ public class UCWProxyClient extends UCWProxyCommon {
 				if (fromState == null) continue;
 
 				UCWObjectFactory factory = rule.objectFactories.get(i);
-				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(UCWColorProxy.INSTANCE, factory.block);
-				Minecraft.getMinecraft().getItemColors().registerItemColorHandler(UCWColorProxy.INSTANCE, factory.item);
+
+				Object o = UCWColorProxy.INSTANCE;
+				if (rule.customColorClass != null) {
+					try {
+						o = Class.forName(rule.customColorClass).getConstructor().newInstance();
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+				}
+
+				if (!(o instanceof IBlockColor) || !(o instanceof IItemColor)) {
+					throw new RuntimeException(o.getClass().getName() + " is not IBlockColor and IItemColor!");
+				}
+
+				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((IBlockColor) o, factory.block);
+				Minecraft.getMinecraft().getItemColors().registerItemColorHandler((IItemColor) o, factory.item);
 			}
 		}
 	}

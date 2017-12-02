@@ -171,6 +171,60 @@
       "based_upon": {
         "state": "minecraft:quartz_block#variant=default"
       }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
     }
   ]
 }
