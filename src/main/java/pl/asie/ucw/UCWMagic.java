@@ -146,7 +146,7 @@ public final class UCWMagic {
 			for (int j = 0; j < texture.getIconWidth() * texture.getIconHeight(); j++) {
 				float[] hd = toLAB(data[j]);
 
-				frames[i][j] = (data[j] & 0xFF000000) | fromLAB(new float[]{(float) (hd[0] / avgLuma), keepTinting ? hd[1] : 0, keepTinting ? hd[2] : 0});
+				frames[i][j] = (data[j] & 0xFF000000) | fromLAB(new float[]{(float) (hd[0] / avgLuma * 100.0), keepTinting ? hd[1] : 0, keepTinting ? hd[2] : 0});
 			}
 		}
 
@@ -214,7 +214,7 @@ public final class UCWMagic {
 				if (contrastBasedUpon[1] != 0.0) {
 					normV = (double) (hsbTex[0] - contrastBasedUpon[0]) / contrastBasedUpon[1];
 				} else {
-					normV = 0.5;
+					normV = 0.5f;
 				}
 				v = (float) ((normV * contrastFrom[1]) + contrastFrom[0]);
 
@@ -224,13 +224,13 @@ public final class UCWMagic {
 				} else if (mode == UCWBlockRule.BlendMode.PLANK) {
 					double nv2 = normV;
 					if (nv2 < 0) nv2 = 0;
-					if (nv2 > 1) nv2 = 1;
+					else if (nv2 > 1) nv2 = 1;
 					hsbBu[1] = (float) ((rangeA[1] * nv2) + (rangeA[0] * (1 - nv2)));
 					hsbBu[2] = (float) ((rangeB[1] * nv2) + (rangeB[0] * (1 - nv2)));
 				}
 
 				if (v < 0) v = 0;
-				if (v > 100) v = 100;
+				else if (v > 100) v = 100;
 				texData[i] = (it & 0xFF000000) | fromLAB(new float[]{v, hsbBu[1], hsbBu[2]});
 			}
 		}

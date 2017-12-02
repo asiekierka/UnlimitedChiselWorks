@@ -79,7 +79,7 @@ public class ItemUCWProxy extends ItemBlock {
 			if (stack.hasTagCompound()) {
 				proxyStack.setTagCompound(stack.getTagCompound());
 			}
-			return getItemFrom().getItemStackDisplayName(stack);
+			return getItemFrom().getItemStackDisplayName(proxyStack);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return this.getUnlocalizedName(stack);
