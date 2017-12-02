@@ -249,18 +249,24 @@ public class UnlimitedChiselWorks {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         for (UCWBlockRule rule : BLOCK_RULES) {
+
             for (int i = 0; i < rule.from.size(); i++) {
                 IBlockState fromState = rule.from.get(i);
                 if (fromState == null) continue;
 
-                String groupName = rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
-                UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
-
                 UCWObjectFactory factory = rule.objectFactories.get(i);
+                String groupName = rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
                 NonNullList<ItemStack> stacks = NonNullList.create();
                 factory.item.getSubItems(CreativeTabs.SEARCH, stacks);
-                for (ItemStack stack : stacks) {
-                    UCWCompatUtils.addChiselVariation(groupName, stack);
+
+                if (factory.block instanceof IUCWCustomVariantHandler) {
+                    ((IUCWCustomVariantHandler) factory.block).registerVariants(groupName, fromState, stacks);
+                } else {
+                    UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
+
+                    for (ItemStack stack : stacks) {
+                        UCWCompatUtils.addChiselVariation(groupName, stack);
+                    }
                 }
             }
         }

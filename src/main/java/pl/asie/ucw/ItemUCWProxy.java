@@ -78,11 +78,11 @@ public class ItemUCWProxy extends ItemBlock {
 		}
 	}
 
-	private Item getItemFrom() {
+	protected Item getItemFrom() {
 		return Item.getItemFromBlock(rule.fromBlock);
 	}
 
-	private Item getItemThrough() {
+	protected Item getItemThrough() {
 		return Item.getItemFromBlock(rule.throughBlock);
 	}
 

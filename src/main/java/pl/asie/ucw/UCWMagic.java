@@ -129,7 +129,7 @@ public final class UCWMagic {
 
 	private static int fromHSL(float[] hsl) {
 		if (hsl[1] == 0) {
-			return 0xFF000000 | (asFF(hsl[2]) * 0x10101);
+			return (asFF(hsl[2]) * 0x10101);
 		} else {
 			float v2 = hsl[2] < 0.5 ? hsl[2] * (1 + hsl[1]) : (hsl[2] + hsl[1]) - (hsl[1] * hsl[2]);
 			float v1 = 2 * hsl[2] - v2;
@@ -137,7 +137,7 @@ public final class UCWMagic {
 			int r = asFF(hsl_hue2rgb(v1, v2, hsl[0] + 1.0f/3.0f));
 			int g = asFF(hsl_hue2rgb(v1, v2, hsl[0]));
 			int b = asFF(hsl_hue2rgb(v1, v2, hsl[0] - 1.0f/3.0f));
-			return 0xFF000000 | (r << 16) | (g << 8) | b;
+			return (r << 16) | (g << 8) | b;
 		}
 	}
 
@@ -205,6 +205,32 @@ public final class UCWMagic {
 		return contrast;
 	}
 
+	public static int[][] createBaseForColorMultiplier(TextureAtlasSprite texture, boolean keepTinting) {
+		int[][] frames = new int[texture.getFrameCount()][texture.getIconWidth() * texture.getIconHeight()];
+
+		int divider = texture.getIconWidth() * texture.getIconHeight() * texture.getFrameCount();
+		double avgLuma = 0.0;
+
+		for (int i = 0; i < texture.getFrameCount(); i++) {
+			for (int v : texture.getFrameTextureData(i)[0]) {
+				float[] hd = toHSL(v);
+				avgLuma += hd[2];
+			}
+		}
+		avgLuma /= divider;
+
+		for (int i = 0; i < texture.getFrameCount(); i++) {
+			int[] data = texture.getFrameTextureData(i)[0];
+			for (int j = 0; j < texture.getIconWidth() * texture.getIconHeight(); j++) {
+				float[] hd = toHSL(data[j]);
+
+				frames[i][j] = (data[j] & 0xFF000000) | fromHSL(new float[]{keepTinting ? hd[0] : 0, keepTinting ? hd[1] : 0, (float) (hd[2] / avgLuma)});
+			}
+		}
+
+		return frames;
+	}
+
 	public static int[] transform(TextureAtlasSprite sprite, int frame, TextureAtlasSprite from, TextureAtlasSprite overlay, TextureAtlasSprite basedUpon, UCWBlockRule.BlendMode mode) {
 		int[] texture = sprite.getFrameTextureData(frame)[0];
 		int width = sprite.getIconWidth();
@@ -260,8 +286,14 @@ public final class UCWMagic {
 
 				float[] hsbTex = toHSL(it);
 				float[] hsbBu = toHSL(ibu);
-				double normV = (double) (hsbTex[2] - contrastBasedUpon[0]) / contrastBasedUpon[1];
-				float v = (float) ((normV * contrastFrom[1]) + contrastFrom[0]);
+				double normV;
+				float v;
+				if (contrastBasedUpon[1] != 0.0) {
+					normV = (double) (hsbTex[2] - contrastBasedUpon[0]) / contrastBasedUpon[1];
+				} else {
+					normV = 0.5;
+				}
+				v = (float) ((normV * contrastFrom[1]) + contrastFrom[0]);
 
 				if (mode == UCWBlockRule.BlendMode.BLEND || (hsbBu[2] < 0.1 && hsbBu[1] < 0.1 && avgSatFrom >= 0.3)) {
 					hsbBu[0] = (float) avgHueFrom;
@@ -279,7 +311,7 @@ public final class UCWMagic {
 
 				if (v < 0) v = 0;
 				if (v > 1) v = 1;
-				texData[i] = fromHSL(new float[]{hsbBu[0], hsbBu[1], v});
+				texData[i] = (it & 0xFF000000) | fromHSL(new float[]{hsbBu[0], hsbBu[1], v});
 			}
 		}
 		return texData;
