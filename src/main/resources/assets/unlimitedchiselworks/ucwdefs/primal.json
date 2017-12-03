@@ -62,6 +62,108 @@
     },
     {
       "from": {
+        "state": "primal:common_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:common_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:common_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:common_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:common_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:common_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:sarsen_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:sarsen_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:sarsen_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:sarsen_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:sarsen_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:sarsen_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
         "state": "primal:blue_stone#type=brick"
       },
       "overlay": {
@@ -101,6 +203,366 @@
       "overlay": {
         "state": "primal:blue_stone#type=normal"
       },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ortho_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ortho_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ortho_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ortho_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ortho_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ortho_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_green_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_green_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_green_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_green_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_green_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_green_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_blue_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_blue_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_blue_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_blue_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:schist_blue_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:schist_blue_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:purpurite_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:purpurite_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:purpurite_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:purpurite_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:purpurite_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:purpurite_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ferro_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ferro_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ferro_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ferro_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:ferro_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:ferro_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:carbonate_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:carbonate_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:carbonate_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:carbonate_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:carbonate_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:carbonate_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:desiccated_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:desiccated_stone#type=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:desiccated_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:desiccated_stone#type=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:desiccated_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:desiccated_stone#type=normal"
+      },
+      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
@@ -155,6 +617,159 @@
         "state": "primal:nether_stone#type=normal"
       },
       "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:night_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:night_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:night_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:night_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:night_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:night_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:eroded_end_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:eroded_end_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:eroded_end_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:eroded_end_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:eroded_end_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:eroded_end_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:soul_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:soul_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:soul_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:soul_stone#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "primal:soul_stone#type=brick"
+      },
+      "overlay": {
+        "state": "primal:soul_stone#type=normal"
+      },
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [

@@ -81,6 +81,36 @@
     },
     {
       "from": {
+        "state": "botania:quartztypedark#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypedark#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
         "state": "botania:quartztypemana#variant=normal"
       },
       "mode": "blend",

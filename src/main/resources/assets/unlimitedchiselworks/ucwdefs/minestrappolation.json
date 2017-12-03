@@ -1,0 +1,73 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "block": "minestrapp:m_stone_bricks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "overlay": {
+        "block": "minestrapp:m_stone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "minestrapp:m_stone_bricks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "overlay": {
+        "block": "minestrapp:m_stone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "minestrapp:m_stone_bricks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "overlay": {
+        "block": "minestrapp:m_stone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}
