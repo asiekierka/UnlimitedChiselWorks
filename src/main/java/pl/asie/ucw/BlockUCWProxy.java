@@ -23,6 +23,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,6 +60,21 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	}
 
 	@Override
+	public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return UCWUtils.applyProperties(rule.throughBlock, state).shouldSideBeRendered(new UCWBlockAccess(world, true), pos, face);
+	}
+
+	@Override
+	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return UCWUtils.applyProperties(rule.throughBlock, state).doesSideBlockRendering(new UCWBlockAccess(world, true), pos, face);
+	}
+
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
+		return UCWUtils.applyProperties(rule.throughBlock, state).getBlockFaceShape(new UCWBlockAccess(world, true), pos, face);
+	}
+
+	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return UCWUtils.applyProperties(rule.throughBlock, state).isOpaqueCube();
 	}
@@ -80,12 +96,12 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return base.getLightOpacity(new UCWBlockAccess(world), pos);
+		return base.getLightOpacity(new UCWBlockAccess(world, false), pos);
 	}
 
 	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return base.getLightValue(new UCWBlockAccess(world), pos);
+		return base.getLightValue(new UCWBlockAccess(world, false), pos);
 	}
 
 	@Override
@@ -103,17 +119,17 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		return base.getMapColor(new UCWBlockAccess(worldIn), pos);
+		return base.getMapColor(new UCWBlockAccess(worldIn, false), pos);
 	}
 
 	@Override
 	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-		return base.getBlock().isReplaceable(new UCWBlockAccess(worldIn), pos);
+		return base.getBlock().isReplaceable(new UCWBlockAccess(worldIn, false), pos);
 	}
 
 	@Override
 	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
-		return rule.fromBlock.canHarvestBlock(new UCWBlockAccess(world), pos, player);
+		return rule.fromBlock.canHarvestBlock(new UCWBlockAccess(world, false), pos, player);
 	}
 
 	@Override
@@ -128,22 +144,22 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public float getSlipperiness(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity entity) {
-		return base.getBlock().getSlipperiness(base, new UCWBlockAccess(world), pos, entity);
+		return base.getBlock().getSlipperiness(base, new UCWBlockAccess(world, false), pos, entity);
 	}
 
 	@Override
 	public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return base.getBlock().isLeaves(base, new UCWBlockAccess(world), pos);
+		return base.getBlock().isLeaves(base, new UCWBlockAccess(world, false), pos);
 	}
 
 	@Override
 	public boolean isWood(IBlockAccess world, BlockPos pos) {
-		return base.getBlock().isWood(new UCWBlockAccess(world), pos);
+		return base.getBlock().isWood(new UCWBlockAccess(world, false), pos);
 	}
 
 	@Override
 	public boolean isFoliage(IBlockAccess world, BlockPos pos) {
-		return base.getBlock().isFoliage(new UCWBlockAccess(world), pos);
+		return base.getBlock().isFoliage(new UCWBlockAccess(world, false), pos);
 	}
 
 	@Override
@@ -176,22 +192,22 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return rule.fromBlock.getFlammability(new UCWBlockAccess(world), pos, face);
+		return rule.fromBlock.getFlammability(new UCWBlockAccess(world, false), pos, face);
 	}
 
 	@Override
 	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return rule.fromBlock.isFlammable(new UCWBlockAccess(world), pos, face);
+		return rule.fromBlock.isFlammable(new UCWBlockAccess(world, false), pos, face);
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return rule.fromBlock.getFireSpreadSpeed(new UCWBlockAccess(world), pos, face);
+		return rule.fromBlock.getFireSpreadSpeed(new UCWBlockAccess(world, false), pos, face);
 	}
 
 	@Override
-	public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon) {
-		return rule.fromBlock.isBeaconBase(new UCWBlockAccess(worldObj), pos, beacon);
+	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+		return rule.fromBlock.isBeaconBase(new UCWBlockAccess(world, false), pos, beacon);
 	}
 
 	@Override
@@ -235,5 +251,10 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	@Override
 	public IBlockState getBaseState() {
 		return base;
+	}
+
+	@Override
+	public IBlockState getThroughState(IBlockState state) {
+		return UCWUtils.applyProperties(rule.throughBlock, state);
 	}
 }

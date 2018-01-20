@@ -149,7 +149,7 @@ public class UnlimitedChiselWorks {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                UnlimitedChiselWorks.LOGGER.error("Error parsing " + p.toString(), e);
             }
         }
     }

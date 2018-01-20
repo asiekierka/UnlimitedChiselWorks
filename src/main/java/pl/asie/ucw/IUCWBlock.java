@@ -23,4 +23,8 @@ import net.minecraft.block.state.IBlockState;
 
 public interface IUCWBlock {
 	IBlockState getBaseState();
+
+	default IBlockState getThroughState(IBlockState state) {
+		throw new RuntimeException("Not supported!");
+	}
 }

@@ -21,6 +21,7 @@ package pl.asie.ucw;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.io.ByteStreams;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
@@ -107,8 +108,6 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 	@Override
 	public InputStream getInputStream(ResourceLocation location) throws IOException {
 		if (!data.containsKey(location)) {
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
 			String[] str = getStr(location);
 			JsonElement element;
 			ResourceLocation nonProxiedLoc = new ResourceLocation(str[1], str[2]);
@@ -130,24 +129,25 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 				}
 			}
 
+			byte[] out;
+
 			if (element != null) {
 				JsonElement newElement = parseJsonElement(str, element);
-				byte[] b = UnlimitedChiselWorks.GSON.toJson(newElement).getBytes(Charsets.UTF_8);
-				byteArrayOutputStream.write(b);
+				out = UnlimitedChiselWorks.GSON.toJson(newElement).getBytes(Charsets.UTF_8);
 			} else {
-				InputStream nonProxied = Minecraft.getMinecraft().getResourceManager().getResource(
-						new ResourceLocation(str[1], str[2])
-				).getInputStream();
+				if (data.containsKey(nonProxiedLoc)) {
+					out = data.get(nonProxiedLoc);
+				} else {
+					InputStream nonProxied = Minecraft.getMinecraft().getResourceManager().getResource(
+							nonProxiedLoc
+					).getInputStream();
 
-				while (nonProxied.available() > 0)
-					byteArrayOutputStream.write(nonProxied.read());
-
-				nonProxied.close();
+					out = ByteStreams.toByteArray(nonProxied);
+					nonProxied.close();
+					data.put(nonProxiedLoc, out);
+				}
 			}
 
-			byteArrayOutputStream.close();
-
-			byte[] out = byteArrayOutputStream.toByteArray();
 			data.put(location, out);
 			return new ByteArrayInputStream(out);
 		} else {
@@ -193,6 +193,10 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
+		invalidate();
+	}
+
+	public void invalidate() {
 		data.clear();
 		jsonCache.clear();
 	}

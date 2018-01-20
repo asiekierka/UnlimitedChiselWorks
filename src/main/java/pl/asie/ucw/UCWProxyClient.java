@@ -34,6 +34,7 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
@@ -41,6 +42,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ProgressManager;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
@@ -52,6 +54,12 @@ import java.util.function.Function;
 
 public class UCWProxyClient extends UCWProxyCommon {
 	private JsonObject chiselCache;
+
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void asLateAsPossible(ModelBakeEvent event) {
+		chiselCache = null;
+		UCWFakeResourcePack.INSTANCE.invalidate();
+	}
 
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
@@ -160,14 +168,14 @@ public class UCWProxyClient extends UCWProxyCommon {
 						}
 						IBlockState targetState = factory.block.getStateFromMeta(j);
 						Collections.sort(propertyNames);
-						String variant = "";
+						StringBuilder variant = new StringBuilder();
 						for (String s : propertyNames) {
-							if (variant.length() > 0) variant += ",";
+							if (variant.length() > 0) variant.append(",");
 							IProperty property = factory.block.getBlockState().getProperty(s);
-							variant += s + "=" + property.getName(targetState.getValue(property));
+							variant.append(s).append("=").append(property.getName(targetState.getValue(property)));
 						}
 
-						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
+						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant.toString());
 						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
 
 						if (throughLoc.getResourceDomain().equals("chisel")) {

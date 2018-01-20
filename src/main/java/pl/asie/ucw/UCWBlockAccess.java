@@ -31,9 +31,16 @@ import javax.annotation.Nullable;
 
 public class UCWBlockAccess implements IBlockAccess {
 	private final IBlockAccess parent;
+	private final boolean isThrough;
 
+	@Deprecated
 	public UCWBlockAccess(IBlockAccess parent) {
+		this(parent, false);
+	}
+
+	public UCWBlockAccess(IBlockAccess parent, boolean isThrough) {
 		this.parent = parent;
+		this.isThrough = isThrough;
 	}
 
 	@Nullable
@@ -51,7 +58,11 @@ public class UCWBlockAccess implements IBlockAccess {
 	public IBlockState getBlockState(BlockPos pos) {
 		IBlockState state = parent.getBlockState(pos);
 		if (state.getBlock() instanceof IUCWBlock) {
-			return ((IUCWBlock) state.getBlock()).getBaseState();
+			if (isThrough) {
+				return ((IUCWBlock) state.getBlock()).getThroughState(state);
+			} else {
+				return ((IUCWBlock) state.getBlock()).getBaseState();
+			}
 		} else {
 			return state;
 		}
