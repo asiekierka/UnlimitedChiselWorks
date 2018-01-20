@@ -58,7 +58,9 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
-@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION, updateJSON = "http://asie.pl/files/minecraft/update/" + UnlimitedChiselWorks.MODID + ".json")
+@Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION,
+        dependencies = "after:forge@[14.23.1.2571,)",
+        updateJSON = "http://asie.pl/files/minecraft/update/" + UnlimitedChiselWorks.MODID + ".json")
 public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
@@ -278,8 +280,6 @@ public class UnlimitedChiselWorks {
                 UCWCompatUtils.addChiselVariation(rule.groupName, new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
             }
         }
-
-        proxy.init();
 
         if (CONFIG.hasChanged()) {
             CONFIG.save();

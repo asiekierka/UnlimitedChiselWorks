@@ -7,6 +7,7 @@
           "color"
         ]
       },
+      "has_color": true,
       "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
@@ -25,6 +26,7 @@
           "color"
         ]
       },
+      "has_color": true,
       "through": {
         "block": "chisel:dirt",
         "iterate": [

@@ -55,6 +55,7 @@ public class UCWBlockRule {
 	protected @Nullable final String customBlockClass, customItemClass, customColorClass;
 	protected final BlendMode mode;
 	protected final int fromCount;
+	private final boolean hasColor;
 
 	public UCWBlockRule(JsonObject object) throws Exception {
 		from = UCWJsonUtils.parseStateList(object.get("from").getAsJsonObject(), true);
@@ -77,6 +78,7 @@ public class UCWBlockRule {
 		customBlockClass = object.has("custom_block_class") ? object.get("custom_block_class").getAsString() : null;
 		customItemClass = object.has("custom_item_class") ? object.get("custom_item_class").getAsString() : null;
 		customColorClass = object.has("custom_color_class") ? object.get("custom_color_class").getAsString() : null;
+		hasColor = customColorClass != null || object.has("has_color");
 
 		int fc = 0;
 		for (IBlockState state : from) {
@@ -98,6 +100,10 @@ public class UCWBlockRule {
 				objectFactories.put(i, new UCWObjectFactory(this, state, new ResourceLocation(UnlimitedChiselWorks.MODID, s)));
 			}
 		}
+	}
+
+	public boolean hasColor() {
+		return hasColor;
 	}
 
 	@Override

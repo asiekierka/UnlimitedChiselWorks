@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.1.9"
+version = "0.1.10"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 
@@ -34,10 +34,10 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.1.2557"
+    version = "1.12.2-14.23.1.2599"
     runDir = "run"
     
-    mappings = "snapshot_20171201"
+    mappings = "snapshot_20180119"
 
     replace "\${version}", project.version
     replace "\${mcversion}", version
@@ -67,8 +67,8 @@ license {
 }
 
 dependencies {
-    deobfCompile "team.chisel:Chisel:MC1.12-0.0.14.18"
-    deobfCompile "team.chisel.ctm:CTM:MC1.12-0.2.2.7"
+    deobfCompile "team.chisel:Chisel:MC1.12-0.1.1.26"
+    deobfCompile "team.chisel.ctm:CTM:MC1.12-0.2.3.12"
 }
 
 processResources {

@@ -27,6 +27,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -34,6 +35,7 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -178,6 +180,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant.toString());
 						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
 
+						IModel target = null;
+
 						if (throughLoc.getResourceDomain().equals("chisel")) {
 							// fun!
 							try {
@@ -198,13 +202,17 @@ public class UCWProxyClient extends UCWProxyCommon {
 									String modelPath = variants
 											.get(throughLoc.getVariant()).getAsJsonObject().get("model").getAsString();
 									modelPath = modelPath.replaceFirst("chisel:", "ucw_generated:ucw_ucw_" + s2 + "/chisel/");
-									secretSauce.put(targetLoc, ModelLoaderRegistry.getModel(new ModelResourceLocation(modelPath)));
+									target = ModelLoaderRegistry.getModel(new ModelResourceLocation(modelPath));
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						} else {
-							secretSauce.put(targetLoc, modelThrough.retexture(textureRemapMap.build()));
+							target = modelThrough.retexture(textureRemapMap.build());
+						}
+
+						if (target != null) {
+							secretSauce.put(targetLoc, rule.hasColor() ? new TintApplyingModel(target) : target);
 						}
 					}
 				}
@@ -231,12 +239,13 @@ public class UCWProxyClient extends UCWProxyCommon {
 		}
 	}
 
-	@Override
-	public void init() {
-		super.init();
-		MinecraftForge.EVENT_BUS.register(this);
-
+	@SubscribeEvent
+	public void onColorHandlerRegister(ColorHandlerEvent.Item event) {
 		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			if (!rule.hasColor()) {
+				continue;
+			}
+
 			for (int i = 0; i < rule.from.size(); i++) {
 				IBlockState fromState = rule.from.get(i);
 				if (fromState == null) continue;
@@ -256,10 +265,11 @@ public class UCWProxyClient extends UCWProxyCommon {
 					throw new RuntimeException(o.getClass().getName() + " is not IBlockColor and IItemColor!");
 				}
 
-				Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((IBlockColor) o, factory.block);
-				Minecraft.getMinecraft().getItemColors().registerItemColorHandler((IItemColor) o, factory.item);
+				event.getBlockColors().registerBlockColorHandler((IBlockColor) o, factory.block);
+				event.getItemColors().registerItemColorHandler((IItemColor) o, factory.item);
 			}
 		}
+
 	}
 
 	private final Deque<ProgressManager.ProgressBar> progressBarDeque = new ArrayDeque<>();
