@@ -114,6 +114,14 @@ public class ItemUCWProxy extends ItemBlock {
 						continue;
 					}
 
+					try {
+						if (!rule.through.contains(rule.throughBlock.getStateFromMeta(i))) {
+							continue;
+						}
+					} catch (Exception e) {
+
+					}
+
 					items.add(new ItemStack(this, 1, i));
 				}
 			}
@@ -125,6 +133,14 @@ public class ItemUCWProxy extends ItemBlock {
 					// FIXME: Dirt#9 doesn't really work well :-(
 					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
 						continue;
+					}
+
+					try {
+						if (!rule.through.contains(rule.throughBlock.getStateFromMeta(stack.getItemDamage()))) {
+							continue;
+						}
+					} catch (Exception e) {
+
 					}
 
 					items.add(UCWUtils.copyChangeItem(stack, this));
