@@ -1,0 +1,114 @@
+{
+  "blocks": [
+    {
+      "from": {
+        "state": "aether_legacy:skyroot_plank"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "aether_legacy:holystone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "aether_legacy:holystone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "aether_legacy:holystone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=carved_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=angelic_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=hellfire_stone"
+        ]
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=carved_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=angelic_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=hellfire_stone"
+        ]
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=carved_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=angelic_stone",
+          "aether_legacy:dungeon_block#aether_legacy_dungeon_stone=hellfire_stone"
+        ]
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    }
+  ]
+}
