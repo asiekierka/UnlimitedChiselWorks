@@ -5,6 +5,20 @@
         "state": "thebetweenlands:mud_bricks"
       },
       "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "thebetweenlands:mud_bricks"
+      },
+      "through": {
         "block": "chisel:stonebrick1",
         "iterate": [
           "variation"
