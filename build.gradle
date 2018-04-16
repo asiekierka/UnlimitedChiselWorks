@@ -34,10 +34,10 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.2.2627"
+    version = "1.12.2-14.23.3.2665"
     runDir = "run"
     
-    mappings = "snapshot_20180315"
+    mappings = "snapshot_20180414"
 
     replace "\${version}", project.version
     replace "\${mcversion}", version
@@ -68,7 +68,7 @@ license {
 
 dependencies {
     deobfCompile "team.chisel:Chisel:MC1.12.2-0.2.0.31"
-    deobfCompile "team.chisel.ctm:CTM:MC1.12-0.2.3.13"
+    deobfCompile "team.chisel.ctm:CTM:MC1.12-0.3.0.14"
 }
 
 processResources {
