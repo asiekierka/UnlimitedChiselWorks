@@ -1,0 +1,23 @@
+{
+  "modid": ["chisel", "terraqueous"],
+  "blocks": [
+    {
+      "from": {
+        "block": "terraqueous:planks",
+        "iterate": [
+          "treevariant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "modid": ["chisel", "techreborn"],
+  "blocks": [
+    {
+      "from": {
+        "state": "techreborn:rubber_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

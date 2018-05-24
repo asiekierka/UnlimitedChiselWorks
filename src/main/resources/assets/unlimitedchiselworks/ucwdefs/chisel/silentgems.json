@@ -1,0 +1,383 @@
+{
+  "modid": ["chisel", "silentgems"],
+  "blocks": [
+    {
+      "from": {
+        "block": "silentgems:gembrickcoatedlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoatedlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoatedlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoateddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoateddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoateddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoated",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoated",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickcoated",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckledlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckledlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckledlight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckleddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckleddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckleddark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckled",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckled",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gembrickspeckled",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gemglassdark",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:glassdyedwhite",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stained_glass#color=white"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gemglass",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:glassdyedwhite",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stained_glass#color=white"
+      }
+    },
+    {
+      "from": {
+        "block": "silentgems:gemglasslight",
+        "iterate": [
+          "gem"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:glassdyedwhite",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stained_glass#color=white"
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "modid": ["chisel", "quark"],
+  "blocks": [
+    {
+      "from": {
+        "block": "quark:stained_planks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:midori_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:midori_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:midori_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:duskbound_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:soul_sandstone#variant=soul_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:biotite_block"
+      },
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "quark:biotite_block"
+      },
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "block": "quark:biome_cobblestone",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    }
+  ]
+}

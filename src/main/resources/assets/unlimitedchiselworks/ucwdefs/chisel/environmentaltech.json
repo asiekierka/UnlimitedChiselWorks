@@ -1,0 +1,362 @@
+{
+  "modid": ["chisel", "environmentaltech"],
+  "blocks": [
+    {
+      "from": {
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:ionite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ionite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:pladium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:pladium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:lonsdaleite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:lonsdaleite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:aethium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:aethium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:erodium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:erodium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:erodium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:erodium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:erodium#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:erodium#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:ltherite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ltherite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:ltherite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ltherite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:ltherite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:ltherite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "environmentaltech:kyronite#type=bricks"
+      },
+      "overlay": {
+        "state": "environmentaltech:kyronite#type=normal"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}
