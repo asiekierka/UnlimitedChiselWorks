@@ -64,10 +64,10 @@ public final class UCWMagic {
 	}
 
 	public static ResourceLocation getLocation(IBlockState state, ModelResourceLocation location, IModel model) {
-		String domain = location.getResourceDomain();
+		String domain = location.getNamespace();
 
 		if ("forestry".equals(domain)) {
-			String[] name = state.getBlock().getRegistryName().getResourcePath().split("\\.", 2);
+			String[] name = state.getBlock().getRegistryName().getPath().split("\\.", 2);
 			IProperty variantProp = state.getBlock().getBlockState().getProperty("variant");
 			if (variantProp != null) {
 				String variant = variantProp.getName(state.getValue(variantProp));
@@ -76,7 +76,7 @@ public final class UCWMagic {
 				}
 			}
 		} else if ("extratrees".equals(domain)) {
-			String[] name = state.getBlock().getRegistryName().getResourcePath().split("\\.", 2);
+			String[] name = state.getBlock().getRegistryName().getPath().split("\\.", 2);
 			IProperty variantProp = state.getBlock().getBlockState().getProperty("variant");
 			if (variantProp != null) {
 				String variant = variantProp.getName(state.getValue(variantProp));

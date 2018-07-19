@@ -55,8 +55,8 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 		rule = UCWObjectBroker.get().getRule();
 		base = UCWObjectBroker.get().getBase();
 
-		setCreativeTab(base.getBlock().getCreativeTabToDisplayOn());
-		setUnlocalizedName(base.getBlock().getUnlocalizedName());
+		setCreativeTab(base.getBlock().getCreativeTab());
+		setTranslationKey(base.getBlock().getTranslationKey());
 	}
 
 	@Override
@@ -113,8 +113,8 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
-		return rule.throughBlock.getBlockLayer();
+	public BlockRenderLayer getRenderLayer() {
+		return rule.throughBlock.getRenderLayer();
 	}
 
 	@Override

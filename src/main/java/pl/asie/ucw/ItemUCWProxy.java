@@ -55,21 +55,21 @@ public class ItemUCWProxy extends ItemBlock {
 	}
 
 	@Override
-	public String getUnlocalizedName() {
-		return getItemFrom().getUnlocalizedName();
+	public String getTranslationKey() {
+		return getItemFrom().getTranslationKey();
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getTranslationKey(ItemStack stack) {
 		try {
 			ItemStack proxyStack = new ItemStack(base.getBlock().getItemDropped(base, UnlimitedChiselWorks.RAND, 0), 1, base.getBlock().damageDropped(base));
 			if (stack.hasTagCompound()) {
 				proxyStack.setTagCompound(stack.getTagCompound());
 			}
-			return getItemFrom().getUnlocalizedName(proxyStack);
+			return getItemFrom().getTranslationKey(proxyStack);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return getUnlocalizedName();
+			return getTranslationKey();
 		}
 	}
 	@Override
@@ -82,7 +82,7 @@ public class ItemUCWProxy extends ItemBlock {
 			return getItemFrom().getItemStackDisplayName(proxyStack);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return this.getUnlocalizedName(stack);
+			return this.getTranslationKey(stack);
 		}
 	}
 
@@ -106,7 +106,7 @@ public class ItemUCWProxy extends ItemBlock {
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		Item origItem = getItemThrough();
-		if (UnlimitedChiselWorks.useChiselGetSubItemsWorkaround && "chisel".equals(origItem.getRegistryName().getResourceDomain())) {
+		if (UnlimitedChiselWorks.useChiselGetSubItemsWorkaround && "chisel".equals(origItem.getRegistryName().getNamespace())) {
 			for (int i = 0; i < 16; i++) {
 				if (rule.through.get(i) != null) {
 					// FIXME: Dirt#9 doesn't really work well :-(

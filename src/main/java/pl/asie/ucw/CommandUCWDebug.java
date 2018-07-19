@@ -50,7 +50,7 @@ public class CommandUCWDebug extends CommandBase {
 		if (args.length == 1) {
 			Set<String> domains = new HashSet<>();
 			for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
-				domains.add(rule.fromBlock.getRegistryName().getResourceDomain());
+				domains.add(rule.fromBlock.getRegistryName().getNamespace());
 			}
 
 			return getListOfStringsMatchingLastWord(args, domains.toArray(new String[domains.size()]));

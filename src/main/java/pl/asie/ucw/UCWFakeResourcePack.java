@@ -84,7 +84,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 	}
 
 	private String[] getStr(ResourceLocation location) {
-		String path = location.getResourcePath();
+		String path = location.getPath();
 		if (path.contains(".png")) {
 			return null;
 		}

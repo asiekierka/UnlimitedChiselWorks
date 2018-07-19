@@ -127,7 +127,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();
 						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
 							ResourceLocation newLocation = new ResourceLocation("ucw_generated",
-									"blocks/ucw_ucw_" + s2 + "/" + oldLocation.getResourceDomain() + "/" + oldLocation.getResourcePath().substring(7));
+									"blocks/ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + oldLocation.getPath().substring(7));
 
 							textureRemapMap.put(oldLocation.toString(), newLocation.toString());
 							event.getMap().setTextureEntry(new TextureAtlasSprite(newLocation.toString()) {
@@ -182,7 +182,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 
 						IModel target = null;
 
-						if (throughLoc.getResourceDomain().equals("chisel")) {
+						if (throughLoc.getNamespace().equals("chisel")) {
 							// fun!
 							try {
 								if (chiselCache == null) {
