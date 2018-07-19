@@ -1,0 +1,113 @@
+{
+  "modid": ["chisel", "extratrees"],
+  "blocks": [
+    {
+      "from": {
+        "block": "extratrees:planks.0",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "extratrees:planks.1",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "extratrees:planks.2",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "extratrees:planks.fireproof.0",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "extratrees:planks.fireproof.1",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "extratrees:planks.fireproof.2",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

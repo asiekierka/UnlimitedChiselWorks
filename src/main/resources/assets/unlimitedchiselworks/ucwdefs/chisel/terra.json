@@ -1,0 +1,2249 @@
+{
+  "modid": ["chisel", "terra"],
+  "blocks": [
+    {
+      "from": {
+        "state": "terra:white_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:white_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:white_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:black_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:black_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:black_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pink_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pink_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pink_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:olivine_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:olivine_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:olivine_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:continental_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:continental_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:continental_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:purple_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:purple_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:purple_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:iron_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:iron_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:iron_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:orange_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:orange_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:orange_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:danlveyite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:danlveyite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:danlveyite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:magachite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:magachite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:magachite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:meliscite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:meliscite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:meliscite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:thenalite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:thenalite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:thenalite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:solitudite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:solitudite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:solitudite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kamboradoite_block"
+      },
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kamboradoite_block"
+      },
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kamboradoite_block"
+      },
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:basalt_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+
+    {
+      "from": {
+        "state": "terra:basalt_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+
+    {
+      "from": {
+        "state": "terra:basalt_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+
+    {
+      "from": {
+        "state": "terra:basalt_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:basalt_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:basalt_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blackdiorite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:imperialquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pinkquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:redquartzite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:chalk_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:blueschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:greenschist_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gabbro_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:gneiss_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:kimberlite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:limestone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:marble_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:migmatite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:pumice_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:rhyolite_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:soapstone_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:slate_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "terra:scoria_stonebrick"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}

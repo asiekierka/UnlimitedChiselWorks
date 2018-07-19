@@ -59,7 +59,7 @@ import java.nio.file.*;
 import java.util.*;
 
 @Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION,
-        dependencies = "after:forge@[14.23.1.2571,)",
+        dependencies = "after:forge@[14.23.1.2571,);after:undergroundbiomes",
         updateJSON = "http://asie.pl/files/minecraft/update/" + UnlimitedChiselWorks.MODID + ".json")
 public class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
@@ -81,83 +81,128 @@ public class UnlimitedChiselWorks {
     @SidedProxy(clientSide = "pl.asie.ucw.UCWProxyClient", serverSide = "pl.asie.ucw.UCWProxyCommon")
     public static UCWProxyCommon proxy;
 
-    private void proposeRule(Path p) throws IOException {
+    private boolean loadLate;
+    private List<JsonObject> objectsLoadLate = new ArrayList<>();
+
+    private boolean proposeObject(JsonObject json) {
+        boolean result = false;
+        if (json != null) {
+            boolean jsonLoadLate = false;
+            if (json.has("loadLate")) {
+                jsonLoadLate = json.get("loadLate").getAsBoolean();
+            }
+
+            if (jsonLoadLate != loadLate) {
+                if (!loadLate) {
+                    objectsLoadLate.add(json);
+                }
+                return result;
+            }
+
+            if (json.has("modid")) {
+                JsonElement element = json.get("modid");
+                if (element.isJsonArray()) {
+                    JsonArray array = element.getAsJsonArray();
+                    for (int i = 0; i < array.size(); i++) {
+                        if (!Loader.isModLoaded(array.get(i).getAsString())) {
+                            return result;
+                        }
+                    }
+                } else {
+                    if (!Loader.isModLoaded(element.getAsString())) {
+                        return result;
+                    }
+                }
+            }
+
+            if (json.has("blocks")) {
+                for (JsonElement element : json.get("blocks").getAsJsonArray()) {
+                    if (element.isJsonObject()) {
+                        try {
+                            UCWBlockRule rule = new UCWBlockRule(element.getAsJsonObject());
+                            if (rule.isValid()) {
+                                String fbName = rule.fromBlock.getRegistryName().toString();
+                                if (!C_ENABLED.containsKey(fbName)) {
+                                    Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                    C_ENABLED.put(fbName, prop);
+                                }
+
+                                if (C_ENABLED.get(fbName).getBoolean()) {
+                                    if (BLOCK_RULES.contains(rule)) {
+                                        LOGGER.warn("Duplicate rule found! " + rule);
+                                    } else {
+                                        BLOCK_RULES.add(rule);
+                                        result = true;
+                                    }
+                                }
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            if (json.has("groups")) {
+                for (JsonElement element : json.get("groups").getAsJsonArray()) {
+                    if (element.isJsonObject()) {
+                        try {
+                            UCWGroupRule rule = new UCWGroupRule(element.getAsJsonObject());
+                            String fbName = rule.groupName;
+
+                            if (GROUP_RULE_NAMES.contains(fbName)) {
+                                LOGGER.warn("Duplicate group name: " + fbName + "!");
+                            } else {
+                                GROUP_RULE_NAMES.add(fbName);
+                                result = true;
+                            }
+
+                            if (!C_ENABLED_GROUPS.containsKey(fbName)) {
+                                Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                C_ENABLED_GROUPS.put(fbName, prop);
+                            }
+
+                            if (C_ENABLED_GROUPS.get(fbName).getBoolean()) {
+                                GROUP_RULES.add(rule);
+                                result = true;
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private boolean proposeRule(Path p) throws IOException {
         if (Files.isDirectory(p)) {
+            boolean result = false;
+            
             for (Path pp : Files.newDirectoryStream(p)) {
                 try {
-                    proposeRule(pp);
+                    result |= proposeRule(pp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+
+            return result;
         } else {
             BufferedReader reader = Files.newBufferedReader(p, Charsets.UTF_8);
             try {
                 JsonObject json = JsonUtils.fromJson(GSON, reader, JsonObject.class);
-                if (json != null) {
-                    if (json.has("blocks")) {
-                        for (JsonElement element : json.get("blocks").getAsJsonArray()) {
-                            if (element.isJsonObject()) {
-                                try {
-                                    UCWBlockRule rule = new UCWBlockRule(element.getAsJsonObject());
-                                    if (rule.isValid()) {
-                                        String fbName = rule.fromBlock.getRegistryName().toString();
-                                        if (!C_ENABLED.containsKey(fbName)) {
-                                            Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
-                                            C_ENABLED.put(fbName, prop);
-                                        }
-
-                                        if (C_ENABLED.get(fbName).getBoolean()) {
-                                            if (BLOCK_RULES.contains(rule)) {
-                                                LOGGER.warn("Duplicate rule found! " + rule);
-                                            } else {
-                                                BLOCK_RULES.add(rule);
-                                            }
-                                        }
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    }
-
-                    if (json.has("groups")) {
-                        for (JsonElement element : json.get("groups").getAsJsonArray()) {
-                            if (element.isJsonObject()) {
-                                try {
-                                    UCWGroupRule rule = new UCWGroupRule(element.getAsJsonObject());
-                                    String fbName = rule.groupName;
-
-                                    if (GROUP_RULE_NAMES.contains(fbName)) {
-                                        LOGGER.warn("Duplicate group name: " + fbName + "!");
-                                    } else {
-                                        GROUP_RULE_NAMES.add(fbName);
-                                    }
-
-                                    if (!C_ENABLED_GROUPS.containsKey(fbName)) {
-                                        Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
-                                        C_ENABLED_GROUPS.put(fbName, prop);
-                                    }
-
-                                    if (C_ENABLED_GROUPS.get(fbName).getBoolean()) {
-                                        GROUP_RULES.add(rule);
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    }
-                }
+                return proposeObject(json);
             } catch (Exception e) {
                 UnlimitedChiselWorks.LOGGER.error("Error parsing " + p.toString(), e);
+                return false;
             }
         }
     }
 
-    private void findRules() {
-        BLOCK_RULES.clear();
+    private boolean findRules() {
+        boolean result = false;
 
         proxy.progressPush("UCW: scanning rules", Loader.instance().getActiveModList().size() + 1);
 
@@ -165,7 +210,7 @@ public class UnlimitedChiselWorks {
         File dir = new File(configDir, "ucwdefs");
         if (dir.exists() && dir.isDirectory()) {
             try {
-                proposeRule(dir.toPath());
+                result |= proposeRule(dir.toPath());
             } catch (NoSuchFileException e) {
                 // no problem with this one
             } catch (IOException e) {
@@ -182,11 +227,11 @@ public class UnlimitedChiselWorks {
                     if (file.isDirectory()) {
                         File f = new File(file, "assets/" + container.getModId() + "/ucwdefs");
                         if (f.exists() && f.isDirectory()) {
-                            proposeRule(f.toPath());
+                            result |= proposeRule(f.toPath());
                         }
                     } else {
                         FileSystem fs = FileSystems.newFileSystem(file.toPath(), null);
-                        proposeRule(fs.getPath("assets/" + container.getModId() + "/ucwdefs"));
+                        result |= proposeRule(fs.getPath("assets/" + container.getModId() + "/ucwdefs"));
                     }
                 }
             } catch (NoSuchFileException e) {
@@ -197,8 +242,12 @@ public class UnlimitedChiselWorks {
         }
 
         proxy.progressPop();
-        LOGGER.info("Found " + BLOCK_RULES.size() + " block rules.");
-        LOGGER.info("Found " + GROUP_RULES.size() + " group rules.");
+        if (result) {
+            LOGGER.info("So far, UCW found " + BLOCK_RULES.size() + " block rules.");
+            LOGGER.info("So far, UCW found " + GROUP_RULES.size() + " group rules.");
+        }
+
+        return result;
     }
 
     @EventHandler
@@ -230,6 +279,10 @@ public class UnlimitedChiselWorks {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void registerBlocks(RegistryEvent.Register<Block> event) {
+        loadLate = false;
+        objectsLoadLate.clear();
+        BLOCK_RULES.clear();
+
         findRules();
 
         if (CONFIG.hasChanged()) {
@@ -238,6 +291,26 @@ public class UnlimitedChiselWorks {
 
         for (UCWBlockRule rule : BLOCK_RULES) {
             rule.registerBlocks(event.getRegistry());
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void registerBlocksLate(RegistryEvent.Register<Block> event) {
+        loadLate = true;
+
+        boolean result = false;
+        for (JsonObject o : objectsLoadLate) {
+            result |= proposeObject(o);
+        }
+
+        if (result) {
+            for (UCWBlockRule rule : BLOCK_RULES) {
+                rule.registerBlocks(event.getRegistry());
+            }
+        }
+
+        if (CONFIG.hasChanged()) {
+            CONFIG.save();
         }
     }
 

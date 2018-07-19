@@ -1,0 +1,42 @@
+{
+  "modid": ["chisel", "naturalpledge"],
+  "blocks": [
+    {
+      "from": {
+        "block": "botanicaladdons:iris_planks",
+        "iterate": [
+          "color"
+        ]
+      },
+      "has_color": true,
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "botanicaladdons:iris_dirt",
+        "iterate": [
+          "color"
+        ]
+      },
+      "has_color": true,
+      "through": {
+        "block": "chisel:dirt",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:dirt#snowy=false,variant=dirt"
+      }
+    }
+  ]
+}

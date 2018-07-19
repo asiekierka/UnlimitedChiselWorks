@@ -1,0 +1,468 @@
+{
+  "modid": ["chisel", "botania"],
+  "blocks": [
+    {
+      "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingrock#variant=brick"
+      },
+      "overlay": {
+        "state": "botania:livingrock#variant=default"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:livingwood#variant=planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:dreamwood#variant=planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypedark#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypedark#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypemana#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypemana#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeblaze#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeblaze#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypelavender#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypelavender#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypered#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypered#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeelf#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypeelf#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypesunny#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": "botania:quartztypesunny#variant=normal"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:quartz1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:quartz_block#variant=default"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestoneb#variant=forest",
+          "botania:biomestoneb#variant=plains",
+          "botania:biomestoneb#variant=mountain",
+          "botania:biomestoneb#variant=fungal",
+          "botania:biomestoneb#variant=swamp",
+          "botania:biomestoneb#variant=desert",
+          "botania:biomestoneb#variant=taiga",
+          "botania:biomestoneb#variant=mesa"
+        ]
+      },
+      "overlay": {
+        "state": [
+          "botania:biomestonea#variant=forest",
+          "botania:biomestonea#variant=plains",
+          "botania:biomestonea#variant=mountain",
+          "botania:biomestonea#variant=fungal",
+          "botania:biomestonea#variant=swamp",
+          "botania:biomestonea#variant=desert",
+          "botania:biomestonea#variant=taiga",
+          "botania:biomestonea#variant=mesa"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestoneb#variant=forest",
+          "botania:biomestoneb#variant=plains",
+          "botania:biomestoneb#variant=mountain",
+          "botania:biomestoneb#variant=fungal",
+          "botania:biomestoneb#variant=swamp",
+          "botania:biomestoneb#variant=desert",
+          "botania:biomestoneb#variant=taiga",
+          "botania:biomestoneb#variant=mesa"
+        ]
+      },
+      "overlay": {
+        "state": [
+          "botania:biomestonea#variant=forest",
+          "botania:biomestonea#variant=plains",
+          "botania:biomestonea#variant=mountain",
+          "botania:biomestonea#variant=fungal",
+          "botania:biomestonea#variant=swamp",
+          "botania:biomestonea#variant=desert",
+          "botania:biomestonea#variant=taiga",
+          "botania:biomestonea#variant=mesa"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestoneb#variant=forest",
+          "botania:biomestoneb#variant=plains",
+          "botania:biomestoneb#variant=mountain",
+          "botania:biomestoneb#variant=fungal",
+          "botania:biomestoneb#variant=swamp",
+          "botania:biomestoneb#variant=desert",
+          "botania:biomestoneb#variant=taiga",
+          "botania:biomestoneb#variant=mesa"
+        ]
+      },
+      "overlay": {
+        "state": [
+          "botania:biomestonea#variant=forest",
+          "botania:biomestonea#variant=plains",
+          "botania:biomestonea#variant=mountain",
+          "botania:biomestonea#variant=fungal",
+          "botania:biomestonea#variant=swamp",
+          "botania:biomestonea#variant=desert",
+          "botania:biomestonea#variant=taiga",
+          "botania:biomestonea#variant=mesa"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestonea#variant=forest_cobble",
+          "botania:biomestonea#variant=plains_cobble",
+          "botania:biomestonea#variant=mountain_cobble",
+          "botania:biomestonea#variant=fungal_cobble",
+          "botania:biomestonea#variant=swamp_cobble",
+          "botania:biomestonea#variant=desert_cobble",
+          "botania:biomestonea#variant=taiga_cobble",
+          "botania:biomestonea#variant=mesa_cobble"
+        ]
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestonea#variant=forest_cobble",
+          "botania:biomestonea#variant=plains_cobble",
+          "botania:biomestonea#variant=mountain_cobble",
+          "botania:biomestonea#variant=fungal_cobble",
+          "botania:biomestonea#variant=swamp_cobble",
+          "botania:biomestonea#variant=desert_cobble",
+          "botania:biomestonea#variant=taiga_cobble",
+          "botania:biomestonea#variant=mesa_cobble"
+        ]
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": [
+          "botania:biomestonea#variant=forest_cobble",
+          "botania:biomestonea#variant=plains_cobble",
+          "botania:biomestonea#variant=mountain_cobble",
+          "botania:biomestonea#variant=fungal_cobble",
+          "botania:biomestonea#variant=swamp_cobble",
+          "botania:biomestonea#variant=desert_cobble",
+          "botania:biomestonea#variant=taiga_cobble",
+          "botania:biomestonea#variant=mesa_cobble"
+        ]
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    }
+  ]
+}
