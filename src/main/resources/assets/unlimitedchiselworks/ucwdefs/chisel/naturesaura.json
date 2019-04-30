@@ -1,0 +1,74 @@
+{
+  "modid": ["chisel", "naturesaura"],
+  "blocks": [
+    {
+      "from": {
+        "block": "naturesaura:ancient_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+	{
+      "from": {
+        "block": "naturesaura:infused_brick"
+      },
+      "overlay": {
+        "block": "naturesaura:infused_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+	{
+      "from": {
+        "block": "naturesaura:infused_brick"
+      },
+      "overlay": {
+        "block": "naturesaura:infused_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+	{
+      "from": {
+        "block": "naturesaura:infused_brick"
+      },
+      "overlay": {
+        "block": "naturesaura:infused_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}

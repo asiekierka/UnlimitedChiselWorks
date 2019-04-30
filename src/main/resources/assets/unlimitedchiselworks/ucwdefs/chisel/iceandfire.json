@@ -1,0 +1,95 @@
+{
+  "modid": ["chisel", "iceandfire"],
+  "blocks": [
+	{
+      "from": {
+        "block": "iceandfire:chared_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+	{
+      "from": {
+        "block": "iceandfire:chared_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+	{
+      "from": {
+        "block": "iceandfire:chared_cobblestone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+	{
+      "from": {
+        "block": "iceandfire:chared_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+	{
+      "from": {
+        "block": "iceandfire:chared_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+	{
+      "from": {
+        "block": "iceandfire:chared_stone"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}
