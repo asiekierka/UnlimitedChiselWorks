@@ -1,0 +1,107 @@
+{
+  "modid": ["chisel", "astralsorcery"],
+  "blocks": [
+    {
+      "from": {
+        "state": "astralsorcery:blockblackmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockblackmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "astralsorcery:blockblackmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockblackmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "astralsorcery:blockblackmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockblackmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "astralsorcery:blockmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "astralsorcery:blockmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "astralsorcery:blockmarble#marbletype=bricks"
+      },
+      "overlay": {
+        "state": "astralsorcery:blockmarble#marbletype=raw"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}
