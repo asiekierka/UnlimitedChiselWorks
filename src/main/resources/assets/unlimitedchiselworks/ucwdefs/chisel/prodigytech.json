@@ -1,0 +1,140 @@
+{
+  "modid": ["chisel", "prodigytech"],
+  "blocks": [
+    {
+      "from": {
+        "state": "prodigytech:particle_board_planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:zorra_planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:particle_board_planks"
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_cobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_cobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_cobblestone"
+      },
+      "through": {
+        "block": "chisel:cobblestone2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:cobblestone"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_stonebricks"
+      },
+      "overlay": {
+        "state": "prodigytech:charred_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_stonebricks"
+      },
+      "overlay": {
+        "state": "prodigytech:charred_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "prodigytech:charred_stonebricks"
+      },
+      "overlay": {
+        "state": "prodigytech:charred_stone"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}

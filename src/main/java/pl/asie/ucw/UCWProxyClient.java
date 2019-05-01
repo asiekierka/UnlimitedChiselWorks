@@ -32,6 +32,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
@@ -48,6 +49,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -55,17 +58,47 @@ import java.util.*;
 import java.util.function.Function;
 
 public class UCWProxyClient extends UCWProxyCommon {
-	private JsonObject chiselCache;
+	private Map<String, JsonObject> chiselCache = new HashMap<>();
+
+	private JsonObject getChiselCache(ResourceLocation throughLoc) throws IOException {
+		JsonObject obj = chiselCache.get("default");
+		if (obj != null) return obj;
+
+		obj = chiselCache.get(throughLoc.getPath());
+		if (obj != null) return obj;
+
+		IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
+
+		String resourceKey;
+		IResource resource;
+		try {
+			resourceKey = "default";
+			resource = manager.getResource(
+					new ResourceLocation("chisel", "blockstates/default.json")
+			);
+		} catch (FileNotFoundException e) {
+			resourceKey = throughLoc.getPath();
+			resource = manager.getResource(
+					new ResourceLocation("chisel", "blockstates/" + throughLoc.getPath() + ".json")
+			);
+		}
+
+		try (InputStream stream = resource.getInputStream(); InputStreamReader reader = new InputStreamReader(stream)) {
+			obj = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonObject.class);
+			chiselCache.put(resourceKey, obj);
+			return obj;
+		}
+	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void asLateAsPossible(ModelBakeEvent event) {
-		chiselCache = null;
+		chiselCache.clear();
 		UCWFakeResourcePack.INSTANCE.invalidate();
 	}
 
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
-		chiselCache = null;
+		chiselCache.clear();
 	}
 
 	@SubscribeEvent
@@ -185,19 +218,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 						if (throughLoc.getNamespace().equals("chisel")) {
 							// fun!
 							try {
-								if (chiselCache == null) {
-									InputStream stream = Minecraft.getMinecraft().getResourceManager().getResource(
-											new ResourceLocation("chisel", "blockstates/default.json")
-									).getInputStream();
-									InputStreamReader reader = new InputStreamReader(stream);
-
-									chiselCache = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonObject.class);
-
-									reader.close();
-									stream.close();
-								}
-
-								JsonObject variants = chiselCache.get("variants").getAsJsonObject();
+								JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
 								if (variants.has(throughLoc.getVariant())) {
 									String modelPath = variants
 											.get(throughLoc.getVariant()).getAsJsonObject().get("model").getAsString();
