@@ -26,6 +26,7 @@ import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -86,8 +87,15 @@ public final class UCWMagic {
 			}
 		}
 
+		if (model == null) {
+			UnlimitedChiselWorks.LOGGER.error("Could not find model for " + location + " (" + state.getBlock() + ")");
+			return TextureMap.LOCATION_MISSING_TEXTURE;
+		}
 
-		if (model.getTextures().size() == 1) {
+		//noinspection ConstantConditions
+		boolean hasTextureList = model.getTextures() != null;
+
+		if (hasTextureList && model.getTextures().size() == 1) {
 			return model.getTextures().iterator().next();
 		} else {
 			try {
@@ -98,11 +106,16 @@ public final class UCWMagic {
 					return new ResourceLocation(quadList.iterator().next().getSprite().getIconName());
 				}
 			} catch (Exception e) {
-
+				// pass
 			}
 
 			// fallback
-			return model.getTextures().iterator().next();
+			if (hasTextureList) {
+				return model.getTextures().iterator().next();
+			} else {
+				UnlimitedChiselWorks.LOGGER.error("Bug? Model for " + location + " (" + state.getBlock() + ") provides null texture list!");
+				return TextureMap.LOCATION_MISSING_TEXTURE;
+			}
 		}
 	}
 

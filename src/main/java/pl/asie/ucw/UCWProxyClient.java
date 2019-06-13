@@ -104,6 +104,11 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SubscribeEvent
 	@SuppressWarnings("unchecked")
 	public void onTextureStitchPre(TextureStitchEvent.Pre event) {
+		if (event.getMap() != Minecraft.getMinecraft().getTextureMapBlocks()) {
+			UnlimitedChiselWorks.LOGGER.warn("Mod called TextureStitchEvent.Pre for non-default texture atlas - this is not handled well by 1.12 mods; please hold off to 1.14+...");
+			return;
+		}
+
 		// don't tell lex
 		ModelLoader loader;
 		Map<ModelResourceLocation, IModel> secretSauce = null;
