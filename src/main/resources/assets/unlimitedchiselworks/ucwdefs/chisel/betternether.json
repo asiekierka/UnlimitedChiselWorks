@@ -1,0 +1,20 @@
+{
+  "modid": ["chisel", "betternether"],
+  "blocks": [
+    {
+      "from": {
+        "block": "betternether:stalagnate_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

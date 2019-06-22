@@ -1,0 +1,36 @@
+{
+  "_comment": "Zoesteria",
+  "modid": ["chisel", "valoegheses_be"],
+  "blocks": [
+    {
+      "from": {
+        "block": "valoegheses_be:planks_zoesteria_pine"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "valoegheses_be:planks_zoesteria_palm"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

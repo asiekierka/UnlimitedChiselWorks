@@ -5,6 +5,7 @@
       "from": {
         "block": "pvj:planks_willow"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -19,6 +20,7 @@
       "from": {
         "block": "pvj:planks_mangrove"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -33,6 +35,7 @@
       "from": {
         "block": "pvj:planks_palm"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -47,6 +50,7 @@
       "from": {
         "block": "pvj:planks_redwood"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -61,6 +65,7 @@
       "from": {
         "block": "pvj:planks_fir"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -75,6 +80,7 @@
       "from": {
         "block": "pvj:planks_pine"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -89,6 +95,7 @@
       "from": {
         "block": "pvj:planks_aspen"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -103,6 +110,7 @@
       "from": {
         "block": "pvj:planks_maple"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -117,6 +125,7 @@
       "from": {
         "block": "pvj:planks_baobab"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -131,6 +140,7 @@
       "from": {
         "block": "pvj:planks_cottonwood"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -145,6 +155,7 @@
       "from": {
         "block": "pvj:planks_juniper"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -159,6 +170,7 @@
       "from": {
         "block": "pvj:planks_cherry_blossom"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -173,6 +185,7 @@
       "from": {
         "block": "pvj:planks_jacaranda"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
