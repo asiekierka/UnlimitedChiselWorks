@@ -3,7 +3,7 @@
   "blocks": [
     {
       "from": {
-        "block": "redwoods;redwood_planks"
+        "block": "redwoods:redwood_planks"
       },
       "mode": "plank",
       "through": {
@@ -18,7 +18,7 @@
     },
     {
       "from": {
-        "block": "redwoods;fir_planks"
+        "block": "redwoods:fir_planks"
       },
       "mode": "plank",
       "through": {

@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.2.2"
+version = "0.2.3"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 
@@ -34,10 +34,10 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2836"
+    version = "1.12.2-14.23.5.2838"
     runDir = "run"
     
-    mappings = "snapshot_20180718"
+    mappings = "stable_39"
 
     replace "\${version}", project.version
     replace "\${mcversion}", version

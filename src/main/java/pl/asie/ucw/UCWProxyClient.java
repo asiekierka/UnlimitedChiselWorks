@@ -44,10 +44,11 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -127,7 +128,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 			f = ModelLoader.class.getDeclaredField("stateModels");
 			f.setAccessible(true);
 			secretSauce = (Map<ModelResourceLocation, IModel>) f.get(loader);
-			f = ReflectionHelper.findField(ModelBakery.class, "blockModelShapes", "field_177610_k");
+			f = ObfuscationReflectionHelper.findField(ModelBakery.class, "field_177610_k");
 			f.setAccessible(true);
 			blockModelShapes = (BlockModelShapes) f.get(loader);
 		} catch (Exception e) {
@@ -254,7 +255,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@Override
 	public void preInit() {
 		try {
-			Field field = ReflectionHelper.findField(Minecraft.class, "defaultResourcePacks", "field_110449_ao");
+			Field field = ObfuscationReflectionHelper.findField(Minecraft.class, "field_110449_ao");
 			((List) field.get(Minecraft.getMinecraft())).add(UCWFakeResourcePack.INSTANCE);
 
 			((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(UCWFakeResourcePack.INSTANCE);
@@ -262,7 +263,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 			// TODO: Can we get rid of this to save a bit of loading time?
 			// (We can, but it involves loading Minecraft.<init> a bit early.
 			// Hmm.)
-			Minecraft.getMinecraft().refreshResources();
+			FMLClientHandler.instance().refreshResources(a -> false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

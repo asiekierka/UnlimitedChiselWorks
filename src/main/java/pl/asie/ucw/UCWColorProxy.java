@@ -27,6 +27,8 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 
 import javax.annotation.Nullable;
@@ -34,16 +36,19 @@ import javax.annotation.Nullable;
 public class UCWColorProxy implements IBlockColor, IItemColor {
 	protected static final UCWColorProxy INSTANCE = new UCWColorProxy();
 
+	private final RayTraceResult dummyResult = new RayTraceResult(RayTraceResult.Type.MISS, Vec3d.ZERO, null, BlockPos.ORIGIN);
+	private final Minecraft mc = Minecraft.getMinecraft();
+
 	@Override
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
 		if (state.getBlock() instanceof IUCWBlock) {
 			IBlockState state1 = ((IUCWBlock) state.getBlock()).getBaseState();
-			return Minecraft.getMinecraft().getBlockColors().colorMultiplier(state1, worldIn, pos, tintIndex);
+			return mc.getBlockColors().colorMultiplier(state1, worldIn, pos, tintIndex);
 		} else {
 			return -1;
 		}
 	}
-
+	
 	@Override
 	public int colorMultiplier(ItemStack stack, int tintIndex) {
 		Item item = stack.getItem();
@@ -51,11 +56,17 @@ public class UCWColorProxy implements IBlockColor, IItemColor {
 		if (block instanceof IUCWBlock) {
 			IBlockState state1 = ((IUCWBlock) block).getBaseState();
 			try {
-				ItemStack stack1 = state1.getBlock().getItem(Minecraft.getMinecraft().player.getEntityWorld(), Minecraft.getMinecraft().player.getPosition(), state1);
-				return Minecraft.getMinecraft().getItemColors().colorMultiplier(stack1, tintIndex);
+				ItemStack stack1 = state1.getBlock().getPickBlock(state1, dummyResult, mc.player.getEntityWorld(), mc.player.getPosition(), mc.player);
+				return mc.getItemColors().colorMultiplier(stack1, tintIndex);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return -1;
+				try {
+					ItemStack stack1 = state1.getBlock().getItem(mc.player.getEntityWorld(), mc.player.getPosition(), state1);
+					return mc.getItemColors().colorMultiplier(stack1, tintIndex);
+				} catch (Exception ee) {
+					ee.printStackTrace();
+					return -1;
+				}
 			}
 		} else {
 			return -1;

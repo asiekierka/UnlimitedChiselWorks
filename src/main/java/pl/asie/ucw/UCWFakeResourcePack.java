@@ -117,7 +117,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 				element = jsonCache.get(nonProxiedLoc);
 			} else {
 				try (
-					IResource nonProxiedResource = Minecraft.getMinecraft().getResourceManager().getResource(nonProxiedLoc);
+					IResource nonProxiedResource = mc.getResourceManager().getResource(nonProxiedLoc);
 					InputStream nonProxied = nonProxiedResource.getInputStream();
 					Reader reader = new InputStreamReader(nonProxied)
 				) {
@@ -137,7 +137,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 					out = data.get(nonProxiedLoc);
 				} else {
 					try (
-							IResource nonProxiedResource = Minecraft.getMinecraft().getResourceManager().getResource(nonProxiedLoc);
+							IResource nonProxiedResource = mc.getResourceManager().getResource(nonProxiedLoc);
 							InputStream nonProxied = nonProxiedResource.getInputStream()
 					) {
 						out = ByteStreams.toByteArray(nonProxied);

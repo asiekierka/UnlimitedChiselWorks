@@ -59,9 +59,9 @@ import java.nio.file.*;
 import java.util.*;
 
 @Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION,
-        dependencies = "after:forge@[14.23.1.2571,);after:undergroundbiomes",
+        dependencies = "after:forge@[14.23.5.2838,);after:undergroundbiomes",
         updateJSON = "http://asie.pl/files/minecraft/update/" + UnlimitedChiselWorks.MODID + ".json")
-public class UnlimitedChiselWorks {
+public final class UnlimitedChiselWorks {
     public static final String MODID = "unlimitedchiselworks";
     public static final String VERSION = "${version}";
     public static final Set<UCWBlockRule> BLOCK_RULES = new LinkedHashSet<>();
@@ -70,7 +70,7 @@ public class UnlimitedChiselWorks {
     public static boolean useChiselGetSubItemsWorkaround = false;
     public static Logger LOGGER;
     public static Random RAND = new Random();
-    protected static final Gson GSON = new Gson();
+    static final Gson GSON = new Gson();
     private static Configuration CONFIG;
     private static ConfigCategory C_ENABLED;
     private static ConfigCategory C_ENABLED_GROUPS;
