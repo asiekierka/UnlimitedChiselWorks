@@ -49,6 +49,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 	private final Map<ResourceLocation, byte[]> data = new HashMap<>();
 	private final Map<ResourceLocation, JsonElement> jsonCache = new HashMap<>();
 	private final Set<String> domains = ImmutableSet.of("ucw_generated");
+	private final Minecraft mc = Minecraft.getMinecraft();
 
 	private UCWFakeResourcePack() {
 
@@ -115,17 +116,14 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 			if (jsonCache.containsKey(nonProxiedLoc)) {
 				element = jsonCache.get(nonProxiedLoc);
 			} else {
-				InputStream nonProxied = Minecraft.getMinecraft().getResourceManager().getResource(
-						nonProxiedLoc
-				).getInputStream();
-				Reader reader = new InputStreamReader(nonProxied);
-
-				try {
+				try (
+					IResource nonProxiedResource = Minecraft.getMinecraft().getResourceManager().getResource(nonProxiedLoc);
+					InputStream nonProxied = nonProxiedResource.getInputStream();
+					Reader reader = new InputStreamReader(nonProxied)
+				) {
 					element = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonElement.class);
 				} catch (Exception e) {
 					element = null;
-					reader.close();
-					nonProxied.close();
 				}
 			}
 
@@ -138,13 +136,15 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 				if (data.containsKey(nonProxiedLoc)) {
 					out = data.get(nonProxiedLoc);
 				} else {
-					InputStream nonProxied = Minecraft.getMinecraft().getResourceManager().getResource(
-							nonProxiedLoc
-					).getInputStream();
-
-					out = ByteStreams.toByteArray(nonProxied);
-					nonProxied.close();
-					data.put(nonProxiedLoc, out);
+					try (
+							IResource nonProxiedResource = Minecraft.getMinecraft().getResourceManager().getResource(nonProxiedLoc);
+							InputStream nonProxied = nonProxiedResource.getInputStream()
+					) {
+						out = ByteStreams.toByteArray(nonProxied);
+						data.put(nonProxiedLoc, out);
+					} catch (Exception e) {
+						out = null;
+					}
 				}
 			}
 
@@ -160,10 +160,9 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 		String[] str = getStr(location);
 		if (str == null || str[1].isEmpty()) return false;
 
-		try {
-			IResource resource = Minecraft.getMinecraft().getResourceManager().getResource(
-					new ResourceLocation(str[1], str[2])
-			);
+		try (IResource resource = mc.getResourceManager().getResource(
+				new ResourceLocation(str[1], str[2])
+		)) {
 			return true;
 		} catch (Exception e) {
 			return false;

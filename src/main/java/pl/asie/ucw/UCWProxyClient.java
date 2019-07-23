@@ -86,7 +86,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 		try (InputStream stream = resource.getInputStream(); InputStreamReader reader = new InputStreamReader(stream)) {
 			obj = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonObject.class);
 			chiselCache.put(resourceKey, obj);
+			resource.close();
 			return obj;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
