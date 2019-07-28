@@ -3,7 +3,7 @@
   "blocks": [
     {
       "from": {
-        "state": "bewitchment:planks_yew"
+        "state": "bewitchment:yew_planks"
       },
       "mode": "plank",
       "through": {
@@ -18,7 +18,7 @@
     },
     {
       "from": {
-        "state": "bewitchment:planks_juniper"
+        "state": "bewitchment:juniper_planks"
       },
       "mode": "plank",
       "through": {
@@ -33,7 +33,7 @@
     },
     {
       "from": {
-        "state": "bewitchment:planks_elder"
+        "state": "bewitchment:elder_planks"
       },
       "mode": "plank",
       "through": {
@@ -48,7 +48,7 @@
     },
     {
       "from": {
-        "state": "bewitchment:planks_cypress"
+        "state": "bewitchment:cypress_planks"
       },
       "mode": "plank",
       "through": {
@@ -59,6 +59,60 @@
       },
       "based_upon": {
         "state": "minecraft:planks#variant=oak"
+      }
+    },
+	{
+      "from": {
+        "state": "bewitchment:coquina_bricks"
+      },
+      "mode": "blend",
+      "overlay": {
+        "state": "bewitchment:coquina"
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "bewitchment:coquina_bricks"
+      },
+      "mode": "blend",
+      "overlay": {
+        "state": "bewitchment:coquina"
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "bewitchment:coquina_bricks"
+      },
+      "mode": "blend",
+      "overlay": {
+        "state": "bewitchment:coquina"
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
       }
     }
   ]
