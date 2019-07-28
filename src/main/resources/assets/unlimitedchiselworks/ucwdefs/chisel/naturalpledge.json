@@ -3,12 +3,11 @@
   "blocks": [
     {
       "from": {
-        "block": "botanicaladdons:iris_planks",
+        "block": "naturalpledge:iris_planks",
         "iterate": [
           "color"
         ]
       },
-      "has_color": true,
       "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
@@ -20,22 +19,22 @@
         "state": "minecraft:planks#variant=oak"
       }
     },
-    {
+	{
       "from": {
-        "block": "botanicaladdons:iris_dirt",
+        "block": "naturalpledge:alt_planks",
         "iterate": [
-          "color"
+          "type"
         ]
       },
-      "has_color": true,
+      "mode": "plank",
       "through": {
-        "block": "chisel:dirt",
+        "block": "chisel:planks-oak",
         "iterate": [
           "variation"
         ]
       },
       "based_upon": {
-        "state": "minecraft:dirt#snowy=false,variant=dirt"
+        "state": "minecraft:planks#variant=oak"
       }
     }
   ]

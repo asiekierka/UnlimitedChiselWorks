@@ -192,6 +192,726 @@
       "based_upon": {
         "state": "minecraft:stonebrick#variant=stonebrick"
       }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_white"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_white"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_white"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_orange"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_orange"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_orange"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_magenta"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_magenta"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_magenta"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_light_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_light_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_light_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_yellow"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_yellow"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_yellow"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_lime"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_lime"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_lime"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_pink"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_pink"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_pink"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_gray"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_gray"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_gray"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_silver"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_silver"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_silver"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_cyan"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_cyan"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_cyan"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_purple"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_purple"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_purple"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_blue"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_brown"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_brown"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_brown"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_green"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_green"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_green"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_red"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_red"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_red"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+   {
+      "from": {
+        "block": "atum:ceramic_black"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_black"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
+    },
+    {
+      "from": {
+        "block": "atum:ceramic_black"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:purpur2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:purpur_block"
+      }
     }
   ]
 }

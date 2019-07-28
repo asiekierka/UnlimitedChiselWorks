@@ -1,0 +1,166 @@
+{
+  "modid": ["chisel", "earthworks"],
+  "blocks": [
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate"
+	  },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate"
+	  },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate"
+	  },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },	
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab_green"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_green"
+	  },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab_green"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_green"
+	  },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab_green"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_green"
+	  },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },	{
+      "from": {
+        "block": "earthworks:block_slate_slab_purple"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_purple"
+	  },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab_purple"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_purple"
+	  },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    },
+	{
+      "from": {
+        "block": "earthworks:block_slate_slab_purple"
+      },
+      "mode": "blend",
+	  "overlay": {
+		"block": "earthworks:block_slate_purple"
+	  },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stone#variant=smooth_granite"
+      }
+    }
+  ]
+}
