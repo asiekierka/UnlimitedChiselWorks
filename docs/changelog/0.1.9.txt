@@ -1,0 +1,4 @@
+Added support for:
+ * Botania Smokey Quartz
+ * Defiled Lands' Tenebra Planks
+ * Minestrappolation and PrimalCore stones

@@ -1,0 +1,8 @@
+Add support for:
+ * BetterNether
+ * ChinjufuMod
+ * KemonoCraft
+ * Oh, The Biomes You'll Go!
+ * Project: Vibrant Journeys (IronPiston)
+ * Redwoods
+ * Zoesteria

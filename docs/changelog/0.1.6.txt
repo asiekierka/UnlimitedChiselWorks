@@ -1,0 +1,2 @@
+Fix mod not working correctly with Chisel versions <= 0.0.14.18 on dedicated servers.
+Add support for Quark's Duskbound and Midori blocks.

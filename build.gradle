@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.2.3"
+version = "0.2.4"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 

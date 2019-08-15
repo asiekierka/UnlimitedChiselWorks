@@ -1,0 +1,3 @@
+Add support for Silent's Gems (warning: 336 block IDs)
+Add support for Betweenlands Mud Bricks
+Fix support for Chisel 0.1.x

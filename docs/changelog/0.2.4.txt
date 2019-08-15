@@ -1,0 +1,13 @@
+Mod support changes:
+
+ * Bewitchment: support new versions, add coquina (Azmalent)
+ * Earthworks: new mod! add slate (Azmalent)
+ * Natural Pledge: new mod! add certain planks (Azmalent)
+ * Railcraft: new mod! add decorative blocks (Azmalent)
+ * Roots: add wildwood (Azmalent)
+
+Other changes:
+
+ * Made JSON loading parallel to speed up game loading
+ * Minor texture processing optimizations
+ * Fixed file I/O leaks

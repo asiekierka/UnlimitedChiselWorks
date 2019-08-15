@@ -1,0 +1,4 @@
+Fix leaky resource loading
+Minor code cleanup; now requires Forge 2838
+Add support for Quark's new blocks (Elder Prismarine, Jasper, Slate)
+Fix Redwoods support

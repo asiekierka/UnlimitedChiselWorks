@@ -16,7 +16,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -34,7 +34,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -52,7 +52,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },	
 	{
@@ -70,7 +70,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -88,7 +88,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -106,7 +106,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },	{
       "from": {
@@ -123,7 +123,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -141,7 +141,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     },
 	{
@@ -159,7 +159,7 @@
         ]
       },
       "based_upon": {
-        "state": "minecraft:stone#variant=smooth_granite"
+        "state": "minecraft:stonebrick"
       }
     }
   ]

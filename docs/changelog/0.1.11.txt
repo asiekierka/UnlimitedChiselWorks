@@ -1,0 +1,2 @@
+Add support for Aether Legacy, Bewitchment, Bamboozled, Terra
+Fix minor omission in The Betweenlands' support

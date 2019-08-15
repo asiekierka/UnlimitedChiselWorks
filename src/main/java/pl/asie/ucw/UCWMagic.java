@@ -119,6 +119,10 @@ public final class UCWMagic {
 		}
 	}
 
+	private static float toLuma(int rgb) {
+		return UCWColorspaceUtils.sRGBtoLuma(UCWColorspaceUtils.fromInt(rgb));
+	}
+
 	private static float[] toLAB(int rgb) {
 		return UCWColorspaceUtils.XYZtoLAB(UCWColorspaceUtils.sRGBtoXYZ(UCWColorspaceUtils.fromInt(rgb)));
 	}
@@ -131,9 +135,9 @@ public final class UCWMagic {
 		float[] contrast = new float[] { Float.MAX_VALUE, Float.MIN_VALUE };
 
 		for (int i : data) {
-			float[] d = toLAB(i);
-			if (contrast[0] > d[0]) contrast[0] = d[0];
-			if (contrast[1] < d[0]) contrast[1] = d[0];
+			float d = toLuma(i);
+			if (contrast[0] > d) contrast[0] = d;
+			if (contrast[1] < d) contrast[1] = d;
 		}
 
 		contrast[1] -= contrast[0];
@@ -148,8 +152,7 @@ public final class UCWMagic {
 
 		for (int i = 0; i < texture.getFrameCount(); i++) {
 			for (int v : texture.getFrameTextureData(i)[0]) {
-				float[] hd = toLAB(v);
-				avgLuma += hd[0];
+				avgLuma += toLuma(v);
 			}
 		}
 		avgLuma /= divider;

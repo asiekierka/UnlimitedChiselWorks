@@ -1,0 +1,2 @@
+Fix Botany addon Pigmented Glass textures not generating correctly
+Fix item stack name proxying regression

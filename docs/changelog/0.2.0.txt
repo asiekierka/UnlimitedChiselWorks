@@ -1,0 +1,2 @@
+Add support for GregTech Community Edition
+Update mappings and things, seems to fix bugs for people?

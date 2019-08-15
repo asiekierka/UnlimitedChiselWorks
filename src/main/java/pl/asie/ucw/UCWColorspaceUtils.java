@@ -34,6 +34,13 @@ public final class UCWColorspaceUtils {
 
     }
 
+    public static float sRGBtoLuma(float[] v) {
+        float v1 = (float) (0.2126729*v[0] + 0.7151522*v[1] + 0.0721750*v[2]);
+        float yr = v1 / D65_WHITE[1];
+        float fy = (yr > E) ? (float) Math.cbrt(yr) : (K*yr + 16)/116.0f;
+        return 116*fy - 16;
+    }
+
     public static float[] XYZtoLAB(float[] v) {
         float xr = v[0] / D65_WHITE[0];
         float yr = v[1] / D65_WHITE[1];

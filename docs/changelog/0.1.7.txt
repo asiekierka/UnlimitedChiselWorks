@@ -1,0 +1,5 @@
+Add hooks necessary for the Botany addon
+Add Quark "biome cobblestones" support
+Major tweaks to texture generation algorithm
+Allow putting custom UCW definitions in config/ucwdefs in addition to mod JARs
+Allow enabling/disabling UCW group rules in the config file

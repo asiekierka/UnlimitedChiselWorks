@@ -1,0 +1,1 @@
+Add support for Covens, LightningCraft, Natural Pledge, Plants 2, PrimalCore (1.11+), RealWorld
