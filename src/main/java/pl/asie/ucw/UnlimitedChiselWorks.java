@@ -57,6 +57,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Mod(modid = UnlimitedChiselWorks.MODID, version = UnlimitedChiselWorks.VERSION,
         dependencies = "after:forge@[14.23.5.2838,);after:undergroundbiomes",
@@ -82,7 +86,8 @@ public final class UnlimitedChiselWorks {
     public static UCWProxyCommon proxy;
 
     private boolean loadLate;
-    private List<JsonObject> objectsLoadLate = new ArrayList<>();
+    private final List<JsonObject> objectsLoadLate = new ArrayList<>();
+    private final Object proposeObjectSync = new Object();
 
     private boolean proposeObject(JsonObject json) {
         boolean result = false;
@@ -94,7 +99,9 @@ public final class UnlimitedChiselWorks {
 
             if (jsonLoadLate != loadLate) {
                 if (!loadLate) {
-                    objectsLoadLate.add(json);
+                    synchronized (objectsLoadLate) {
+                        objectsLoadLate.add(json);
+                    }
                 }
                 return result;
             }
@@ -122,17 +129,20 @@ public final class UnlimitedChiselWorks {
                             UCWBlockRule rule = new UCWBlockRule(element.getAsJsonObject());
                             if (rule.isValid()) {
                                 String fbName = rule.fromBlock.getRegistryName().toString();
-                                if (!C_ENABLED.containsKey(fbName)) {
-                                    Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
-                                    C_ENABLED.put(fbName, prop);
-                                }
 
-                                if (C_ENABLED.get(fbName).getBoolean()) {
-                                    if (BLOCK_RULES.contains(rule)) {
-                                        LOGGER.warn("Duplicate rule found! " + rule);
-                                    } else {
-                                        BLOCK_RULES.add(rule);
-                                        result = true;
+                                synchronized (proposeObjectSync) {
+                                    if (!C_ENABLED.containsKey(fbName)) {
+                                        Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                        C_ENABLED.put(fbName, prop);
+                                    }
+
+                                    if (C_ENABLED.get(fbName).getBoolean()) {
+                                        if (BLOCK_RULES.contains(rule)) {
+                                            LOGGER.warn("Duplicate rule found! " + rule);
+                                        } else {
+                                            BLOCK_RULES.add(rule);
+                                            result = true;
+                                        }
                                     }
                                 }
                             }
@@ -150,21 +160,23 @@ public final class UnlimitedChiselWorks {
                             UCWGroupRule rule = new UCWGroupRule(element.getAsJsonObject());
                             String fbName = rule.groupName;
 
-                            if (GROUP_RULE_NAMES.contains(fbName)) {
-                                LOGGER.warn("Duplicate group name: " + fbName + "!");
-                            } else {
-                                GROUP_RULE_NAMES.add(fbName);
-                                result = true;
-                            }
+                            synchronized (proposeObjectSync) {
+                                if (GROUP_RULE_NAMES.contains(fbName)) {
+                                    LOGGER.warn("Duplicate group name: " + fbName + "!");
+                                } else {
+                                    GROUP_RULE_NAMES.add(fbName);
+                                    result = true;
+                                }
 
-                            if (!C_ENABLED_GROUPS.containsKey(fbName)) {
-                                Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
-                                C_ENABLED_GROUPS.put(fbName, prop);
-                            }
+                                if (!C_ENABLED_GROUPS.containsKey(fbName)) {
+                                    Property prop = new Property(fbName, "true", Property.Type.BOOLEAN);
+                                    C_ENABLED_GROUPS.put(fbName, prop);
+                                }
 
-                            if (C_ENABLED_GROUPS.get(fbName).getBoolean()) {
-                                GROUP_RULES.add(rule);
-                                result = true;
+                                if (C_ENABLED_GROUPS.get(fbName).getBoolean()) {
+                                    GROUP_RULES.add(rule);
+                                    result = true;
+                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -173,25 +185,36 @@ public final class UnlimitedChiselWorks {
                 }
             }
         }
+
         return result;
     }
 
     private boolean proposeRule(Path p) throws IOException {
+        if (!Files.exists(p)) {
+            return false;
+        }
+
         if (Files.isDirectory(p)) {
-            boolean result = false;
-            
-            for (Path pp : Files.newDirectoryStream(p)) {
+            AtomicBoolean result = new AtomicBoolean();
+            List<Path> paths;
+
+            try (DirectoryStream<Path> dirStream = Files.newDirectoryStream(p)) {
+                paths = StreamSupport.stream(dirStream.spliterator(), false).collect(Collectors.toList());
+            }
+
+            paths.parallelStream().forEach((pp) -> {
                 try {
-                    result |= proposeRule(pp);
+                    if (proposeRule(pp)) {
+                        result.set(true);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            });
 
-            return result;
+            return result.get();
         } else {
-            BufferedReader reader = Files.newBufferedReader(p, Charsets.UTF_8);
-            try {
+            try (BufferedReader reader = Files.newBufferedReader(p, Charsets.UTF_8)) {
                 JsonObject json = JsonUtils.fromJson(GSON, reader, JsonObject.class);
                 return proposeObject(json);
             } catch (Exception e) {
@@ -202,37 +225,17 @@ public final class UnlimitedChiselWorks {
     }
 
     private boolean findRules() {
-        boolean result = false;
+        final AtomicBoolean result = new AtomicBoolean();
 
-        proxy.progressPush("UCW: scanning rules", Loader.instance().getActiveModList().size() + 1);
+        proxy.progressPush("UCW: scanning rules", 2);
 
         proxy.progressStep("config/ucwdefs");
+
         File dir = new File(configDir, "ucwdefs");
         if (dir.exists() && dir.isDirectory()) {
             try {
-                result |= proposeRule(dir.toPath());
-            } catch (NoSuchFileException e) {
-                // no problem with this one
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        for (ModContainer container : Loader.instance().getActiveModList()) {
-            proxy.progressStep(container.getName() == null ? container.getModId() : container.getName());
-
-            File file = container.getSource();
-            try {
-                if (file.exists()) {
-                    if (file.isDirectory()) {
-                        File f = new File(file, "assets/" + container.getModId() + "/ucwdefs");
-                        if (f.exists() && f.isDirectory()) {
-                            result |= proposeRule(f.toPath());
-                        }
-                    } else {
-                        FileSystem fs = FileSystems.newFileSystem(file.toPath(), null);
-                        result |= proposeRule(fs.getPath("assets/" + container.getModId() + "/ucwdefs"));
-                    }
+                if (proposeRule(dir.toPath())) {
+                    result.set(true);
                 }
             } catch (NoSuchFileException e) {
                 // no problem with this one
@@ -241,13 +244,40 @@ public final class UnlimitedChiselWorks {
             }
         }
 
-        proxy.progressPop();
-        if (result) {
-            LOGGER.info("So far, UCW found " + BLOCK_RULES.size() + " block rules.");
-            LOGGER.info("So far, UCW found " + GROUP_RULES.size() + " group rules.");
-        }
+        proxy.progressStep("loaded mods");
 
-        return result;
+        Loader.instance().getActiveModList().parallelStream().forEach((container) -> {
+            File file = container.getSource();
+            try {
+                if (file.exists()) {
+                    if (file.isDirectory()) {
+                        File f = new File(file, "assets/" + container.getModId() + "/ucwdefs");
+                        if (f.exists() && f.isDirectory()) {
+                            if (proposeRule(f.toPath())) {
+                                result.set(true);
+                            }
+                        }
+                    } else {
+                        FileSystem fs = FileSystems.newFileSystem(file.toPath(), null);
+                        if (proposeRule(fs.getPath("assets/" + container.getModId() + "/ucwdefs"))) {
+                            result.set(true);
+                        }
+                    }
+                }
+            } catch (NoSuchFileException e) {
+                // no problem with this one
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        proxy.progressPop();
+        if (result.get()) {
+            LOGGER.info("So far, UCW found " + BLOCK_RULES.size() + " block rules and " + GROUP_RULES.size() + " group rules.");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @EventHandler
