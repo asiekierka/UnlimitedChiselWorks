@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.2.4"
+version = "0.3.0"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 
@@ -34,7 +34,7 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2838"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     
     mappings = "stable_39"
@@ -46,6 +46,10 @@ minecraft {
 repositories {
     maven {
         url "http://maven.tterrag.com/"
+    }
+    ivy {
+        name 'asie dependency mirror'
+        artifactPattern "http://asie.pl/javadeps/[module]-[revision](-[classifier]).[ext]"
     }
 }
 
@@ -67,8 +71,8 @@ license {
 }
 
 dependencies {
-    deobfCompile "team.chisel:Chisel:MC1.12.2-0.2.1.35"
-    deobfCompile "team.chisel.ctm:CTM:MC1.12.2-0.3.3.22"
+    deobfCompile "team.chisel:Chisel:MC1.12.2-1.0.0.42"
+    deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.0.28"
 }
 
 processResources {

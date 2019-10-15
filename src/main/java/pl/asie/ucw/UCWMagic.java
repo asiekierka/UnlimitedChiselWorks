@@ -227,6 +227,7 @@ public final class UCWMagic {
 				float[] hsbBu = toLAB(ibu);
 				double normV;
 				float v;
+
 				if (contrastBasedUpon[1] != 0.0) {
 					normV = (double) (hsbTex[0] - contrastBasedUpon[0]) / contrastBasedUpon[1];
 				} else {

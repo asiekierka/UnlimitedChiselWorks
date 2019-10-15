@@ -65,7 +65,7 @@ public final class UCWVanillaModelRemapper {
         return orig.retexture(ImmutableMap.of("\ufd00\ufd01\ufd02\ufd03", "this does not exist"));
     }
 
-    public static IModel retexture(ImmutableMap<String, String> textures, IModel model) {
+    public static IModel retexture(ImmutableMap<String, String> textureValues, ImmutableMap<String, String> textures, IModel model) {
         try {
             if (model.getClass() == vanillaModelWrapperClass) {
                 IModel newModel = hackyClone(model);
@@ -74,8 +74,10 @@ public final class UCWVanillaModelRemapper {
                 while (modelBlock != null) {
                     Map<String, String> replacements = new HashMap<>();
                     for (Map.Entry<String, String> entry : modelBlock.textures.entrySet()) {
-                        if (textures.containsKey(entry.getValue())) {
-                            replacements.put(entry.getKey(), textures.get(entry.getValue()));
+                        if (textureValues.containsKey(entry.getValue())) {
+                            replacements.put(entry.getKey(), textureValues.get(entry.getValue()));
+                        } else if (entry.getValue().indexOf(':') < 0 && textureValues.containsKey("minecraft:" + entry.getValue())) {
+                            replacements.put(entry.getKey(), textureValues.get("minecraft:" + entry.getValue()));
                         }
                     }
                     for (Map.Entry<String, String> entry : replacements.entrySet()) {
@@ -98,16 +100,16 @@ public final class UCWVanillaModelRemapper {
                 for (int i = 0; i < models.size(); i++) {
                     IModel submodel = models.get(i);
                     if (submodel != null) {
-                        IModel newSubmodel = retexture(textures, submodel);
+                        IModel newSubmodel = retexture(textureValues, textures, submodel);
                         if (newSubmodel == null) {
-                            newSubmodel = submodel.retexture(textures);
+                            newSubmodel = submodel.retexture(textureValues);
                         }
                         models.set(i, newSubmodel);
                     }
                 }
 
                 Collection<ResourceLocation> newModelTextures = (Collection<ResourceLocation>) wrmTexturesField.get(newModel);
-                for (String s : textures.values()) {
+                for (String s : textureValues.values()) {
                     if (s.indexOf(':') > 0) {
                         newModelTextures.add(new ResourceLocation(s));
                     }
@@ -115,7 +117,7 @@ public final class UCWVanillaModelRemapper {
 
                 return newModel;
             } else {
-                return null;
+                return model.retexture(textures);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

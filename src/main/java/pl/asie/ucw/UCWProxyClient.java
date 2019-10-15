@@ -234,32 +234,27 @@ public class UCWProxyClient extends UCWProxyCommon {
 								try {
 									ImmutableMap<String, String> origRemapMap = textureRemapMap.build();
 
-									System.out.println("remappingque " + throughLoc);
-									target = UCWVanillaModelRemapper.retexture(origRemapMap, modelThrough);
-
-									if (target == null) {
-										ImmutableMap.Builder<String, String> chisellyRemapMap = ImmutableMap.builder();
-										JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
-										JsonArray myVariants = variants.get(throughLoc.getVariant()).getAsJsonArray();
-										for (int vi = 0; vi < myVariants.size(); vi++) {
-											JsonObject myVariant = myVariants.get(vi).getAsJsonObject();
-											if (myVariant.has("textures")) {
-												JsonObject myVTextures = myVariant.get("textures").getAsJsonObject();
-												for (Map.Entry<String, JsonElement> s : myVTextures.entrySet()) {
-													if (s.getValue().isJsonPrimitive()) {
-														String variable = s.getKey();
-														String texture = origRemapMap.get(s.getValue().getAsString());
-														if (texture != null) {
-															chisellyRemapMap.put(variable, texture);
-															chisellyRemapMap.put("#" + variable, texture);
-														}
+									ImmutableMap.Builder<String, String> chisellyRemapMap = ImmutableMap.builder();
+									JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
+									JsonArray myVariants = variants.get(throughLoc.getVariant()).getAsJsonArray();
+									for (int vi = 0; vi < myVariants.size(); vi++) {
+										JsonObject myVariant = myVariants.get(vi).getAsJsonObject();
+										if (myVariant.has("textures")) {
+											JsonObject myVTextures = myVariant.get("textures").getAsJsonObject();
+											for (Map.Entry<String, JsonElement> s : myVTextures.entrySet()) {
+												if (s.getValue().isJsonPrimitive()) {
+													String variable = s.getKey();
+													String texture = origRemapMap.get(new ResourceLocation(s.getValue().getAsString()).toString());
+													if (texture != null) {
+														chisellyRemapMap.put(variable, texture);
+														chisellyRemapMap.put("#" + variable, texture);
 													}
 												}
 											}
 										}
-
-										target = modelThrough.retexture(chisellyRemapMap.build());
 									}
+
+									target = UCWVanillaModelRemapper.retexture(origRemapMap, chisellyRemapMap.build(), modelThrough);
 								} catch (Exception e) {
 									UnlimitedChiselWorks.LOGGER.error("Remapping model " + throughLoc + " failed!", e);
 								}
@@ -269,10 +264,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 						if (target == null) {
 							try {
 								ImmutableMap<String, String> origRemapMap = textureRemapMap.build();
-								target = UCWVanillaModelRemapper.retexture(origRemapMap, modelThrough);
-								if (target == null) {
-									target = modelThrough.retexture(origRemapMap);
-								}
+								target = UCWVanillaModelRemapper.retexture(origRemapMap, origRemapMap, modelThrough);
 							} catch (Exception e) {
 								UnlimitedChiselWorks.LOGGER.error("Remapping model " + throughLoc + " failed!", e);
 							}
