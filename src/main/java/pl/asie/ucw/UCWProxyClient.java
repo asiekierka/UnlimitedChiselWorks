@@ -21,13 +21,14 @@ package pl.asie.ucw;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -43,12 +44,12 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import pl.asie.ucw.util.ModelLoaderEarlyView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -61,30 +62,40 @@ import java.util.function.Function;
 public class UCWProxyClient extends UCWProxyCommon {
 	private Map<String, JsonObject> chiselCache = new HashMap<>();
 
-	private JsonObject getChiselCache(ResourceLocation throughLoc) throws IOException {
-		JsonObject obj = chiselCache.get("default");
-		if (obj != null) return obj;
+	private Boolean chiselUsesSeparatedStates;
 
-		obj = chiselCache.get(throughLoc.getPath());
+	private boolean isChiselUsingSeparatedStates() {
+		if (chiselUsesSeparatedStates == null) {
+			IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
+
+			try (IResource resource = manager.getResource(
+					new ResourceLocation("chisel", "blockstates/default.json")
+			)) {
+				chiselUsesSeparatedStates = false;
+			} catch (IOException e) {
+				chiselUsesSeparatedStates = true;
+			}
+		}
+
+		return chiselUsesSeparatedStates;
+	}
+
+	private JsonObject getChiselCache(ResourceLocation throughLoc) throws IOException {
+		String resourceKey;
+
+		if (isChiselUsingSeparatedStates()) {
+			resourceKey = throughLoc.getPath();
+		} else {
+			resourceKey = "default";
+		}
+
+		JsonObject obj = chiselCache.get(resourceKey);
 		if (obj != null) return obj;
 
 		IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 
-		String resourceKey;
-		IResource resource;
-		try {
-			resourceKey = "default";
-			resource = manager.getResource(
-					new ResourceLocation("chisel", "blockstates/default.json")
-			);
-		} catch (FileNotFoundException e) {
-			resourceKey = throughLoc.getPath();
-			resource = manager.getResource(
-					new ResourceLocation("chisel", "blockstates/" + throughLoc.getPath() + ".json")
-			);
-		}
-
-		try (InputStream stream = resource.getInputStream(); InputStreamReader reader = new InputStreamReader(stream)) {
+		try (	IResource resource = manager.getResource(new ResourceLocation("chisel", "blockstates/" + resourceKey + ".json"));
+				InputStream stream = resource.getInputStream(); InputStreamReader reader = new InputStreamReader(stream)) {
 			obj = JsonUtils.fromJson(UnlimitedChiselWorks.GSON, reader, JsonObject.class);
 			chiselCache.put(resourceKey, obj);
 			resource.close();
@@ -113,27 +124,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 			return;
 		}
 
-		// don't tell lex
-		ModelLoader loader;
-		Map<ModelResourceLocation, IModel> secretSauce = null;
-		BlockModelShapes blockModelShapes = null;
-		try {
-			Class c = Class.forName("net.minecraftforge.client.model.ModelLoader$VanillaLoader");
-			Field f = c.getDeclaredField("INSTANCE");
-			f.setAccessible(true);
-			Object o = f.get(null);
-			f = c.getDeclaredField("loader");
-			f.setAccessible(true);
-			loader = (ModelLoader) f.get(o);
-			f = ModelLoader.class.getDeclaredField("stateModels");
-			f.setAccessible(true);
-			secretSauce = (Map<ModelResourceLocation, IModel>) f.get(loader);
-			f = ObfuscationReflectionHelper.findField(ModelBakery.class, "field_177610_k");
-			f.setAccessible(true);
-			blockModelShapes = (BlockModelShapes) f.get(loader);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		ModelLoaderEarlyView loaderEarlyView = new ModelLoaderEarlyView();
 
 		UnlimitedChiselWorks.proxy.progressPush("UCW: generating models", UnlimitedChiselWorks.BLOCK_RULES.size());
 		int cc = 0;
@@ -141,10 +132,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
 			UnlimitedChiselWorks.proxy.progressStep(String.format("%d%%", (++cc) * 100 / UnlimitedChiselWorks.BLOCK_RULES.size()));
 
-			Map<IBlockState, ModelResourceLocation> fromVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.fromBlock);
-			Map<IBlockState, ModelResourceLocation> overlayVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.overlayBlock);
-			Map<IBlockState, ModelResourceLocation> throughVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.throughBlock);
-			Map<IBlockState, ModelResourceLocation> basedUponVariants = blockModelShapes.getBlockStateMapper().getVariants(rule.basedUponBlock);
+			Map<IBlockState, ModelResourceLocation> fromVariants = loaderEarlyView.getVariants(rule.fromBlock);
+			Map<IBlockState, ModelResourceLocation> overlayVariants = loaderEarlyView.getVariants(rule.overlayBlock);
+			Map<IBlockState, ModelResourceLocation> throughVariants = loaderEarlyView.getVariants(rule.throughBlock);
+			Map<IBlockState, ModelResourceLocation> basedUponVariants = loaderEarlyView.getVariants(rule.basedUponBlock);
 
 			for (int i = 0; i < rule.from.size(); i++) {
 				if (rule.from.get(i) != null) {
@@ -152,10 +143,10 @@ public class UCWProxyClient extends UCWProxyCommon {
 					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + state.getBlock().getMetaFromState(state);
 
 					IBlockState stateOverlay = rule.overlay.get(i);
-					IModel modelFrom = secretSauce.get(fromVariants.get(state));
-					IModel modelOverlay = secretSauce.get(overlayVariants.get(stateOverlay));
+					IModel modelFrom = loaderEarlyView.getModel(fromVariants.get(state));
+					IModel modelOverlay = loaderEarlyView.getModel(overlayVariants.get(stateOverlay));
 					IBlockState stateBasedUpon = rule.basedUpon.size() == 1 ? rule.basedUpon.get(0) : rule.basedUpon.get(i);
-					IModel modelBasedUpon = secretSauce.get(basedUponVariants.get(stateBasedUpon));
+					IModel modelBasedUpon = loaderEarlyView.getModel(basedUponVariants.get(stateBasedUpon));
 					ResourceLocation textureFrom = UCWMagic.getLocation(state, fromVariants.get(state), modelFrom);
 					ResourceLocation textureOverlay = UCWMagic.getLocation(stateOverlay, overlayVariants.get(stateOverlay), modelOverlay);
 					ResourceLocation textureBasedUpon = UCWMagic.getLocation(stateBasedUpon, basedUponVariants.get(stateBasedUpon), modelBasedUpon);
@@ -165,7 +156,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 						if (throughState == null) continue;
 
 						ModelResourceLocation throughLoc = throughVariants.get(throughState);
-						IModel modelThrough = secretSauce.get(throughLoc);
+						IModel modelThrough = loaderEarlyView.getModel(throughLoc);
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();
 						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
 							ResourceLocation newLocation = new ResourceLocation("ucw_generated",
@@ -225,24 +216,70 @@ public class UCWProxyClient extends UCWProxyCommon {
 						IModel target = null;
 
 						if (throughLoc.getNamespace().equals("chisel")) {
-							// fun!
+							if (!isChiselUsingSeparatedStates()) {
+								// pre-Chisel 1.0.0
+								try {
+									JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
+									if (variants.has(throughLoc.getVariant())) {
+										String modelPath = variants
+												.get(throughLoc.getVariant()).getAsJsonObject().get("model").getAsString();
+										modelPath = modelPath.replaceFirst("chisel:", "ucw_generated:ucw_ucw_" + s2 + "/chisel/");
+										target = ModelLoaderRegistry.getModel(new ModelResourceLocation(modelPath));
+									}
+								} catch (Exception e) {
+									UnlimitedChiselWorks.LOGGER.error("Remapping model " + throughLoc + " failed!", e);
+								}
+							} else {
+								// Chisel 1.0.0
+								try {
+									ImmutableMap<String, String> origRemapMap = textureRemapMap.build();
+
+									System.out.println("remappingque " + throughLoc);
+									target = UCWVanillaModelRemapper.retexture(origRemapMap, modelThrough);
+
+									if (target == null) {
+										ImmutableMap.Builder<String, String> chisellyRemapMap = ImmutableMap.builder();
+										JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
+										JsonArray myVariants = variants.get(throughLoc.getVariant()).getAsJsonArray();
+										for (int vi = 0; vi < myVariants.size(); vi++) {
+											JsonObject myVariant = myVariants.get(vi).getAsJsonObject();
+											if (myVariant.has("textures")) {
+												JsonObject myVTextures = myVariant.get("textures").getAsJsonObject();
+												for (Map.Entry<String, JsonElement> s : myVTextures.entrySet()) {
+													if (s.getValue().isJsonPrimitive()) {
+														String variable = s.getKey();
+														String texture = origRemapMap.get(s.getValue().getAsString());
+														if (texture != null) {
+															chisellyRemapMap.put(variable, texture);
+															chisellyRemapMap.put("#" + variable, texture);
+														}
+													}
+												}
+											}
+										}
+
+										target = modelThrough.retexture(chisellyRemapMap.build());
+									}
+								} catch (Exception e) {
+									UnlimitedChiselWorks.LOGGER.error("Remapping model " + throughLoc + " failed!", e);
+								}
+							}
+						}
+
+						if (target == null) {
 							try {
-								JsonObject variants = getChiselCache(throughLoc).get("variants").getAsJsonObject();
-								if (variants.has(throughLoc.getVariant())) {
-									String modelPath = variants
-											.get(throughLoc.getVariant()).getAsJsonObject().get("model").getAsString();
-									modelPath = modelPath.replaceFirst("chisel:", "ucw_generated:ucw_ucw_" + s2 + "/chisel/");
-									target = ModelLoaderRegistry.getModel(new ModelResourceLocation(modelPath));
+								ImmutableMap<String, String> origRemapMap = textureRemapMap.build();
+								target = UCWVanillaModelRemapper.retexture(origRemapMap, modelThrough);
+								if (target == null) {
+									target = modelThrough.retexture(origRemapMap);
 								}
 							} catch (Exception e) {
-								e.printStackTrace();
+								UnlimitedChiselWorks.LOGGER.error("Remapping model " + throughLoc + " failed!", e);
 							}
-						} else {
-							target = modelThrough.retexture(textureRemapMap.build());
 						}
 
 						if (target != null) {
-							secretSauce.put(targetLoc, rule.hasColor() ? new TintApplyingModel(target) : target);
+							loaderEarlyView.putModel(targetLoc, rule.hasColor() ? new TintApplyingModel(target) : target);
 						}
 					}
 				}
