@@ -32,6 +32,7 @@ import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
@@ -44,12 +45,16 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pl.asie.ucw.util.ModelLoaderEarlyView;
+import team.chisel.ctm.api.event.TextureCollectedEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -161,9 +166,9 @@ public class UCWProxyClient extends UCWProxyCommon {
 						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
 							ResourceLocation newLocation = new ResourceLocation("ucw_generated",
 									"blocks/ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + oldLocation.getPath().substring(7));
-
+							UCWFakeResourcePack.INSTANCE.copyTextureMetadata(oldLocation, newLocation);
 							textureRemapMap.put(oldLocation.toString(), newLocation.toString());
-							event.getMap().setTextureEntry(new TextureAtlasSprite(newLocation.toString()) {
+							TextureAtlasSprite sprite = new TextureAtlasSprite(newLocation.toString()) {
 								@Override
 								public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
 									return true;
@@ -193,7 +198,11 @@ public class UCWProxyClient extends UCWProxyCommon {
 								public java.util.Collection<ResourceLocation> getDependencies() {
 									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
 								}
-							});
+							};
+							event.getMap().setTextureEntry(sprite);
+							if (Loader.isModLoaded("ctm")) {
+								ctmOnSpriteAddedHook(event.getMap(), sprite);
+							}
 						}
 
 						UCWObjectFactory factory = rule.objectFactories.get(i);
@@ -279,6 +288,11 @@ public class UCWProxyClient extends UCWProxyCommon {
 		}
 
 		UnlimitedChiselWorks.proxy.progressPop();
+	}
+
+	@Optional.Method(modid = "ctm")
+	private void ctmOnSpriteAddedHook(TextureMap map, TextureAtlasSprite sprite) {
+		MinecraftForge.EVENT_BUS.post(new TextureCollectedEvent(map, sprite));
 	}
 
 	@Override
