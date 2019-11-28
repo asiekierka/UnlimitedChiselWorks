@@ -22,7 +22,6 @@ package pl.asie.ucw;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -37,13 +36,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.ExtendedBlockState;
-import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pl.asie.ucw.util.BlockStateUtil;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
 
 public class BlockUCWProxy extends Block implements IUCWBlock {
 	private UCWBlockRule rule;
@@ -61,37 +58,37 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).shouldSideBeRendered(new UCWBlockAccess(world, true), pos, face);
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).shouldSideBeRendered(new UCWBlockAccess(world, true), pos, face);
 	}
 
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).doesSideBlockRendering(new UCWBlockAccess(world, true), pos, face);
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).doesSideBlockRendering(new UCWBlockAccess(world, true), pos, face);
 	}
 
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).getBlockFaceShape(new UCWBlockAccess(world, true), pos, face);
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).getBlockFaceShape(new UCWBlockAccess(world, true), pos, face);
 	}
 
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).isOpaqueCube();
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).isOpaqueCube();
 	}
 
 	@Override
 	public boolean isFullCube(IBlockState state) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).isFullCube();
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).isFullCube();
 	}
 
 	@Override
 	public boolean isFullBlock(IBlockState state) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).isFullBlock();
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).isFullBlock();
 	}
 
 	@Override
 	public boolean isNormalCube(IBlockState state) {
-		return UCWUtils.applyProperties(rule.throughBlock, state).isNormalCube();
+		return BlockStateUtil.applyProperties(rule.throughBlock, state).isNormalCube();
 	}
 
 	@Override
@@ -107,7 +104,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, state);
+		IBlockState newState = BlockStateUtil.applyProperties(rule.throughBlock, state);
 		return newState.getBlock().canRenderInLayer(newState, layer);
 	}
 
@@ -168,7 +165,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 			return base.getBlockHardness(worldIn, pos);
 		} catch (Exception e) {
 			try {
-				IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, blockState);
+				IBlockState newState = BlockStateUtil.applyProperties(rule.throughBlock, blockState);
 				return newState.getBlockHardness(worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
@@ -182,7 +179,7 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 			return base.getPlayerRelativeBlockHardness(player, worldIn, pos);
 		} catch (Exception e) {
 			try {
-				IBlockState newState = UCWUtils.applyProperties(rule.throughBlock, state);
+				IBlockState newState = BlockStateUtil.applyProperties(rule.throughBlock, state);
 				return newState.getPlayerRelativeBlockHardness(player, worldIn, pos);
 			} catch (Exception ee) {
 				return blockHardness;
@@ -227,12 +224,12 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return UCWUtils.applyProperties(this, rule.throughBlock.getStateFromMeta(meta));
+		return BlockStateUtil.applyProperties(this, rule.throughBlock.getStateFromMeta(meta));
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return rule.throughBlock.getMetaFromState(UCWUtils.applyProperties(rule.throughBlock, state));
+		return rule.throughBlock.getMetaFromState(BlockStateUtil.applyProperties(rule.throughBlock, state));
 	}
 
 	@Override
@@ -255,6 +252,6 @@ public class BlockUCWProxy extends Block implements IUCWBlock {
 
 	@Override
 	public IBlockState getThroughState(IBlockState state) {
-		return UCWUtils.applyProperties(rule.throughBlock, state);
+		return BlockStateUtil.applyProperties(rule.throughBlock, state);
 	}
 }

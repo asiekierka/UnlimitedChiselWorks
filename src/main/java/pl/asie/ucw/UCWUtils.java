@@ -30,14 +30,6 @@ public final class UCWUtils {
 
 	}
 
-	public static IBlockState applyProperties(Block block, IBlockState state) {
-		IBlockState toState = block.getDefaultState();
-		for (IProperty property : state.getPropertyKeys()) {
-			toState = toState.withProperty(property, state.getValue(property));
-		}
-		return toState;
-	}
-
 	public static ItemStack copyChangeItem(ItemStack stack, Item item) {
 		return copyChangeItem(stack, item, stack.getItemDamage());
 	}

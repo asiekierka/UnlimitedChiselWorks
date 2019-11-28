@@ -1,3 +1,4 @@
 Bugs fixed:
 
-* Connected texture support.
+* Brought back functioning connected texture support.
+* Fixed #inventory model errors in game log.

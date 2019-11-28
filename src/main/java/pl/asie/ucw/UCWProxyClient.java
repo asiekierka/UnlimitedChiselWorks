@@ -53,6 +53,7 @@ import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import pl.asie.ucw.util.BlockStateUtil;
 import pl.asie.ucw.util.ModelLoaderEarlyView;
 import team.chisel.ctm.api.event.TextureCollectedEvent;
 
@@ -119,6 +120,24 @@ public class UCWProxyClient extends UCWProxyCommon {
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event) {
 		chiselCache.clear();
+
+		// register item variants
+		for (UCWBlockRule rule : UnlimitedChiselWorks.BLOCK_RULES) {
+			for (int i = 0; i < rule.from.size(); i++) {
+				IBlockState state = rule.from.get(i);
+				if (state != null) {
+					UCWObjectFactory factory = rule.objectFactories.get(i);
+					for (int j = 0; j < 16; j++) {
+						IBlockState throughState = rule.through.get(j);
+						if (throughState == null) continue;
+
+						String variant = BlockStateUtil.getVariantString(factory.block.getStateFromMeta(j));
+						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
+						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
+					}
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent
@@ -143,8 +162,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 			Map<IBlockState, ModelResourceLocation> basedUponVariants = loaderEarlyView.getVariants(rule.basedUponBlock);
 
 			for (int i = 0; i < rule.from.size(); i++) {
-				if (rule.from.get(i) != null) {
-					IBlockState state = rule.from.get(i);
+				IBlockState state = rule.from.get(i);
+				if (state != null) {
 					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + state.getBlock().getMetaFromState(state);
 
 					IBlockState stateOverlay = rule.overlay.get(i);
@@ -155,6 +174,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 					ResourceLocation textureFrom = UCWMagic.getLocation(state, fromVariants.get(state), modelFrom);
 					ResourceLocation textureOverlay = UCWMagic.getLocation(stateOverlay, overlayVariants.get(stateOverlay), modelOverlay);
 					ResourceLocation textureBasedUpon = UCWMagic.getLocation(stateBasedUpon, basedUponVariants.get(stateBasedUpon), modelBasedUpon);
+
+					UCWObjectFactory factory = rule.objectFactories.get(i);
 
 					for (int j = 0; j < 16; j++) {
 						IBlockState throughState = rule.through.get(j);
@@ -205,22 +226,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 							}
 						}
 
-						UCWObjectFactory factory = rule.objectFactories.get(i);
-						List<String> propertyNames = new ArrayList<>();
-						for (IProperty property : factory.block.getBlockState().getProperties()) {
-							propertyNames.add(property.getName());
-						}
-						IBlockState targetState = factory.block.getStateFromMeta(j);
-						Collections.sort(propertyNames);
-						StringBuilder variant = new StringBuilder();
-						for (String s : propertyNames) {
-							if (variant.length() > 0) variant.append(",");
-							IProperty property = factory.block.getBlockState().getProperty(s);
-							variant.append(s).append("=").append(property.getName(targetState.getValue(property)));
-						}
-
-						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant.toString());
-						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
+						String variant = BlockStateUtil.getVariantString(factory.block.getStateFromMeta(j));
+						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
 
 						IModel target = null;
 
