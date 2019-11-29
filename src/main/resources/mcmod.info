@@ -2,10 +2,10 @@
 {
   "modid": "unlimitedchiselworks",
   "name": "Unlimited Chisel Works",
-  "description": "why",
+  "description": "Procedural mod compatibility expansion for Chisel. All of the blocks, none of the filesize!",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://asie.pl/Projects/Minecraft/Mods/Unlimited_Chisel_Works",
+  "url": "https://charset.asie.pl/",
   "authorList": ["asie"],
   "credits": "",
   "logoFile": "",

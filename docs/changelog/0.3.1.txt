@@ -1,3 +1,9 @@
+Additions:
+
+* Advanced Rocketry support (wood).
+* Aether II "support" (only hellfirestone for now, the rest look rather bad).
+* Environmental Materials support.
+
 Bugs fixed:
 
 * Brought back functioning connected texture support.

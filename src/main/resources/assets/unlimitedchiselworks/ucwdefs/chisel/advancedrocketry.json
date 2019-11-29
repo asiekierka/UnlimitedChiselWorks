@@ -1,0 +1,22 @@
+{
+  "modid": ["chisel", "advancedrocketry"],
+  "blocks": [
+    {
+      "from": {
+        "block": "advancedrocketry:planks",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}

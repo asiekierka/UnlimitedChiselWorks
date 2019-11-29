@@ -1,0 +1,56 @@
+{
+  "modid": ["chisel", "environmentalmaterials"],
+  "blocks": [
+    {
+      "from": {
+        "block": "environmentalmaterials:alabaster_bricks",
+        "iterate": [
+          "color"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "environmentalmaterials:alabaster_bricks",
+        "iterate": [
+          "color"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "block": "environmentalmaterials:alabaster_bricks",
+        "iterate": [
+          "color"
+        ]
+      },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    }
+  ]
+}
