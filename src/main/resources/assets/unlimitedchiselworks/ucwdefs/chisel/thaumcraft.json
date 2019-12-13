@@ -1,0 +1,39 @@
+{
+  "modid": ["chisel", "thaumcraft"],
+  "blocks": [
+    {
+      "from": {
+        "block": "thaumcraft:plank_silverwood",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+	{
+      "from": {
+        "block": "thaumcraft:plank_greatwood",
+        "iterate": [
+          "variant"
+        ]
+      },
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    }
+  ]
+}
