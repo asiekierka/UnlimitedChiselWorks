@@ -362,10 +362,10 @@ public final class UnlimitedChiselWorks {
                 UCWObjectFactory factory = rule.objectFactories.get(i);
                 String groupName = rule.group + "_" + fromState.getBlock().getMetaFromState(fromState);
                 NonNullList<ItemStack> stacks = NonNullList.create();
-                factory.item.getSubItems(CreativeTabs.SEARCH, stacks);
+                factory.getItem().getSubItems(CreativeTabs.SEARCH, stacks);
 
-                if (factory.block instanceof IUCWCustomVariantHandler) {
-                    ((IUCWCustomVariantHandler) factory.block).registerVariants(groupName, fromState, stacks);
+                if (factory.getBlock() instanceof IUCWCustomVariantHandler) {
+                    ((IUCWCustomVariantHandler) factory.getBlock()).registerVariants(groupName, fromState, stacks);
                 } else {
                     UCWCompatUtils.addChiselVariation(groupName, new ItemStack(fromState.getBlock(), 1, fromState.getBlock().damageDropped(fromState)));
 
@@ -397,8 +397,10 @@ public final class UnlimitedChiselWorks {
                 int[] ids = OreDictionary.getOreIDs(stack);
                 if (ids.length > 0) {
                     for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
-                        for (int i : ids) {
-                            OreDictionary.registerOre(OreDictionary.getOreName(i), factory.block);
+                        if (factory.isBlockRegistered()) {
+                            for (int i : ids) {
+                                OreDictionary.registerOre(OreDictionary.getOreName(i), factory.getBlock());
+                            }
                         }
                     }
                 }

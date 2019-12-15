@@ -21,6 +21,7 @@ package pl.asie.ucw;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -131,9 +132,9 @@ public class UCWProxyClient extends UCWProxyCommon {
 						IBlockState throughState = rule.through.get(j);
 						if (throughState == null) continue;
 
-						String variant = BlockStateUtil.getVariantString(factory.block.getStateFromMeta(j));
-						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
-						ModelLoader.setCustomModelResourceLocation(factory.item, j, targetLoc);
+						String variant = BlockStateUtil.getVariantString(factory.getBlock().getStateFromMeta(j));
+						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.getBlock().getRegistryName(), variant);
+						ModelLoader.setCustomModelResourceLocation(factory.getItem(), j, targetLoc);
 					}
 				}
 			}
@@ -149,6 +150,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 		}
 
 		ModelLoaderEarlyView loaderEarlyView = new ModelLoaderEarlyView();
+		IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 
 		UnlimitedChiselWorks.proxy.progressPush("UCW: generating models", UnlimitedChiselWorks.BLOCK_RULES.size());
 		int cc = 0;
@@ -184,10 +186,26 @@ public class UCWProxyClient extends UCWProxyCommon {
 						ModelResourceLocation throughLoc = throughVariants.get(throughState);
 						IModel modelThrough = loaderEarlyView.getModel(throughLoc);
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();
-						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
+						// Chisel workaroundery
+						ImmutableSet.Builder<ResourceLocation> throughTextureSet = ImmutableSet.builder();
+						throughTextureSet.addAll(modelThrough.getTextures());
+						modelThrough.getTextures().forEach(rl -> {
+							if (!rl.getPath().endsWith("-ctm")) {
+								ResourceLocation ctmLocation = new ResourceLocation(rl.getNamespace(), "textures/" + rl.getPath() + "-ctm.png");
+								try (IResource resource = manager.getResource(ctmLocation)) {
+									System.out.println(s2);
+									System.out.println(ctmLocation);
+									throughTextureSet.add(new ResourceLocation(rl.getNamespace(), rl.getPath() + "-ctm"));
+								} catch (IOException e) {
+									// pass
+								}
+							}
+						});
+
+						for (ResourceLocation oldLocation : throughTextureSet.build()) {
+							String[] dividedOldLocationPath = oldLocation.getPath().split("/", 2);
 							ResourceLocation newLocation = new ResourceLocation("ucw_generated",
-									"blocks/ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + oldLocation.getPath().substring(7));
-							UCWFakeResourcePack.INSTANCE.copyTextureMetadata(oldLocation, newLocation);
+									dividedOldLocationPath[0] + "/ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + dividedOldLocationPath[1]);
 							textureRemapMap.put(oldLocation.toString(), newLocation.toString());
 							TextureAtlasSprite sprite = new TextureAtlasSprite(newLocation.toString()) {
 								@Override
@@ -226,8 +244,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 							}
 						}
 
-						String variant = BlockStateUtil.getVariantString(factory.block.getStateFromMeta(j));
-						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.block.getRegistryName(), variant);
+						String variant = BlockStateUtil.getVariantString(factory.getBlock().getStateFromMeta(j));
+						ModelResourceLocation targetLoc = new ModelResourceLocation(factory.getBlock().getRegistryName(), variant);
 
 						IModel target = null;
 
@@ -345,8 +363,8 @@ public class UCWProxyClient extends UCWProxyCommon {
 					throw new RuntimeException(o.getClass().getName() + " is not IBlockColor and IItemColor!");
 				}
 
-				event.getBlockColors().registerBlockColorHandler((IBlockColor) o, factory.block);
-				event.getItemColors().registerItemColorHandler((IItemColor) o, factory.item);
+				event.getBlockColors().registerBlockColorHandler((IBlockColor) o, factory.getBlock());
+				event.getItemColors().registerItemColorHandler((IItemColor) o, factory.getItem());
 			}
 		}
 

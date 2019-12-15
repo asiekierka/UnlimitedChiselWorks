@@ -132,16 +132,16 @@ public class UCWBlockRule {
 
 	public void registerBlocks(IForgeRegistry<Block> blocks) {
 		for (UCWObjectFactory objectFactory : objectFactories.valueCollection()) {
-			if (!blocks.containsKey(objectFactory.block.getRegistryName())) {
-				blocks.register(objectFactory.block);
+			if (!blocks.containsKey(objectFactory.getBlock().getRegistryName())) {
+				blocks.register(objectFactory.getBlock());
 			}
 		}
 	}
 
 	public void registerItems(IForgeRegistry<Item> items) {
 		for (UCWObjectFactory objectFactory : objectFactories.valueCollection()) {
-			if (!items.containsKey(objectFactory.item.getRegistryName())) {
-				items.register(objectFactory.item);
+			if (!items.containsKey(objectFactory.getItem().getRegistryName())) {
+				items.register(objectFactory.getItem());
 			}
 		}
 	}

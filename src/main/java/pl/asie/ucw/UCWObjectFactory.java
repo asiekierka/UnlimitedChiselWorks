@@ -23,48 +23,81 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class UCWObjectFactory {
-	protected final Block block;
-	protected final Item item;
+	private final UCWBlockRule rule;
+	private final ResourceLocation location;
+	// protected *only* for backwards compat
 	protected final IBlockState base;
+	protected Block block;
+	protected Item item;
 
 	public UCWObjectFactory(UCWBlockRule rule, IBlockState base, ResourceLocation location) {
+		this.rule = rule;
 		this.base = base;
+		this.location = location;
+	}
 
-		UCWObjectBroker broker = UCWObjectBroker.get();
+	public IBlockState getBase() {
+		return base;
+	}
 
-		broker.begin(rule, base);
+	public Block getBlock() {
+		if (block == null) {
+			UCWObjectBroker broker = UCWObjectBroker.get();
+			broker.begin(rule, base);
 
-		if (rule.customBlockClass != null) {
-			try {
-				Class c = Class.forName(rule.customBlockClass);
-				this.block = (Block) c.getConstructor().newInstance();
+			if (rule.customBlockClass != null) {
+				try {
+					Class c = Class.forName(rule.customBlockClass);
+					this.block = (Block) c.getConstructor().newInstance();
 
-				if (!(this.block instanceof IUCWBlock)) {
-					throw new RuntimeException("Not an UCW block!");
+					if (!(this.block instanceof IUCWBlock)) {
+						throw new RuntimeException("Not an UCW block!");
+					}
+				} catch (Exception e) {
+					throw new RuntimeException(e);
 				}
-			} catch (Exception e) {
-				throw new RuntimeException(e);
+			} else {
+				this.block = new BlockUCWProxy();
 			}
-		} else {
-			this.block = new BlockUCWProxy();
+
+			this.block.setRegistryName(location);
+			broker.end();
 		}
 
-		if (rule.customItemClass != null) {
-			try {
-				Class c = Class.forName(rule.customItemClass);
-				this.item = (Item) c.getConstructor(Block.class).newInstance(this.block);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
+		return block;
+	}
+
+	public Item getItem() {
+		if (item == null) {
+			UCWObjectBroker broker = UCWObjectBroker.get();
+			broker.begin(rule, base);
+
+			if (rule.customItemClass != null) {
+				try {
+					Class c = Class.forName(rule.customItemClass);
+					this.item = (Item) c.getConstructor(Block.class).newInstance(this.block);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			} else {
+				this.item = new ItemUCWProxy(block);
 			}
-		} else {
-			this.item = new ItemUCWProxy(block);
+
+			this.item.setRegistryName(location);
+			broker.end();
 		}
 
-		this.block.setRegistryName(location);
-		this.item.setRegistryName(location);
+		return item;
+	}
 
-		broker.end();
+	public boolean isBlockRegistered() {
+		return block != null && ForgeRegistries.BLOCKS.containsValue(block);
+	}
+
+	public boolean isItemRegistered() {
+		return item != null && ForgeRegistries.ITEMS.containsValue(item);
 	}
 }

@@ -71,14 +71,14 @@ public class CommandUCWDebug extends CommandBase {
 
 				for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
 					NonNullList<ItemStack> stackList = NonNullList.create();
-					factory.item.getSubItems(CreativeTabs.SEARCH, stackList);
+					factory.getItem().getSubItems(CreativeTabs.SEARCH, stackList);
 
-					world.setBlockState(pos, factory.base);
+					world.setBlockState(pos, factory.getBase());
 					BlockPos posCopy = pos.offset(EnumFacing.EAST);
 
 					for (ItemStack stack : stackList) {
 						try {
-							world.setBlockState(posCopy, factory.block.getStateFromMeta(stack.getMetadata()));
+							world.setBlockState(posCopy, factory.getBlock().getStateFromMeta(stack.getMetadata()));
 							posCopy = posCopy.offset(EnumFacing.EAST);
 						} catch (Exception e) {
 

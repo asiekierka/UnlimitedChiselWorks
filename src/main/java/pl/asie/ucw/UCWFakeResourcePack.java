@@ -57,17 +57,6 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 
 	}
 
-	private final Set<ResourceLocation> textureMetadataPngLocations = new HashSet<>();
-	private final Map<ResourceLocation, ResourceLocation> textureMetadataFileMap = new HashMap<>();
-
-	public void copyTextureMetadata(ResourceLocation oldLocation, ResourceLocation newLocation) {
-		textureMetadataPngLocations.add(new ResourceLocation(newLocation.getNamespace(), "textures/" + newLocation.getPath() + ".png"));
-		textureMetadataFileMap.put(
-				new ResourceLocation(newLocation.getNamespace(), "textures/" + newLocation.getPath() + ".png.mcmeta"),
-				new ResourceLocation(oldLocation.getNamespace(), "textures/" + oldLocation.getPath() + ".png.mcmeta")
-		);
-	}
-
 	public JsonElement parseJsonElement(String[] str, JsonElement element) {
 		if (element.isJsonObject()) {
 			JsonObject parent = element.getAsJsonObject();
@@ -99,9 +88,6 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 
 	private String[] getStr(ResourceLocation location) {
 		String path = location.getPath();
-		if (path.contains(".png")) {
-			return null;
-		}
 		Matcher m = Pattern.compile("ucw_ucw_([A-Za-z0-9_]+)/([a-z]+)").matcher(path);
 		String[] str = new String[] {
 				"",
@@ -121,24 +107,11 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 
 	@Override
 	public InputStream getInputStream(ResourceLocation location) throws IOException {
-		if (textureMetadataPngLocations.contains(location)) {
+		if (location.getPath().endsWith(".png")) {
 			return new ByteArrayInputStream(new byte[0]);
 		}
 
 		if (!data.containsKey(location)) {
-			if (textureMetadataFileMap.containsKey(location)) {
-				ResourceLocation proxiedLocation = textureMetadataFileMap.get(location);
-				try (
-						IResource nonProxiedResource = mc.getResourceManager().getResource(proxiedLocation);
-						InputStream nonProxied = nonProxiedResource.getInputStream();
-				) {
-					//noinspection UnstableApiUsage
-					byte[] out = ByteStreams.toByteArray(nonProxied);
-					data.put(location, out);
-					return new ByteArrayInputStream(out);
-				}
-			}
-
 			String[] str = getStr(location);
 			JsonElement element;
 			ResourceLocation nonProxiedLoc = new ResourceLocation(str[1], str[2]);
@@ -187,14 +160,10 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 
 	@Override
 	public boolean resourceExists(ResourceLocation location) {
-		if (textureMetadataPngLocations.contains(location)) {
+		if (location.getPath().endsWith(".png")) {
 			return true;
 		}
-
-		if (textureMetadataFileMap.containsKey(location)) {
-			return true;
-		}
-
+		
 		String[] str = getStr(location);
 		if (str == null || str[1].isEmpty()) return false;
 
@@ -236,7 +205,5 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 	public void invalidate() {
 		data.clear();
 		jsonCache.clear();
-		textureMetadataPngLocations.clear();
-		textureMetadataFileMap.clear();
 	}
 }
