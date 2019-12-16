@@ -3,11 +3,9 @@
   "blocks": [
     {
       "from": {
-        "block": "thaumcraft:plank_silverwood",
-        "iterate": [
-          "variant"
-        ]
+        "state": "thaumcraft:plank_silverwood"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [
@@ -20,11 +18,9 @@
     },
 	{
       "from": {
-        "block": "thaumcraft:plank_greatwood",
-        "iterate": [
-          "variant"
-        ]
+        "state": "thaumcraft:plank_greatwood"
       },
+      "mode": "plank",
       "through": {
         "block": "chisel:planks-oak",
         "iterate": [

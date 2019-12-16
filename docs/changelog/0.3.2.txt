@@ -1,3 +1,4 @@
 Bugs fixed:
 
 * Actually brought back functioning connected texture support. For real this time(tm).
+* Thaumcraft 6 woods support.
