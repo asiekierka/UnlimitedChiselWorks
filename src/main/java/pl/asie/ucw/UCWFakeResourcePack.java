@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.io.ByteStreams;
 import com.google.gson.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
@@ -75,7 +76,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 		} else if (!element.isJsonNull()) {
 			String s = element.getAsString();
 			if (s != null && s.startsWith(str[1] + ":")) {
-				String ns = "ucw_generated:ucw_ucw_" + str[0] + "/" + s.replaceFirst(":", "/");
+				String ns = UCWUtils.toUcwGenerated(new ResourceLocation(s), str[0]).toString();
 				// System.out.println(s + " -> " + ns);
 				return new JsonPrimitive(ns);
 			} else {
@@ -86,25 +87,6 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 		}
 	}
 
-	private String[] getStr(ResourceLocation location) {
-		String path = location.getPath();
-		Matcher m = Pattern.compile("ucw_ucw_([A-Za-z0-9_]+)/([a-z]+)").matcher(path);
-		String[] str = new String[] {
-				"",
-				"",
-				""
-		};
-
-		if (m.find()) {
-			str[0] = m.group(1);
-			str[1] = m.group(2);
-		}
-
-		String nonProxyPath = path.replaceAll("ucw_ucw_[A-Za-z0-9_]+/[a-z]+/", "");
-		str[2] = nonProxyPath;
-		return str;
-	}
-
 	@Override
 	public InputStream getInputStream(ResourceLocation location) throws IOException {
 		if (location.getPath().endsWith(".png")) {
@@ -112,7 +94,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 		}
 
 		if (!data.containsKey(location)) {
-			String[] str = getStr(location);
+			String[] str = UCWUtils.getUcwLocationData(location);
 			JsonElement element;
 			ResourceLocation nonProxiedLoc = new ResourceLocation(str[1], str[2]);
 
@@ -164,7 +146,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 			return true;
 		}
 		
-		String[] str = getStr(location);
+		String[] str = UCWUtils.getUcwLocationData(location);
 		if (str == null || str[1].isEmpty()) return false;
 
 		try (IResource resource = mc.getResourceManager().getResource(

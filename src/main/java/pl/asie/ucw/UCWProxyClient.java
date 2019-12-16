@@ -186,28 +186,9 @@ public class UCWProxyClient extends UCWProxyCommon {
 						ModelResourceLocation throughLoc = throughVariants.get(throughState);
 						IModel modelThrough = loaderEarlyView.getModel(throughLoc);
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();
-						// Chisel workaroundery
-						ImmutableSet.Builder<ResourceLocation> throughTextureSet = ImmutableSet.builder();
-						throughTextureSet.addAll(modelThrough.getTextures());
-						modelThrough.getTextures().forEach(rl -> {
-							if (!rl.getPath().endsWith("-ctm")) {
-								ResourceLocation ctmLocation = new ResourceLocation(rl.getNamespace(), "textures/" + rl.getPath() + "-ctm.png");
-								try (IResource resource = manager.getResource(ctmLocation)) {
-									System.out.println(s2);
-									System.out.println(ctmLocation);
-									throughTextureSet.add(new ResourceLocation(rl.getNamespace(), rl.getPath() + "-ctm"));
-								} catch (IOException e) {
-									// pass
-								}
-							}
-						});
-
-						for (ResourceLocation oldLocation : throughTextureSet.build()) {
-							String[] dividedOldLocationPath = oldLocation.getPath().split("/", 2);
-							ResourceLocation newLocation = new ResourceLocation("ucw_generated",
-									dividedOldLocationPath[0] + "/ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + dividedOldLocationPath[1]);
-							textureRemapMap.put(oldLocation.toString(), newLocation.toString());
-							TextureAtlasSprite sprite = new TextureAtlasSprite(newLocation.toString()) {
+						UCWFakeTextureMap fakeTextureMap = new UCWFakeTextureMap(event.getMap(), newLocation -> {
+							ResourceLocation oldLocation = UCWUtils.fromUcwGenerated(newLocation);
+							return new TextureAtlasSprite(newLocation.toString()) {
 								@Override
 								public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
 									return true;
@@ -238,9 +219,14 @@ public class UCWProxyClient extends UCWProxyCommon {
 									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
 								}
 							};
-							event.getMap().setTextureEntry(sprite);
+						});
+
+						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
+							ResourceLocation newLocation = UCWUtils.toUcwGenerated(oldLocation, s2);
+							textureRemapMap.put(oldLocation.toString(), newLocation.toString());
+							TextureAtlasSprite sprite = fakeTextureMap.registerSprite(newLocation);
 							if (Loader.isModLoaded("ctm")) {
-								ctmOnSpriteAddedHook(event.getMap(), sprite);
+								ctmOnSpriteAddedHook(fakeTextureMap, sprite);
 							}
 						}
 

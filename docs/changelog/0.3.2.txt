@@ -1,0 +1,3 @@
+Bugs fixed:
+
+* Actually brought back functioning connected texture support. For real this time(tm).
