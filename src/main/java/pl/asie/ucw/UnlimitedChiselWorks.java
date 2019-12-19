@@ -391,16 +391,21 @@ public final class UnlimitedChiselWorks {
 
     @EventHandler
     public void postInit(FMLInitializationEvent event) {
+        Map<Block, int[]> oreIdMap = new HashMap<>();
         for (UCWBlockRule rule : BLOCK_RULES) {
-            ItemStack stack = new ItemStack(rule.fromBlock, 1, OreDictionary.WILDCARD_VALUE);
-            if (!stack.isEmpty()) {
-                int[] ids = OreDictionary.getOreIDs(stack);
-                if (ids.length > 0) {
-                    for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
-                        if (factory.isBlockRegistered()) {
-                            for (int i : ids) {
-                                OreDictionary.registerOre(OreDictionary.getOreName(i), factory.getBlock());
-                            }
+            int[] oreIds = oreIdMap.computeIfAbsent(rule.fromBlock, b -> {
+                ItemStack stack = new ItemStack(b, 1, OreDictionary.WILDCARD_VALUE);
+                if (!stack.isEmpty()) {
+                    return OreDictionary.getOreIDs(stack);
+                } else {
+                    return new int[0];
+                }
+            });
+            if (oreIds.length > 0) {
+                for (UCWObjectFactory factory : rule.objectFactories.valueCollection()) {
+                    if (factory.isBlockRegistered()) {
+                        for (int i : oreIds) {
+                            OreDictionary.registerOre(OreDictionary.getOreName(i), new ItemStack(factory.getBlock(), 1, OreDictionary.WILDCARD_VALUE));
                         }
                     }
                 }

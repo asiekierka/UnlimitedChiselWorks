@@ -1,3 +1,9 @@
 Additions:
 
-* Updated Bewitchment support (Dragons' Blood Planks, Scorned Bricks)
+* [#59] Updated Bewitchment support (Dragons' Blood Planks, Scorned Bricks).
+* [#23] WAILA/HWYLA integration for Chisel-based UCW blocks.
+* Updated Underground Biomes Constructs support (sandstones).
+
+Bugs fixed:
+
+* [#20] Incomplete ore dictionary mappings for UCW-added blocks.

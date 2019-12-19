@@ -207,6 +207,132 @@
       "based_upon": {
         "state": "minecraft:cobblestone"
       }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:igneous_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:metamorphic_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:sedimentary_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:sedimentary_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
+    },
+    {
+      "from": {
+        "block": "undergroundbiomes:sedimentary_sandstone"
+      },
+      "through": {
+        "block": "chisel:sandstoneyellow2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:sandstone#type=sandstone"
+      }
     }
   ]
 }
