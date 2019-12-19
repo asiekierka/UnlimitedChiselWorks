@@ -1,0 +1,3 @@
+Additions:
+
+* Updated Bewitchment support (Dragons' Blood Planks, Scorned Bricks)

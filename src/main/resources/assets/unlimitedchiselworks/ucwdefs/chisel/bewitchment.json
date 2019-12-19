@@ -2,6 +2,7 @@
   "modid": ["chisel", "bewitchment"],
   "blocks": [
     {
+      "_comment": "No longer present, as of earlier than 2019/12/16",
       "from": {
         "state": "bewitchment:yew_planks"
       },
@@ -61,6 +62,21 @@
         "state": "minecraft:planks#variant=oak"
       }
     },
+    {
+      "from": {
+        "state": "bewitchment:dragons_blood_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
 	{
       "from": {
         "state": "bewitchment:coquina_bricks"
@@ -105,6 +121,51 @@
       "overlay": {
         "state": "bewitchment:coquina"
       },
+      "through": {
+        "block": "chisel:stonebrick2",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "bewitchment:scorned_bricks"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "bewitchment:scorned_bricks"
+      },
+      "mode": "blend",
+      "through": {
+        "block": "chisel:stonebrick1",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:stonebrick#variant=stonebrick"
+      }
+    },
+    {
+      "from": {
+        "state": "bewitchment:scorned_bricks"
+      },
+      "mode": "blend",
       "through": {
         "block": "chisel:stonebrick2",
         "iterate": [
