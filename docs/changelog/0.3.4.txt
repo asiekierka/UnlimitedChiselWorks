@@ -1,6 +1,7 @@
 Additions:
 
 * [#61] Fossils and Archaeology Revival, Spooky Biomes support
+* Wild Nature support
 
 Bugs fixed:
 
