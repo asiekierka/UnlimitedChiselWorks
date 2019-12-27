@@ -76,8 +76,13 @@ public final class UCWVanillaModelRemapper {
                     for (Map.Entry<String, String> entry : modelBlock.textures.entrySet()) {
                         if (textureValues.containsKey(entry.getValue())) {
                             replacements.put(entry.getKey(), textureValues.get(entry.getValue()));
-                        } else if (entry.getValue().indexOf(':') < 0 && textureValues.containsKey("minecraft:" + entry.getValue())) {
-                            replacements.put(entry.getKey(), textureValues.get("minecraft:" + entry.getValue()));
+                        } else {
+                            String valueLowerCase = entry.getValue().toLowerCase(Locale.ROOT);
+                            if (textureValues.containsKey(valueLowerCase)) {
+                                replacements.put(entry.getKey(), textureValues.get(valueLowerCase));
+                            } else if (entry.getValue().indexOf(':') < 0 && textureValues.containsKey("minecraft:" + entry.getValue())) {
+                                replacements.put(entry.getKey(), textureValues.get("minecraft:" + entry.getValue()));
+                            }
                         }
                     }
                     for (Map.Entry<String, String> entry : replacements.entrySet()) {

@@ -1,3 +1,7 @@
 Additions:
 
 * [#61] Fossils and Archaeology Revival, Spooky Biomes support
+
+Bugs fixed:
+
+* [#62] Reinforced Dirt variants not being properly recolored
