@@ -1,0 +1,64 @@
+{
+  "modid": ["chisel", "spookybiomes"],
+  "blocks": [
+    {
+      "from": {
+        "block": "spookybiomes:sorbus_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "spookybiomes:ghostly_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "spookybiomes:bloodwood_planks"
+      },
+      "mode": "plank",
+      "through": {
+        "block": "chisel:planks-oak",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:planks#variant=oak"
+      }
+    },
+    {
+      "from": {
+        "block": "spookybiomes:bloodied_dirt"
+      },
+      "through": {
+        "block": "chisel:dirt",
+        "iterate": [
+          "variation"
+        ]
+      },
+      "based_upon": {
+        "state": "minecraft:dirt#snowy=false,variant=dirt"
+      }
+    }
+  ]
+}

@@ -66,6 +66,10 @@ public final class UCWUtils {
 		return new ResourceLocation("ucw_generated", "ucw_ucw_" + s2 + "/" + oldLocation.getNamespace() + "/" + oldLocation.getPath());
 	}
 
+	public static String toUcwGenerated(String[] oldLocation, String s2) {
+		return "ucw_generated:ucw_ucw_" + s2 + "/" + oldLocation[0] + "/" + oldLocation[1];
+	}
+
 	public static ItemStack copyChangeItem(ItemStack stack, Item item) {
 		return copyChangeItem(stack, item, stack.getItemDamage());
 	}

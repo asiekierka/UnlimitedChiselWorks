@@ -76,7 +76,7 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 		} else if (!element.isJsonNull()) {
 			String s = element.getAsString();
 			if (s != null && s.startsWith(str[1] + ":")) {
-				String ns = UCWUtils.toUcwGenerated(new ResourceLocation(s), str[0]).toString();
+				String ns = UCWUtils.toUcwGenerated(ResourceLocation.splitObjectName(s), str[0]);
 				// System.out.println(s + " -> " + ns);
 				return new JsonPrimitive(ns);
 			} else {
