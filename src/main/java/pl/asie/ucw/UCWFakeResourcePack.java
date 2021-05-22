@@ -48,6 +48,7 @@ import java.util.regex.Pattern;
 // TODO: Rewrite this mess
 public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloadListener {
 	public static final UCWFakeResourcePack INSTANCE = new UCWFakeResourcePack();
+	private static final boolean DEBUG = false;
 
 	private final Map<ResourceLocation, byte[]> data = new HashMap<>();
 	private final Map<ResourceLocation, JsonElement> jsonCache = new HashMap<>();
@@ -77,7 +78,9 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 			String s = element.getAsString();
 			if (s != null && s.startsWith(str[1] + ":")) {
 				String ns = UCWUtils.toUcwGenerated(ResourceLocation.splitObjectName(s), str[0]);
-				// System.out.println(s + " -> " + ns);
+				if (DEBUG) {
+					System.out.println("Transformed: " + s + " -> " + ns);
+				}
 				return new JsonPrimitive(ns);
 			} else {
 				return element;
@@ -97,6 +100,10 @@ public class UCWFakeResourcePack implements IResourcePack, IResourceManagerReloa
 			String[] str = UCWUtils.getUcwLocationData(location);
 			JsonElement element;
 			ResourceLocation nonProxiedLoc = new ResourceLocation(str[1], str[2]);
+
+			if (DEBUG) {
+				System.out.println("Proxying " + nonProxiedLoc + " -> " + location);
+			}
 
 			if (jsonCache.containsKey(nonProxiedLoc)) {
 				element = jsonCache.get(nonProxiedLoc);

@@ -41,6 +41,7 @@ import java.util.Set;
 
 public final class UCWJsonUtils {
 	private static final Method WITH_PROPERTY = ReflectionHelper.findMethod(IBlockState.class, "withProperty", "func_177226_a", IProperty.class, Comparable.class);
+	private static final Class CARVABLE_CLASS = UCWUtils.findClass("team.chisel.common.block.BlockCarvable");
 
 	private UCWJsonUtils() {
 
@@ -78,36 +79,57 @@ public final class UCWJsonUtils {
 			ResourceLocation blockLoc = new ResourceLocation(object.get("block").getAsString());
 			if (ForgeRegistries.BLOCKS.containsKey(blockLoc)) {
 				Block block = ForgeRegistries.BLOCKS.getValue(blockLoc);
-				if (orderMatters) {
-					Set<IBlockState> states = Sets.newHashSet(block.getBlockState().getValidStates());
-					List<IBlockState> stateList = new ArrayList<>();
-					TIntSet validMetas = new TIntHashSet();
+				List<IBlockState> stateList = new ArrayList<>(16);
 
-					for (int i = 0; i < 16; i++) {
-						stateList.add(null);
-					}
-
-					for (IBlockState state : block.getBlockState().getValidStates()) {
-						validMetas.add(block.getMetaFromState(state));
-					}
-
-					TIntIterator iterator = validMetas.iterator();
-					while (iterator.hasNext()) {
-						int i = iterator.next();
-						try {
-							IBlockState state = block.getStateFromMeta(i);
-							if (states.remove(state)) {
-								stateList.set(i, state);
+				// TODO: Kludge, but seems to fix #72. Also speeds up loading
+				if (CARVABLE_CLASS != null && CARVABLE_CLASS.isAssignableFrom(block.getClass())) {
+					try {
+						IBlockState lastState = null;
+						int i = 0;
+						while (i < 16) {
+							IBlockState nextState = block.getStateFromMeta(i++);
+							if (nextState == lastState) {
+								break;
 							}
-						} catch (Exception e) {
-							/* ... */
+							stateList.add(nextState);
+							lastState = nextState;
 						}
+					} catch (IllegalArgumentException e) {
+						// pass
 					}
-
 					return stateList;
-				} else {
-					return block.getBlockState().getValidStates();
 				}
+
+				Set<IBlockState> states = Sets.newIdentityHashSet();
+				states.addAll(block.getBlockState().getValidStates());
+				TIntSet validMetas = new TIntHashSet();
+
+				for (int i = 0; i < 16; i++) {
+					stateList.add(null);
+				}
+
+				for (IBlockState state : block.getBlockState().getValidStates()) {
+					validMetas.add(block.getMetaFromState(state));
+				}
+
+				TIntIterator iterator = validMetas.iterator();
+				while (iterator.hasNext()) {
+					int i = iterator.next();
+					try {
+						IBlockState state = block.getStateFromMeta(i);
+						if (states.remove(state)) {
+							stateList.set(i, state);
+						}
+					} catch (Exception e) {
+						/* ... */
+					}
+				}
+
+				while (stateList.size() >= 1 && stateList.get(stateList.size() - 1) == null) {
+					stateList.remove(stateList.size() - 1);
+				}
+
+				return stateList;
 			} else {
 				return Collections.emptyList();
 			}
@@ -115,19 +137,13 @@ public final class UCWJsonUtils {
 			JsonElement element = object.get("state");
 			if (element.isJsonArray()) {
 				List<IBlockState> stateList = Lists.newArrayList();
-				if (orderMatters) {
-					for (int i = 0; i < 16; i++)
-						stateList.add(i, null);
-				}
+				for (int i = 0; i < 16; i++)
+					stateList.add(i, null);
 
 				for (JsonElement el : element.getAsJsonArray()) {
 					IBlockState state = parseState(el.getAsString());
 					if (state != null) {
-						if (orderMatters) {
-							stateList.set(state.getBlock().getMetaFromState(state), state);
-						} else {
-							stateList.add(state);
-						}
+						stateList.set(state.getBlock().getMetaFromState(state), state);
 					}
 				}
 

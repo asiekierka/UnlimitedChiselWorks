@@ -20,6 +20,7 @@
 package pl.asie.ucw;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import net.minecraft.client.renderer.block.model.ModelBlock;
@@ -61,8 +62,10 @@ public final class UCWVanillaModelRemapper {
                 orig.getAllTransforms(), orig.getOverrides());
     }
 
+    private static final ImmutableMap<String, String> hackyCloneRetextureMap = ImmutableMap.of("\ufd00\ufd01\ufd02\ufd03", "this does not exist");
+
     private static IModel hackyClone(IModel orig) {
-        return orig.retexture(ImmutableMap.of("\ufd00\ufd01\ufd02\ufd03", "this does not exist"));
+        return orig.retexture(hackyCloneRetextureMap);
     }
 
     public static IModel retexture(ImmutableMap<String, String> textureValues, ImmutableMap<String, String> textures, IModel model) {

@@ -107,9 +107,9 @@ public class ItemUCWProxy extends ItemBlock {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		Item origItem = getItemThrough();
 		if (UnlimitedChiselWorks.useChiselGetSubItemsWorkaround && "chisel".equals(origItem.getRegistryName().getNamespace())) {
-			for (int i = 0; i < 16; i++) {
+			for (int i = 0; i < rule.through.size(); i++) {
 				if (rule.through.get(i) != null) {
-					// FIXME: Dirt#9 doesn't really work well :-(
+					// Dirt#9 doesn't really work well on old Chisel versions
 					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && i == 9) {
 						continue;
 					}
@@ -130,11 +130,6 @@ public class ItemUCWProxy extends ItemBlock {
 			origItem.getSubItems(tab, proxyList);
 			for (ItemStack stack : proxyList) {
 				if (stack.getItem() == origItem) {
-					// FIXME: Dirt#9 doesn't really work well :-(
-					if (rule.throughBlock.getRegistryName().toString().equals("chisel:dirt") && stack.getItemDamage() == 9) {
-						continue;
-					}
-
 					try {
 						if (!rule.through.contains(rule.throughBlock.getStateFromMeta(stack.getItemDamage()))) {
 							continue;

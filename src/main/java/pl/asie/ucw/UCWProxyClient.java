@@ -25,6 +25,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -128,7 +129,7 @@ public class UCWProxyClient extends UCWProxyCommon {
 				IBlockState state = rule.from.get(i);
 				if (state != null) {
 					UCWObjectFactory factory = rule.objectFactories.get(i);
-					for (int j = 0; j < 16; j++) {
+					for (int j = 0; j < rule.through.size(); j++) {
 						IBlockState throughState = rule.through.get(j);
 						if (throughState == null) continue;
 
@@ -163,10 +164,17 @@ public class UCWProxyClient extends UCWProxyCommon {
 			Map<IBlockState, ModelResourceLocation> throughVariants = loaderEarlyView.getVariants(rule.throughBlock);
 			Map<IBlockState, ModelResourceLocation> basedUponVariants = loaderEarlyView.getVariants(rule.basedUponBlock);
 
+			Block lastFromBlock = null;
+			String lastFromBlockString = null;
+
 			for (int i = 0; i < rule.from.size(); i++) {
 				IBlockState state = rule.from.get(i);
 				if (state != null) {
-					String s2 = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_") + "_" + state.getBlock().getMetaFromState(state);
+					if (lastFromBlock != rule.fromBlock) {
+						lastFromBlock = rule.fromBlock;
+						lastFromBlockString = rule.fromBlock.getRegistryName().toString().trim().replaceAll("[^A-Za-z0-9]", "_");
+					}
+					String s2 = lastFromBlockString + "_" + state.getBlock().getMetaFromState(state);
 
 					IBlockState stateOverlay = rule.overlay.get(i);
 					IModel modelFrom = loaderEarlyView.getModel(fromVariants.get(state));
@@ -179,47 +187,49 @@ public class UCWProxyClient extends UCWProxyCommon {
 
 					UCWObjectFactory factory = rule.objectFactories.get(i);
 
-					for (int j = 0; j < 16; j++) {
+					UCWFakeTextureMap fakeTextureMap = new UCWFakeTextureMap(event.getMap(), newLocation -> {
+						ResourceLocation oldLocation = UCWUtils.fromUcwGenerated(newLocation);
+						return new TextureAtlasSprite(newLocation.toString()) {
+							@Override
+							public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
+								return true;
+							}
+
+							@Override
+							public boolean load(IResourceManager manager, ResourceLocation location, Function<ResourceLocation, TextureAtlasSprite> textureGetter) {
+								TextureAtlasSprite fromTex = textureGetter.apply(textureFrom);
+								TextureAtlasSprite overlayTex = textureGetter.apply(textureOverlay);
+								TextureAtlasSprite basedUponTex = textureGetter.apply(textureBasedUpon);
+								TextureAtlasSprite locationTex = textureGetter.apply(oldLocation);
+
+								setIconWidth(locationTex.getIconWidth());
+								setIconHeight(locationTex.getIconHeight());
+
+								clearFramesTextureData();
+								for (int i = 0; i < locationTex.getFrameCount(); i++) {
+									int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
+									pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.mode);
+									framesTextureData.add(pixels);
+								}
+
+								return false;
+							}
+
+							@Override
+							public java.util.Collection<ResourceLocation> getDependencies() {
+								return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
+							}
+						};
+					});
+
+					System.out.println(rule.through.get(0).getBlock().getRegistryName() + ": " + rule.through.size());
+					for (int j = 0; j < rule.through.size(); j++) {
 						IBlockState throughState = rule.through.get(j);
 						if (throughState == null) continue;
 
 						ModelResourceLocation throughLoc = throughVariants.get(throughState);
 						IModel modelThrough = loaderEarlyView.getModel(throughLoc);
 						ImmutableMap.Builder<String, String> textureRemapMap = ImmutableMap.builder();
-						UCWFakeTextureMap fakeTextureMap = new UCWFakeTextureMap(event.getMap(), newLocation -> {
-							ResourceLocation oldLocation = UCWUtils.fromUcwGenerated(newLocation);
-							return new TextureAtlasSprite(newLocation.toString()) {
-								@Override
-								public boolean hasCustomLoader(IResourceManager manager, ResourceLocation location) {
-									return true;
-								}
-
-								@Override
-								public boolean load(IResourceManager manager, ResourceLocation location, Function<ResourceLocation, TextureAtlasSprite> textureGetter) {
-									TextureAtlasSprite fromTex = textureGetter.apply(textureFrom);
-									TextureAtlasSprite overlayTex = textureGetter.apply(textureOverlay);
-									TextureAtlasSprite basedUponTex = textureGetter.apply(textureBasedUpon);
-									TextureAtlasSprite locationTex = textureGetter.apply(oldLocation);
-
-									setIconWidth(locationTex.getIconWidth());
-									setIconHeight(locationTex.getIconHeight());
-
-									clearFramesTextureData();
-									for (int i = 0; i < locationTex.getFrameCount(); i++) {
-										int[][] pixels = new int[Minecraft.getMinecraft().gameSettings.mipmapLevels + 1][];
-										pixels[0] = UCWMagic.transform(locationTex, i, fromTex, overlayTex, basedUponTex, rule.mode);
-										framesTextureData.add(pixels);
-									}
-
-									return false;
-								}
-
-								@Override
-								public java.util.Collection<ResourceLocation> getDependencies() {
-									return ImmutableList.of(textureFrom, textureBasedUpon, oldLocation, textureOverlay);
-								}
-							};
-						});
 
 						for (ResourceLocation oldLocation : modelThrough.getTextures()) {
 							ResourceLocation newLocation = UCWUtils.toUcwGenerated(oldLocation, s2);

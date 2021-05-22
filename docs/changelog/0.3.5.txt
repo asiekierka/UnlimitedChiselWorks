@@ -1,0 +1,3 @@
+Bugs fixed:
+
+* [#72] Some Chisel patterns not working correctly.

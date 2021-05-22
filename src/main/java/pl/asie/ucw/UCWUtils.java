@@ -34,6 +34,14 @@ public final class UCWUtils {
 
 	}
 
+	public static Class findClass(String name) {
+		try {
+			return Class.forName(name);
+		} catch (Throwable t) {
+			return null;
+		}
+	}
+
 	public static String[] getUcwLocationData(ResourceLocation location) {
 		String path = location.getPath();
 		Matcher m = Pattern.compile("ucw_ucw_([A-Za-z0-9_]+)/([a-z]+)").matcher(path);

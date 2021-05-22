@@ -59,7 +59,7 @@ public class UCWBlockRule {
 	public UCWBlockRule(JsonObject object) throws Exception {
 		from = UCWJsonUtils.parseStateList(object.get("from").getAsJsonObject(), true);
 		through = UCWJsonUtils.parseStateList(object.get("through").getAsJsonObject(), true);
-		basedUpon = UCWJsonUtils.parseStateList(object.get("based_upon").getAsJsonObject(), false);
+		basedUpon = UCWJsonUtils.parseStateList(object.get("based_upon").getAsJsonObject(), true);
 		fromBlock = getBlock(from);
 		throughBlock = getBlock(through);
 		basedUponBlock = getBlock(basedUpon);

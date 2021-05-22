@@ -25,6 +25,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.block.state.IBlockState;
 
 import java.util.List;
+import java.util.Objects;
 
 public class UCWGroupRule {
 	protected final String groupName;
@@ -32,15 +33,17 @@ public class UCWGroupRule {
 
 	public UCWGroupRule(JsonObject object) throws Exception {
 		this.groupName = object.get("name").getAsString();
+		this.states = Lists.newArrayList();
 
 		JsonElement element = object.get("entries");
 		if (element.isJsonArray()) {
-			states = Lists.newArrayList();
 			for (JsonElement element1 : element.getAsJsonArray()) {
-				states.addAll(UCWJsonUtils.parseStateList(element1.getAsJsonObject(), false));
+				UCWJsonUtils.parseStateList(element1.getAsJsonObject(), true)
+						.stream().filter(Objects::nonNull).forEach(states::add);
 			}
 		} else {
-			this.states = UCWJsonUtils.parseStateList(element.getAsJsonObject(), false);
+			UCWJsonUtils.parseStateList(element.getAsJsonObject(), true)
+					.stream().filter(Objects::nonNull).forEach(states::add);
 		}
 	}
 }

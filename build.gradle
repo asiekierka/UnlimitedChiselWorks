@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://maven.minecraftforge.net/" }
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
@@ -16,7 +16,7 @@ import groovy.json.JsonSlurper
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'net.minecrell.licenser'
 
-version = "0.3.4"
+version = "0.3.5"
 group = "pl.asie.ucw"
 archivesBaseName = "UnlimitedChiselWorks"
 
@@ -28,12 +28,11 @@ compileJava {
 if (System.getenv("BUILD_NUMBER") != null)
     version += ".${System.getenv("BUILD_NUMBER")}"
 
-configurations {
-    deploy
-}
-
-dependencies {
-    deploy 'org.apache.maven.wagon:wagon-ssh:2.10'
+apply plugin: 'idea'
+idea {
+    module {
+        outputDir = file('build/classes/java/main')
+    }
 }
 
 minecraft {
@@ -51,7 +50,7 @@ repositories {
         url "http://maven.tterrag.com/"
     }
     maven {
-        url 'http://tehnut.info/maven/'
+        url 'http://maven.tehnut.info'
     }
     ivy {
         name 'asie dependency mirror'
@@ -61,6 +60,7 @@ repositories {
 
 sourceSets {
     main {
+        output.resourcesDir = 'build/classes/java/main'
         resources {
             srcDirs += 'docs'
         }
@@ -77,9 +77,10 @@ license {
 }
 
 dependencies {
-    deobfCompile "team.chisel:Chisel:MC1.12.2-1.0.1.44"
-    deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.1.30"
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.23-B38_1.12:api"
+    deobfCompile "team.chisel:Chisel:MC1.12.2-1.0.2.45"
+    deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
+    compileOnly "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2:api"
+    runtimeOnly "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
 }
 
 processResources {
